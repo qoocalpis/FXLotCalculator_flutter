@@ -1,0 +1,3 @@
+class CurrencyPairModel {
+  String a = '';
+}
