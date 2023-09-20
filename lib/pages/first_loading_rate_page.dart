@@ -13,7 +13,7 @@ class FirstLoadingRatePageState extends State<FirstLoadingRatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.FirstLoadingRatePageBgColor,
+      backgroundColor: AppColor.firstLoadingRatePageBgColor,
       body: Center(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Padding(
@@ -23,7 +23,6 @@ class FirstLoadingRatePageState extends State<FirstLoadingRatePage> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0), //全方向に8のパディング
-            // child: Text('テキスト'),
             child: Text(
               AppLocalizations.of(context)!.loadingRateApi,
             ),

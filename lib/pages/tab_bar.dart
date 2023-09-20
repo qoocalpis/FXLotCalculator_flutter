@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
-import 'package:lot_size_calculator_app/pages/page1.dart';
+import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 
 class _CustomTabBarState extends State<CustomTabBar>
     with SingleTickerProviderStateMixin {

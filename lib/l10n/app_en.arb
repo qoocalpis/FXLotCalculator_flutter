@@ -1,6 +1,3 @@
 {
-    "loadingRateApi": "Getting the latest rates",
-    "@loadingRateApi":{
-        "diescription": "Loding API messeage"
-    }
+  "loadingRateApi": "Getting the latest rates"
 }
