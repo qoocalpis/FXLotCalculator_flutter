@@ -1,4 +1,6 @@
 {
     "loadingRateApi": "最新のレートを取得しています",
-    "accountBalance": "口座残高"
+    "accountBalance": "口座残高",
+    "lossAllowance": "損失許容額 (%)",
+    "lossTolerancePips": "損失許容量(pips)"
 }

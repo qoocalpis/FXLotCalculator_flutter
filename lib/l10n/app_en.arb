@@ -1,4 +1,6 @@
 {
   "loadingRateApi": "Getting the latest rates",
-  "accountBalance": "Account balance"
+  "accountBalance": "Account balance",
+  "lossAllowance": "Loss allowance (%)",
+  "lossTolerancePips": "Loss tolerance (pips)"
 }
