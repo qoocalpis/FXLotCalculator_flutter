@@ -80,7 +80,6 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
             ],
           ),
         ),
-        //color: Colors.red,
       ),
     );
   }
