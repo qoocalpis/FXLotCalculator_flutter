@@ -15,7 +15,7 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColor.lotSizeCalculatorPageBgColor,
-      body: Container(
+      body: SizedBox(
         height: h,
         child: Stack(
           children: [
@@ -62,19 +62,19 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _cellTitle(AppLocalizations.of(context)!.accountBalance),
-              const Row(
+              Row(
                 children: <Widget>[
                   SizedBox(
-                    width: 100,
+                    width: w * 0.25,
                   ),
                   SizedBox(
-                    width: 170,
-                    child: TextField(
+                    width: w * 0.48,
+                    child: const TextField(
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  Text("USD"),
+                  const Text("USD"),
                 ],
               ),
             ],
@@ -99,19 +99,19 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _cellTitle(AppLocalizations.of(context)!.lossAllowance),
-              const Row(
+              Row(
                 children: [
                   SizedBox(
-                    width: 100,
+                    width: w * 0.25,
                   ),
                   SizedBox(
-                    width: 170,
-                    child: TextField(
+                    width: w * 0.48,
+                    child: const TextField(
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  Text("USD"),
+                  const Text("USD"),
                 ],
               ),
             ],
@@ -135,19 +135,19 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _cellTitle(AppLocalizations.of(context)!.lossTolerancePips),
-              const Row(
+              Row(
                 children: [
                   SizedBox(
-                    width: 100,
+                    width: w * 0.25,
                   ),
                   SizedBox(
-                    width: 170,
-                    child: TextField(
+                    width: w * 0.48,
+                    child: const TextField(
                       textAlign: TextAlign.right,
                       keyboardType: TextInputType.number,
                     ),
                   ),
-                  Text("Pips"),
+                  const Text("USD"),
                 ],
               ),
             ],

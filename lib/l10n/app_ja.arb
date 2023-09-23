@@ -2,5 +2,9 @@
     "loadingRateApi": "最新のレートを取得しています",
     "accountBalance": "口座残高",
     "lossAllowance": "損失許容額 (%)",
-    "lossTolerancePips": "損失許容量(pips)"
+    "lossTolerancePips": "損失許容量(pips)",
+    "lotSizeCalculatorTitle": "FXロット計算",
+    "riskRewardRatioTitle": "リスクリワード比率",
+    "risk": "損失幅",
+    "reward": "利益幅"
 }

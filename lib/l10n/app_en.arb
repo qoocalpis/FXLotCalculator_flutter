@@ -2,5 +2,9 @@
   "loadingRateApi": "Getting the latest rates",
   "accountBalance": "Account balance",
   "lossAllowance": "Loss allowance (%)",
-  "lossTolerancePips": "Loss tolerance (pips)"
+  "lossTolerancePips": "Loss tolerance (pips)",
+  "lotSizeCalculatorTitle": "Lot Size Calculator",
+  "riskRewardRatioTitle": "Risk Reward Ratio",
+  "risk": "Loss cut",
+  "reward": "Take profit"
 }

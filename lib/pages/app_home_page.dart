@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
+import 'package:lot_size_calculator_app/pages/page3.dart';
 import 'risk_reward_ratio_page.dart';
 
 class AppHomePage extends StatefulWidget {
@@ -59,7 +60,7 @@ class AppHomePageState extends State<AppHomePage>
           bottom: TabBar(
             indicatorColor: const Color(0xffF15C22),
             unselectedLabelColor: Colors.grey,
-            labelColor: Color.fromARGB(255, 255, 255, 99),
+            labelColor: const Color.fromARGB(255, 255, 255, 99),
             controller: _tabController,
             tabs: appTabs,
           ),
@@ -70,7 +71,8 @@ class AppHomePageState extends State<AppHomePage>
       ),
       body: TabBarView(controller: _tabController, children: const [
         LotSizeCalculatorPage(),
-        RiskRewardRatioPage(),
+        //RiskRewardRatioPage(),
+        Page3()
       ]),
     );
   }
