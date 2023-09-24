@@ -5,6 +5,6 @@
   "lossTolerancePips": "Loss tolerance (pips)",
   "lotSizeCalculatorTitle": "Lot Size Calculator",
   "riskRewardRatioTitle": "Risk Reward Ratio",
-  "risk": "Loss cut",
-  "reward": "Take profit"
+  "risk": "Risk",
+  "reward": "Reward"
 }

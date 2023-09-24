@@ -5,5 +5,7 @@ class AppColor {
       const Color.fromARGB(255, 109, 77, 170);
   static Color appBarBgColor = const Color.fromARGB(255, 44, 77, 90);
   static Color lotSizeCalculatorPageBgColor =
-      Color.fromARGB(255, 231, 231, 231);
+      const Color.fromARGB(255, 231, 231, 231);
+  static Color lossCutBgColor = const Color.fromARGB(255, 240, 56, 56);
+  static Color takeProfitBgColor = const Color.fromARGB(255, 8, 165, 249);
 }

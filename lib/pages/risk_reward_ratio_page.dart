@@ -3,9 +3,10 @@ import 'package:d_chart/commons/decorator.dart';
 import 'package:d_chart/commons/style.dart';
 import 'package:d_chart/ordinal/bar.dart';
 import 'package:flutter/material.dart';
-import 'package:ruler_picker_bn/ruler_picker_bn.dart';
-// import 'package:syncfusion_flutter_charts/charts.dart';
-// import 'package:d_chart/d_chart.dart';
+import 'package:lot_size_calculator_app/component/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'two_num_keyboard_page.dart';
 
 class RiskRewardRatioPage extends StatefulWidget {
   const RiskRewardRatioPage({super.key});
@@ -29,55 +30,118 @@ class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
 
   @override
   Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.all(10),
+      body: Column(
         children: [
-          AspectRatio(
-            aspectRatio: 11 / 9,
-            child: DChartBarO(
-              animate: true,
-              animationDuration: const Duration(milliseconds: 600),
-              barLabelDecorator: BarLabelDecorator(),
-              insideBarLabelStyle: (group, ordinalData, index) {
-                return const LabelStyle(
-                  color: Colors.white,
-                );
-              },
-              barLabelValue: (group, ordinalData, index) =>
-                  ordinalData.measure.toString(),
-              groupList: ordinalGroup,
-              fillColor: (group, ordinalData, index) {
-                if (ordinalData.domain == 'Reward') {
-                  return const Color.fromARGB(255, 8, 165, 249);
-                }
-                return const Color.fromARGB(255, 240, 56, 56);
-              },
-              vertical: false,
+          Padding(
+            padding: const EdgeInsets.all(5),
+            child: AspectRatio(
+              aspectRatio: 11 / 9,
+              child: DChartBarO(
+                animate: true,
+                animationDuration: const Duration(milliseconds: 600),
+                barLabelDecorator: BarLabelDecorator(),
+                insideBarLabelStyle: (group, ordinalData, index) {
+                  return const LabelStyle(
+                    color: Colors.white,
+                  );
+                },
+                barLabelValue: (group, ordinalData, index) =>
+                    '${ordinalData.measure}pips',
+                groupList: ordinalGroup,
+                fillColor: (group, ordinalData, index) {
+                  if (ordinalData.domain == 'Reward') {
+                    return AppColor.takeProfitBgColor;
+                  }
+                  return AppColor.lossCutBgColor;
+                },
+                vertical: false,
+              ),
             ),
           ),
-          Row(
-            children: [
-              SizedBox(
-                width: 200,
-                height: 305,
-                child: RulerPicker(
-                  onChange: (val) {
-                    setState(() {
-                      valueKG = val;
-                    });
-                  },
-                  background: Colors.white,
-                  lineColor: Colors.black,
-                  direction: Axis.vertical,
-                  startValue: 70,
-                  maxValue: 200,
+          Container(
+            margin: const EdgeInsets.all(15),
+            width: w * 0.9,
+            height: h * 0.15,
+            //color: Colors.white,
+            decoration: _boxDecoration(),
+
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(AppLocalizations.of(context)!.risk),
+                  ],
                 ),
+                const Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(' '),
+                    //Text(':'),
+                  ],
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(AppLocalizations.of(context)!.reward),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              _showBottomSheetMenu(context);
+            },
+            style: TextButton.styleFrom(
+              textStyle: const TextStyle(fontSize: 30),
+              foregroundColor: Colors.white, // foreground
+              fixedSize: const Size(220, 80),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
               ),
-            ],
+            ),
+            child: const Text("クリック不可"),
           ),
         ],
       ),
+    );
+  }
+
+  _boxDecoration() {
+    return const BoxDecoration(
+      color: Colors.white,
+      borderRadius: BorderRadius.all(
+        Radius.circular(10.0),
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: Color(0xFFd8dbe0),
+          offset: Offset(1, 1),
+          blurRadius: 20.0,
+          spreadRadius: 10,
+        ),
+      ],
+    );
+  }
+
+  void _showBottomSheetMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      ),
+      builder: (builder) {
+        return Container(
+          height: 350.0,
+          color: Colors.transparent,
+          child: TwoNumKeyboardPage(),
+        );
+      },
     );
   }
 }

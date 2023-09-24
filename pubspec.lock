@@ -160,22 +160,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.8.3"
-  ruler_picker_bn:
-    dependency: "direct main"
-    description:
-      name: ruler_picker_bn
-      sha256: "0b4bfb1c6121a3e4396a7267f7f87d3f37edb448d29eab50bb2ea159d6b6e1ee"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.0.6"
-  scrollable_positioned_list:
-    dependency: transitive
-    description:
-      name: scrollable_positioned_list
-      sha256: "1b54d5f1329a1e263269abc9e2543d90806131aa14fe7c6062a8054d57249287"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.3.8"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -213,22 +197,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  syncfusion_flutter_charts:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_charts
-      sha256: b1c706cea163059ecfe89132ca078f83d31e54cc99ecd1fabe4810e1b1dacc95
-      url: "https://pub.dev"
-    source: hosted
-    version: "23.1.36"
-  syncfusion_flutter_core:
-    dependency: transitive
-    description:
-      name: syncfusion_flutter_core
-      sha256: aea119c8117953fa5decf4a313b431e556b0959cd35ff88f8fbdc0eda9bedb06
-      url: "https://pub.dev"
-    source: hosted
-    version: "23.1.36"
   term_glyph:
     dependency: transitive
     description:
@@ -263,4 +231,4 @@ packages:
     version: "0.1.4-beta"
 sdks:
   dart: ">=3.1.1 <4.0.0"
-  flutter: ">=2.12.0"
+  flutter: ">=2.5.0"

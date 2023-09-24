@@ -33,9 +33,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: any
-  syncfusion_flutter_charts: ^23.1.36
   d_chart: ^2.6.2
-  ruler_picker_bn:
 
 
   # The following adds the Cupertino Icons font to your application.
