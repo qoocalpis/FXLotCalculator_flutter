@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
+import 'package:lot_size_calculator_app/component/sizes.dart';
 
 class TwoNumKeyboardPage extends StatelessWidget {
   TwoNumKeyboardPage({Key? key}) : super(key: key);
@@ -9,103 +10,113 @@ class TwoNumKeyboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double w = MediaQuery.of(context).size.width;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
+    return SizedBox(
+      height: SizeConfig.twoNumKeyboardPageHeigh,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            // display the entered numbers
-            SizedBox(
-              height: 70,
-              width: w * 0.45,
-              child: TextField(
-                controller: _riskController,
-                textAlign: TextAlign.center,
-                showCursor: false,
-                style: const TextStyle(fontSize: 40),
-                // Disable the default soft keybaord
-                keyboardType: TextInputType.none,
-              ),
-            ),
-            // implement the custom NumPad
-            NumPad(
-              buttonSize: 50,
-              buttonColor: AppColor.lossCutBgColor,
-              iconColor: Colors.purple,
-              controller: _riskController,
-              delete: () {
-                if (_riskController.text.isEmpty) {
-                  return;
-                } else {
-                  _riskController.text = _riskController.text
-                      .substring(0, _riskController.text.length - 1);
-                }
-              },
-              // do something with the input numbers
-              onSubmit: () {
-                debugPrint('Your code: ${_riskController.text}');
-                showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    content: Text(
-                      "You code is ${_riskController.text}",
-                      style: const TextStyle(fontSize: 30),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 70,
+                  width: SizeConfig.screenWidth * 0.45,
+                  child: TextField(
+                    controller: _riskController,
+                    textAlign: TextAlign.center,
+                    showCursor: false,
+                    decoration: const InputDecoration(
+                      // fillColor: Colors.green,
+                      filled: true,
+                      border: OutlineInputBorder(),
                     ),
+                    style: const TextStyle(fontSize: 40),
+                    keyboardType: TextInputType.none,
                   ),
-                );
-              },
+                ),
+
+                // implement the custom NumPad
+                NumPad(
+                  buttonSize: SizeConfig.twoNumKeyboardButtonSize,
+                  buttonColor: AppColor.lossCutBgColor,
+                  iconColor: Colors.purple,
+                  controller: _riskController,
+                  delete: () {
+                    if (_riskController.text.isEmpty) {
+                      return;
+                    } else {
+                      _riskController.text = _riskController.text
+                          .substring(0, _riskController.text.length - 1);
+                    }
+                  },
+                  // do something with the input numbers
+                  onSubmit: () {
+                    debugPrint('Your code: ${_riskController.text}');
+                    showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        content: Text(
+                          "You code is ${_riskController.text}",
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 70,
+                  width: SizeConfig.screenWidth * 0.45,
+                  child: TextField(
+                    controller: _rewardController,
+                    textAlign: TextAlign.center,
+                    showCursor: false,
+                    decoration: const InputDecoration(
+                      // fillColor: Colors.green,
+                      filled: true,
+                      border: OutlineInputBorder(),
+                    ),
+                    style: const TextStyle(fontSize: 40),
+                    keyboardType: TextInputType.none,
+                  ),
+                ),
+                NumPad(
+                  buttonSize: SizeConfig.twoNumKeyboardButtonSize,
+                  buttonColor: AppColor.takeProfitBgColor,
+                  iconColor: Colors.purple,
+                  controller: _rewardController,
+                  delete: () {
+                    if (_rewardController.text.isEmpty) {
+                      return;
+                    } else {
+                      _rewardController.text = _rewardController.text
+                          .substring(0, _rewardController.text.length - 1);
+                    }
+                  },
+                  onSubmit: () {
+                    debugPrint('Your code: ${_rewardController.text}');
+                    showDialog(
+                      context: context,
+                      builder: (_) => AlertDialog(
+                        content: Text(
+                          "You code is ${_rewardController.text}",
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),
-        Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // display the entered numbers
-            SizedBox(
-              height: 70,
-              width: w * 0.45,
-              child: TextField(
-                controller: _rewardController,
-                textAlign: TextAlign.center,
-                showCursor: false,
-                style: const TextStyle(fontSize: 40),
-                // Disable the default soft keybaord
-                keyboardType: TextInputType.none,
-              ),
-            ),
-            // implement the custom NumPad
-            NumPad(
-              buttonSize: 50,
-              buttonColor: AppColor.takeProfitBgColor,
-              iconColor: Colors.purple,
-              controller: _rewardController,
-              delete: () {
-                if (_rewardController.text.isEmpty) {
-                  return;
-                } else {
-                  _rewardController.text = _rewardController.text
-                      .substring(0, _rewardController.text.length - 1);
-                }
-              },
-              // do something with the input numbers
-              onSubmit: () {
-                debugPrint('Your code: ${_rewardController.text}');
-                showDialog(
-                  context: context,
-                  builder: (_) => AlertDialog(
-                    content: Text(
-                      "You code is ${_rewardController.text}",
-                      style: const TextStyle(fontSize: 30),
-                    ),
-                  ),
-                );
-              },
-            ),
-          ],
-        ),
-      ],
+      ),
     );
   }
 }
@@ -132,14 +143,9 @@ class NumPad extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // double w = MediaQuery.of(context).size.width;
     return Column(
       children: [
-        //const SizedBox(height: 20),
         Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          // implement the number keys (from 0 to 9) with the NumberButton widget
-          // the NumberButton widget is defined in the bottom of this file
           children: [
             NumberButton(
               number: 1,
@@ -163,7 +169,6 @@ class NumPad extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             NumberButton(
               number: 4,
@@ -187,7 +192,6 @@ class NumPad extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             NumberButton(
               number: 7,
@@ -211,7 +215,6 @@ class NumPad extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Row(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               width: buttonSize,
@@ -222,7 +225,6 @@ class NumPad extends StatelessWidget {
               color: buttonColor,
               controller: controller,
             ),
-            // this button is used to delete the last number
             SizedBox(
               width: buttonSize,
               child: IconButton(

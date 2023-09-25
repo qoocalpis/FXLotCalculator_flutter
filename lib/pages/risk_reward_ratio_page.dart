@@ -5,7 +5,7 @@ import 'package:d_chart/ordinal/bar.dart';
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'two_num_keyboard_page.dart';
 
 class RiskRewardRatioPage extends StatefulWidget {
@@ -30,8 +30,7 @@ class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
 
   @override
   Widget build(BuildContext context) {
-    double h = MediaQuery.of(context).size.height;
-    double w = MediaQuery.of(context).size.width;
+    SizeConfig().init(context);
     return Scaffold(
       body: Column(
         children: [
@@ -63,8 +62,8 @@ class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
           ),
           Container(
             margin: const EdgeInsets.all(15),
-            width: w * 0.9,
-            height: h * 0.15,
+            width: SizeConfig.screenWidth * 0.9,
+            height: SizeConfig.screenHeight * 0.15,
             //color: Colors.white,
             decoration: _boxDecoration(),
 
@@ -94,9 +93,17 @@ class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
-              _showBottomSheetMenu(context);
-            },
+            onPressed: () => showModalBottomSheet(
+              isScrollControlled: true,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
+              ),
+              context: context,
+              // showModalBottomSheetで表示される中身
+              builder: (context) => TwoNumKeyboardPage(),
+            ),
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 30),
               foregroundColor: Colors.white, // foreground
@@ -126,22 +133,6 @@ class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
           spreadRadius: 10,
         ),
       ],
-    );
-  }
-
-  void _showBottomSheetMenu(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-      ),
-      builder: (builder) {
-        return Container(
-          height: 350.0,
-          color: Colors.transparent,
-          child: TwoNumKeyboardPage(),
-        );
-      },
     );
   }
 }
