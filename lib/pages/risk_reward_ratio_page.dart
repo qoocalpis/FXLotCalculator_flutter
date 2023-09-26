@@ -7,29 +7,32 @@ import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'two_num_keyboard_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RiskRewardRatioPage extends StatefulWidget {
-  const RiskRewardRatioPage({super.key});
-  @override
-  State<RiskRewardRatioPage> createState() => _RiskRewardRatioPageState();
-}
+// class RiskRewardRatioPage extends StatefulWidget {
+//   const RiskRewardRatioPage({super.key});
+//   @override
+//   State<RiskRewardRatioPage> createState() => _RiskRewardRatioPageState();
+// }
 
-class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
-  int valueKG = 0;
-  int valueCM = 0;
+class RiskRewardRatioPage extends ConsumerWidget {
+  final appNameProvider = Provider((ref) => 'Special App!');
+  final aaaa = Provider((ref) => 'Special App!');
 
-  final ordinalGroup = [
+  var ordinalGroup = [
     OrdinalGroup(
       id: '0',
       data: [
-        OrdinalData(domain: 'Risk', measure: 100),
-        OrdinalData(domain: 'Reward', measure: 200),
+        OrdinalData(domain: 'Risk', measure: 0),
+        OrdinalData(domain: 'Reward', measure: 0),
       ],
     ),
   ];
 
+  RiskRewardRatioPage({super.key});
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     SizeConfig().init(context);
     return Scaffold(
       body: Column(

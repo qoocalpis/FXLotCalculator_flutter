@@ -71,8 +71,8 @@ class AppHomePageState extends State<AppHomePage>
       ),
       body: TabBarView(controller: _tabController, children: const [
         LotSizeCalculatorPage(),
-        RiskRewardRatioPage(),
-        // Page3()
+        //RiskRewardRatioPage(),
+        //Page3()
       ]),
     );
   }

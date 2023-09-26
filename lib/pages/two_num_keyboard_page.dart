@@ -79,8 +79,9 @@ class TwoNumKeyboardPage extends StatelessWidget {
                     showCursor: false,
                     decoration: const InputDecoration(
                       // fillColor: Colors.green,
+                      focusedBorder: InputBorder.none,
                       filled: true,
-                      border: OutlineInputBorder(),
+                      //border: OutlineInputBorder(),
                     ),
                     style: const TextStyle(fontSize: 40),
                     keyboardType: TextInputType.none,
