@@ -64,7 +64,6 @@ class _RiskRewardRatioPageState extends State<RiskRewardRatioPage> {
             margin: const EdgeInsets.all(15),
             width: SizeConfig.screenWidth * 0.9,
             height: SizeConfig.screenHeight * 0.15,
-            //color: Colors.white,
             decoration: _boxDecoration(),
 
             child: Row(

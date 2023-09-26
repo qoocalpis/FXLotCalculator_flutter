@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
+import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
-// import 'package:lot_size_calculator_app/pages/page3.dart';
 import 'risk_reward_ratio_page.dart';
 
 class AppHomePage extends StatefulWidget {
@@ -32,7 +32,7 @@ class AppHomePageState extends State<AppHomePage>
   void initState() {
     super.initState();
     appBarTitle = 'Lot Size Calculator';
-    _tabController = TabController(vsync: this, length: appTabs.length);
+    _tabController = TabController(length: appTabs.length, vsync: this);
     _tabController.addListener(() {
       setState(() {
         if (0 == _tabController.index) {
@@ -52,10 +52,9 @@ class AppHomePageState extends State<AppHomePage>
 
   @override
   Widget build(BuildContext context) {
-    final double appBarHeight = MediaQuery.of(context).size.height * 0.11;
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(appBarHeight), // AppBarの高さ
+      preferredSize: Size.fromHeight(SizeConfig.appBarHeight), // AppBarの高さ
         child: AppBar(
           bottom: TabBar(
             indicatorColor: const Color(0xffF15C22),

@@ -1,35 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/component/colors.dart';
 
-class CustomAppBar extends StatefulWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  _CustomAppBarState createState() => _CustomAppBarState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _CustomAppBarState extends State<CustomAppBar> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  late TabController _tabController;
+  String appBarTitle = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        if (0 == _tabController.index) {
+          appBarTitle = 'Lot Size Calculator';
+        } else {
+          appBarTitle = 'Risk Reward Ratio';
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final double appBarHeight = MediaQuery.of(context).size.height * 0.1;
-
-    return PreferredSize(
-      preferredSize: Size.fromHeight(appBarHeight), // AppBarの高さ
-      child: AppBar(
-        backgroundColor: AppColor.appBarBgColor,
-        bottom: const TabBar(labelColor: Colors.yellow, tabs: [
-          Tab(
-            icon: ImageIcon(
-              AssetImage("images/calculator.png"),
-            ),
-          ),
-          Tab(
-            icon: ImageIcon(
-              AssetImage("images/risk_reward_ratio.png"),
-            ),
-          )
-        ]),
-        //title: Text(widget.title),
+    return Scaffold(
+      appBar: AppBar(
+        title:  Text(appBarTitle),
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: const <Widget>[
+            Tab(icon: Icon(Icons.cloud_outlined)),
+            Tab(icon: Icon(Icons.beach_access_sharp)),
+            Tab(icon: Icon(Icons.brightness_5_sharp)),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: const <Widget>[
+          Center(child: Text('くもり', style: TextStyle(fontSize: 50))),
+          Center(child: Text('雨', style: TextStyle(fontSize: 50))),
+          Center(child: Text('晴れ', style: TextStyle(fontSize: 50))),
+        ],
       ),
     );
   }

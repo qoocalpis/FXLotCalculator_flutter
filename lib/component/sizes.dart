@@ -8,6 +8,7 @@ class SizeConfig {
   static double screenHurfHeight = 0;
   static double twoNumKeyboardPageHeigh = 0;
   static double twoNumKeyboardButtonSize = 0;
+  static double appBarHeight = 0;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -16,5 +17,6 @@ class SizeConfig {
     screenHurfHeight = screenHeight * 0.5;
     twoNumKeyboardPageHeigh = screenHeight * 0.8;
     twoNumKeyboardButtonSize = screenWidth * 0.13;
+    appBarHeight = screenHeight * 0.11;
   }
 }
