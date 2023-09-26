@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'pages/app_home_page.dart';
+=======
+import 'package:lot_size_calculator_app/pages/app_bar.dart';
+// import 'pages/app_home_page.dart';
+>>>>>>> 530d1984f70df6fec5f9e3a83f0967d0911496e8
 // import 'pages/first_loading_rate_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/l10n/l10n.dart';
+import 'package:lot_size_calculator_app/pages/app_home_page.dart';
 
 import 'pages/test.dart';
 
@@ -40,7 +46,12 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.system, // モードをシステム設定にする
       // home: (false) ? FirstLoadingRatePage() : Page1(),
       // home: const FirstLoadingRatePage(),
+<<<<<<< HEAD
       home: const MyWidget(),
+=======
+      // home: const MyHomePage(),
+      home: const AppHomePage(),
+>>>>>>> 530d1984f70df6fec5f9e3a83f0967d0911496e8
     );
   }
 }
