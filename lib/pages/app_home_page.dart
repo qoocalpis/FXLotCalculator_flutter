@@ -52,9 +52,10 @@ class AppHomePageState extends State<AppHomePage>
 
   @override
   Widget build(BuildContext context) {
+    double appBarHight = MediaQuery.of(context).size.height * 0.11; 
     return Scaffold(
       appBar: PreferredSize(
-      preferredSize: Size.fromHeight(SizeConfig.appBarHeight), // AppBarの高さ
+      preferredSize: Size.fromHeight(appBarHight), // AppBarの高さ
         child: AppBar(
           bottom: TabBar(
             indicatorColor: const Color(0xffF15C22),

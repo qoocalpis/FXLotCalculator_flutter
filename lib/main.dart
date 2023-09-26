@@ -5,6 +5,7 @@ import 'package:lot_size_calculator_app/pages/app_bar.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/l10n/l10n.dart';
+import 'package:lot_size_calculator_app/pages/app_home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       // home: (false) ? FirstLoadingRatePage() : Page1(),
       // home: const FirstLoadingRatePage(),
       // home: const MyHomePage(),
-      home: const MyHomePage(),
+      home: const AppHomePage(),
     );
   }
 }
