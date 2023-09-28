@@ -7,23 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dart';
 
-class MyWidget extends ConsumerWidget {
-  final ordinalGroup = [
-    OrdinalGroup(
-      id: '0',
-      data: [
-        OrdinalData(domain: 'Risk', measure: 0),
-        OrdinalData(domain: 'Reward', measure: 0),
-      ],
-    ),
-  ];
-
-  MyWidget({super.key});
+class ChartBar extends ConsumerWidget {
+  const ChartBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final riskPips = ref.watch(riskPipsNotifierProvider);
-    final rewardPips = ref.watch(rewardPipsNotifierProvider);
+    final riskRewardPipsGroupList = ref.watch(testNotifierProvider);
     return DChartBarO(
       animate: true,
       animationDuration: const Duration(milliseconds: 600),
@@ -35,7 +24,7 @@ class MyWidget extends ConsumerWidget {
       },
       barLabelValue: (group, ordinalData, index) =>
           '${ordinalData.measure}pips',
-      groupList: ordinalGroup,
+      groupList: riskRewardPipsGroupList,
       fillColor: (group, ordinalData, index) {
         if (ordinalData.domain == 'Reward') {
           return AppColor.takeProfitBgColor;
