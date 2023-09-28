@@ -1,29 +1,38 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 part 'risk_reward_pips_controller.g.dart';
 
 @riverpod
 class RiskPipsNotifier extends _$RiskPipsNotifier {
   @override
-  int build() => 0;
+  String build() => '';
 
   void updateState(int num) {
-    state = num;
+    state += num.toString();
   }
 
+  void deleteState() {
+    if (state.isEmpty) {
+      return;
+    } else {
+      state = state.substring(0, state.length - 1);
+    }
+  }
 }
 
-
-
 @riverpod
-class RewardPipsNotifier extends _$RiskPipsNotifier {
+class RewardPipsNotifier extends _$RewardPipsNotifier {
   @override
-  int build() => 0;
+  String build() => '';
 
   void updateState(int num) {
-    state = num;
+    state += num.toString();
+  }
+
+  void deleteState() {
+    if (state.isEmpty) {
+      return;
+    } else {
+      state = state.substring(0, state.length - 1);
+    }
   }
 }

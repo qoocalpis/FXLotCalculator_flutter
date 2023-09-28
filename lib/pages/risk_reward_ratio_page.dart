@@ -15,6 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //   State<RiskRewardRatioPage> createState() => _RiskRewardRatioPageState();
 // }
 
+// ignore: must_be_immutable
 class RiskRewardRatioPage extends ConsumerWidget {
   final appNameProvider = Provider((ref) => 'Special App!');
   final aaaa = Provider((ref) => 'Special App!');
@@ -68,7 +69,6 @@ class RiskRewardRatioPage extends ConsumerWidget {
             width: SizeConfig.screenWidth * 0.9,
             height: SizeConfig.screenHeight * 0.15,
             decoration: _boxDecoration(),
-
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

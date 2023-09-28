@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
-import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
-import 'risk_reward_ratio_page.dart';
+import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
+import 'test.dart';
 
 class AppHomePage extends StatefulWidget {
   const AppHomePage({Key? key}) : super(key: key);
@@ -52,10 +52,10 @@ class AppHomePageState extends State<AppHomePage>
 
   @override
   Widget build(BuildContext context) {
-    double appBarHight = MediaQuery.of(context).size.height * 0.11; 
+    double appBarHight = MediaQuery.of(context).size.height * 0.11;
     return Scaffold(
       appBar: PreferredSize(
-      preferredSize: Size.fromHeight(appBarHight), // AppBarの高さ
+        preferredSize: Size.fromHeight(appBarHight), // AppBarの高さ
         child: AppBar(
           bottom: TabBar(
             indicatorColor: const Color(0xffF15C22),
@@ -69,10 +69,10 @@ class AppHomePageState extends State<AppHomePage>
           centerTitle: true,
         ),
       ),
-      body: TabBarView(controller: _tabController, children: const [
-        LotSizeCalculatorPage(),
-        //RiskRewardRatioPage(),
-        //Page3()
+      body: TabBarView(controller: _tabController, children: [
+        const LotSizeCalculatorPage(),
+        RiskRewardRatioPage(),
+        // MyWidget(),
       ]),
     );
   }

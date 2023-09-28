@@ -5,9 +5,6 @@ import 'pages/app_home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/l10n/l10n.dart';
-import 'package:lot_size_calculator_app/pages/app_home_page.dart';
-
-import 'pages/test.dart';
 
 void main() {
   runApp(
@@ -34,14 +31,11 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-          // primarySwatch: Colors.red,
-          ),
+      theme: ThemeData(),
       darkTheme: ThemeData.dark(), // ダーク用テーマ
       themeMode: ThemeMode.system, // モードをシステム設定にする
-      // home: (false) ? FirstLoadingRatePage() : Page1(),
       // home: const FirstLoadingRatePage(),
-      home: const MyWidget(),
+      home: const AppHomePage(),
     );
   }
 }
