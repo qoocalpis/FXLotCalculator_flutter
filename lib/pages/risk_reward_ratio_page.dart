@@ -1,11 +1,10 @@
 import 'package:d_chart/commons/data_model.dart';
-import 'package:d_chart/commons/decorator.dart';
-import 'package:d_chart/commons/style.dart';
-import 'package:d_chart/ordinal/bar.dart';
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/component/colors.dart';
+// import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/component/sizes.dart';
+import 'package:lot_size_calculator_app/pages/test.dart';
+import 'package:lot_size_calculator_app/widgets/chartBar.dart';
 import 'two_num_keyboard_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,12 +14,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //   State<RiskRewardRatioPage> createState() => _RiskRewardRatioPageState();
 // }
 
-// ignore: must_be_immutable
 class RiskRewardRatioPage extends ConsumerWidget {
   final appNameProvider = Provider((ref) => 'Special App!');
   final aaaa = Provider((ref) => 'Special App!');
 
-  var ordinalGroup = [
+  final ordinalGroup = [
     OrdinalGroup(
       id: '0',
       data: [
@@ -38,30 +36,31 @@ class RiskRewardRatioPage extends ConsumerWidget {
     return Scaffold(
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(5),
+          const Padding(
+            padding: EdgeInsets.all(5),
             child: AspectRatio(
               aspectRatio: 11 / 9,
-              child: DChartBarO(
-                animate: true,
-                animationDuration: const Duration(milliseconds: 600),
-                barLabelDecorator: BarLabelDecorator(),
-                insideBarLabelStyle: (group, ordinalData, index) {
-                  return const LabelStyle(
-                    color: Colors.white,
-                  );
-                },
-                barLabelValue: (group, ordinalData, index) =>
-                    '${ordinalData.measure}pips',
-                groupList: ordinalGroup,
-                fillColor: (group, ordinalData, index) {
-                  if (ordinalData.domain == 'Reward') {
-                    return AppColor.takeProfitBgColor;
-                  }
-                  return AppColor.lossCutBgColor;
-                },
-                vertical: false,
-              ),
+              child: ChartBar(),
+              // child: DChartBarO(
+              //   animate: true,
+              //   animationDuration: const Duration(milliseconds: 600),
+              //   barLabelDecorator: BarLabelDecorator(),
+              //   insideBarLabelStyle: (group, ordinalData, index) {
+              //     return const LabelStyle(
+              //       color: Colors.white,
+              //     );
+              //   },
+              //   barLabelValue: (group, ordinalData, index) =>
+              //       '${ordinalData.measure}pips',
+              //   groupList: ordinalGroup,
+              //   fillColor: (group, ordinalData, index) {
+              //     if (ordinalData.domain == 'Reward') {
+              //       return AppColor.takeProfitBgColor;
+              //     }
+              //     return AppColor.lossCutBgColor;
+              //   },
+              //   vertical: false,
+              // ),
             ),
           ),
           Container(
@@ -104,7 +103,7 @@ class RiskRewardRatioPage extends ConsumerWidget {
               ),
               context: context,
               // showModalBottomSheetで表示される中身
-              builder: (context) => TwoNumKeyboardPage(),
+              builder: (context) => const TwoNumKeyboardPage(),
             ),
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 30),
