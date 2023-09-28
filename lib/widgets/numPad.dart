@@ -16,7 +16,8 @@ class NumText extends ConsumerWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        isRisk ? Text(riskPips) : Text(rewardPips),
+        Text(riskPips),
+        Text(rewardPips),
       ],
     );
   }
