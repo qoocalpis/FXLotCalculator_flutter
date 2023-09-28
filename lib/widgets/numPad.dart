@@ -6,7 +6,7 @@ import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dar
 // This widget is reusable and its buttons are customizable (color, size)
 
 class NumText extends ConsumerWidget {
-  const NumText({super.key, required isRisk});
+  const NumText({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
