@@ -15,12 +15,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //   State<RiskRewardRatioPage> createState() => _RiskRewardRatioPageState();
 // }
 
-// ignore: must_be_immutable
 class RiskRewardRatioPage extends ConsumerWidget {
   final appNameProvider = Provider((ref) => 'Special App!');
   final aaaa = Provider((ref) => 'Special App!');
 
-  var ordinalGroup = [
+  final ordinalGroup = [
     OrdinalGroup(
       id: '0',
       data: [
@@ -104,7 +103,7 @@ class RiskRewardRatioPage extends ConsumerWidget {
               ),
               context: context,
               // showModalBottomSheetで表示される中身
-              builder: (context) => TwoNumKeyboardPage(),
+              builder: (context) => const TwoNumKeyboardPage(),
             ),
             style: TextButton.styleFrom(
               textStyle: const TextStyle(fontSize: 30),

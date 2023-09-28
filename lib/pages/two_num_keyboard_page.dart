@@ -18,7 +18,9 @@ class TwoNumKeyboardPage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const NumText(),
+                const NumText(
+                  isRisk: true,
+                ),
                 // implement the custom NumPad
                 NumPad(
                   buttonSize: SizeConfig.twoNumKeyboardButtonSize,
@@ -31,6 +33,9 @@ class TwoNumKeyboardPage extends StatelessWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                const NumText(
+                  isRisk: false,
+                ),
                 NumPad(
                   buttonSize: SizeConfig.twoNumKeyboardButtonSize,
                   buttonColor: AppColor.takeProfitBgColor,
