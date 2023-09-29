@@ -6,5 +6,7 @@
   "lotSizeCalculatorTitle": "Lot Size Calculator",
   "riskRewardRatioTitle": "Risk Reward Ratio",
   "risk": "Risk",
-  "reward": "Reward"
+  "reward": "Reward",
+  "close": "close"
+
 }

@@ -9,6 +9,8 @@ class SizeConfig {
   static double twoNumKeyboardPageHeigh = 0;
   static double twoNumKeyboardButtonSize = 0;
   static double appBarHeight = 0;
+  static double riskRewardPipsTextWidth = 0;
+  static double twoNumKeyboardNumSize = 0;
 
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
@@ -18,5 +20,7 @@ class SizeConfig {
     twoNumKeyboardPageHeigh = screenHeight * 0.8;
     twoNumKeyboardButtonSize = screenWidth * 0.13;
     appBarHeight = screenHeight * 0.11;
+    riskRewardPipsTextWidth = screenWidth * 0.45;
+    twoNumKeyboardNumSize = twoNumKeyboardButtonSize * 0.7;
   }
 }

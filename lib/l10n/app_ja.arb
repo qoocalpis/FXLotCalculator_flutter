@@ -6,5 +6,6 @@
     "lotSizeCalculatorTitle": "FXロット計算",
     "riskRewardRatioTitle": "リスクリワード比率",
     "risk": "リスク",
-    "reward": "リワード"
+    "reward": "リワード",
+    "close": "閉じる"
 }

@@ -8,4 +8,6 @@ class AppColor {
       const Color.fromARGB(255, 231, 231, 231);
   static Color lossCutBgColor = const Color.fromARGB(255, 240, 56, 56);
   static Color takeProfitBgColor = const Color.fromARGB(255, 8, 165, 249);
+  static Color twoNumKeyboardPageBgColor =
+      const Color.fromARGB(255, 212, 212, 206);
 }

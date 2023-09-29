@@ -17,13 +17,19 @@ class RiskPipsNotifier extends _$RiskPipsNotifier {
     }
   }
 
-  // void deleteState() {
-  //   if (state.isEmpty) {
-  //     return;
-  //   } else {
-  //     state = state.substring(0, state.length - 1);
-  //   }
-  // }
+  void deleteState() {
+    String oldState = state.toString();
+    if (oldState.length <= 1) {
+      state = 0;
+    } else {
+      final newState = oldState.substring(0, oldState.length - 1);
+      state = int.tryParse(newState)!;
+    }
+  }
+
+  void allDeleteState() {
+    state = 0;
+  }
 }
 
 @Riverpod(keepAlive: true)
@@ -42,11 +48,17 @@ class RewardPipsNotifier extends _$RewardPipsNotifier {
     }
   }
 
-  // void deleteState() {
-  //   if (state.isEmpty) {
-  //     return;
-  //   } else {
-  //     state = state.substring(0, state.length - 1);
-  //   }
-  // }
+  void deleteState() {
+    String oldState = state.toString();
+    if (oldState.length <= 1) {
+      state = 0;
+    } else {
+      final newState = oldState.substring(0, oldState.length - 1);
+      state = int.tryParse(newState)!;
+    }
+  }
+
+  void allDeleteState() {
+    state = 0;
+  }
 }

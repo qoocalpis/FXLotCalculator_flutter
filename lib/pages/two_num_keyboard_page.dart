@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/widgets/numPad.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class TwoNumKeyboardPage extends StatelessWidget {
   const TwoNumKeyboardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: SizeConfig.twoNumKeyboardPageHeigh,
+      color: AppColor.twoNumKeyboardPageBgColor,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 15),
+        padding: const EdgeInsets.only(top: 30),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             const NumText(),
             Row(
@@ -32,6 +35,15 @@ class TwoNumKeyboardPage extends StatelessWidget {
                   iconColor: Colors.purple,
                 ),
               ],
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 98, 72, 232),
+                shadowColor: const Color.fromARGB(255, 27, 26, 25),
+                fixedSize: const Size(100, 50),
+              ),
+              child: Text(AppLocalizations.of(context)!.close),
             ),
           ],
         ),
