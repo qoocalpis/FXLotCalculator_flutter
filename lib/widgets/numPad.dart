@@ -6,22 +6,18 @@ import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dar
 // This widget is reusable and its buttons are customizable (color, size)
 
 class NumText extends ConsumerWidget {
-<<<<<<< HEAD
   const NumText({super.key});
-=======
-  final bool isRisk;
-  const NumText({Key? key, required this.isRisk}) : super(key: key);
->>>>>>> d221d4578de65cd6a30afff167893982ddb0e759
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final riskPips = ref.watch(riskPipsNotifierProvider);
     final rewardPips = ref.watch(rewardPipsNotifierProvider);
+
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Text(riskPips),
-        Text(rewardPips),
+        Text('$riskPips'),
+        Text('$rewardPips'),
       ],
     );
   }
@@ -57,6 +53,7 @@ class NumPad extends ConsumerWidget {
               number: 2,
               size: buttonSize,
               color: buttonColor,
+              isRisk: isRisk,
             ),
             NumberButton(
               number: 3,
@@ -128,11 +125,11 @@ class NumPad extends ConsumerWidget {
               width: buttonSize,
               child: IconButton(
                 onPressed: () {
-                  if (isRisk) {
-                    ref.read(riskPipsNotifierProvider.notifier).deleteState();
-                  } else {
-                    ref.read(rewardPipsNotifierProvider.notifier).deleteState();
-                  }
+                  // if (isRisk) {
+                  //   ref.read(riskPipsNotifierProvider.notifier).deleteState();
+                  // } else {
+                  //   ref.read(rewardPipsNotifierProvider.notifier).deleteState();
+                  // }
                 },
                 icon: Icon(
                   Icons.backspace,

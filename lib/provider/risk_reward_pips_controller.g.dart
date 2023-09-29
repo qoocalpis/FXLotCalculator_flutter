@@ -6,12 +6,12 @@ part of 'risk_reward_pips_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$riskPipsNotifierHash() => r'3972ce325d073e094c9a38fbe84b39d637afdc02';
+String _$riskPipsNotifierHash() => r'cc3080f02b5da6bf6676db2ac8c48746150118cd';
 
 /// See also [RiskPipsNotifier].
 @ProviderFor(RiskPipsNotifier)
 final riskPipsNotifierProvider =
-    AutoDisposeNotifierProvider<RiskPipsNotifier, String>.internal(
+    NotifierProvider<RiskPipsNotifier, int>.internal(
   RiskPipsNotifier.new,
   name: r'riskPipsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,14 +21,14 @@ final riskPipsNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$RiskPipsNotifier = AutoDisposeNotifier<String>;
+typedef _$RiskPipsNotifier = Notifier<int>;
 String _$rewardPipsNotifierHash() =>
-    r'4dcb916a9c6ed15878a71ecd950d86923cd9fbac';
+    r'd13b5e74670f1986e879f67229f7b88392edaef5';
 
 /// See also [RewardPipsNotifier].
 @ProviderFor(RewardPipsNotifier)
 final rewardPipsNotifierProvider =
-    AutoDisposeNotifierProvider<RewardPipsNotifier, String>.internal(
+    NotifierProvider<RewardPipsNotifier, int>.internal(
   RewardPipsNotifier.new,
   name: r'rewardPipsNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -38,21 +38,6 @@ final rewardPipsNotifierProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$RewardPipsNotifier = AutoDisposeNotifier<String>;
-String _$testNotifierHash() => r'823d226a25c5fa65d1e29ca94db68ab8d292a758';
-
-/// See also [TestNotifier].
-@ProviderFor(TestNotifier)
-final testNotifierProvider =
-    AutoDisposeNotifierProvider<TestNotifier, List<OrdinalGroup>>.internal(
-  TestNotifier.new,
-  name: r'testNotifierProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$testNotifierHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$TestNotifier = AutoDisposeNotifier<List<OrdinalGroup>>;
+typedef _$RewardPipsNotifier = Notifier<int>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

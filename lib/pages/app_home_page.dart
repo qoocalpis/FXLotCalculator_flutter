@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
-import 'test.dart';
 
 class AppHomePage extends StatefulWidget {
   const AppHomePage({Key? key}) : super(key: key);

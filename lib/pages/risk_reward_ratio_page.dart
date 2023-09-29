@@ -1,34 +1,13 @@
-import 'package:d_chart/commons/data_model.dart';
 import 'package:flutter/material.dart';
 // import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/component/sizes.dart';
-import 'package:lot_size_calculator_app/pages/test.dart';
 import 'package:lot_size_calculator_app/widgets/chartBar.dart';
 import 'two_num_keyboard_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-// class RiskRewardRatioPage extends StatefulWidget {
-//   const RiskRewardRatioPage({super.key});
-//   @override
-//   State<RiskRewardRatioPage> createState() => _RiskRewardRatioPageState();
-// }
-
 class RiskRewardRatioPage extends ConsumerWidget {
-  final appNameProvider = Provider((ref) => 'Special App!');
-  final aaaa = Provider((ref) => 'Special App!');
-
-  final ordinalGroup = [
-    OrdinalGroup(
-      id: '0',
-      data: [
-        OrdinalData(domain: 'Risk', measure: 0),
-        OrdinalData(domain: 'Reward', measure: 0),
-      ],
-    ),
-  ];
-
-  RiskRewardRatioPage({super.key});
+  const RiskRewardRatioPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,26 +20,6 @@ class RiskRewardRatioPage extends ConsumerWidget {
             child: AspectRatio(
               aspectRatio: 11 / 9,
               child: ChartBar(),
-              // child: DChartBarO(
-              //   animate: true,
-              //   animationDuration: const Duration(milliseconds: 600),
-              //   barLabelDecorator: BarLabelDecorator(),
-              //   insideBarLabelStyle: (group, ordinalData, index) {
-              //     return const LabelStyle(
-              //       color: Colors.white,
-              //     );
-              //   },
-              //   barLabelValue: (group, ordinalData, index) =>
-              //       '${ordinalData.measure}pips',
-              //   groupList: ordinalGroup,
-              //   fillColor: (group, ordinalData, index) {
-              //     if (ordinalData.domain == 'Reward') {
-              //       return AppColor.takeProfitBgColor;
-              //     }
-              //     return AppColor.lossCutBgColor;
-              //   },
-              //   vertical: false,
-              // ),
             ),
           ),
           Container(
