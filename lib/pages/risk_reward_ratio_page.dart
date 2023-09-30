@@ -11,70 +11,72 @@ class RiskRewardRatioPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SizeConfig().init(context);
     return Scaffold(
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(5),
-            child: AspectRatio(
-              aspectRatio: 11 / 9,
-              child: ChartBar(),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(15),
-            width: SizeConfig.screenWidth * 0.9,
-            height: SizeConfig.screenHeight * 0.15,
-            decoration: _boxDecoration(),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(AppLocalizations.of(context)!.risk),
-                  ],
-                ),
-                const Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(' '),
-                    //Text(':'),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(AppLocalizations.of(context)!.reward),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          ElevatedButton(
-            onPressed: () => showModalBottomSheet(
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
-              ),
-              context: context,
-              // showModalBottomSheetで表示される中身
-              builder: (context) => const TwoNumKeyboardPage(),
-            ),
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 30),
-              foregroundColor: Colors.white, // foreground
-              fixedSize: const Size(220, 80),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
+      body: Container(
+        color: Color.fromARGB(255, 248, 192, 192),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(5),
+              child: AspectRatio(
+                aspectRatio: 11 / 9,
+                child: ChartBar(),
               ),
             ),
-            child: const Text("クリック不可"),
-          ),
-        ],
+            Container(
+              margin: const EdgeInsets.all(15),
+              width: SizeConfig.screenWidth * 0.9,
+              height: SizeConfig.screenHeight * 0.15,
+              decoration: _boxDecoration(),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(AppLocalizations.of(context)!.risk),
+                    ],
+                  ),
+                  const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(' '),
+                      //Text(':'),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(AppLocalizations.of(context)!.reward),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () => showModalBottomSheet(
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                context: context,
+                // showModalBottomSheetで表示される中身
+                builder: (context) => const TwoNumKeyboardPage(),
+              ),
+              style: TextButton.styleFrom(
+                textStyle: const TextStyle(fontSize: 30),
+                foregroundColor: Colors.white, // foreground
+                fixedSize: const Size(220, 80),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: const Text("クリック不可"),
+            ),
+          ],
+        ),
       ),
     );
   }
