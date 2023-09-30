@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/component/colors.dart';
+import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
 
@@ -51,10 +52,10 @@ class AppHomePageState extends State<AppHomePage>
 
   @override
   Widget build(BuildContext context) {
-    double appBarHight = MediaQuery.of(context).size.height * 0.11;
+    SizeConfig().init(context);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(appBarHight), // AppBarの高さ
+        preferredSize: Size.fromHeight(SizeConfig.appBarHeight), // AppBarの高さ
         child: AppBar(
           bottom: TabBar(
             indicatorColor: const Color(0xffF15C22),

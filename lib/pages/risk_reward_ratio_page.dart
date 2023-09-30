@@ -11,7 +11,6 @@ class RiskRewardRatioPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    SizeConfig().init(context);
     return Scaffold(
       body: Column(
         children: [
