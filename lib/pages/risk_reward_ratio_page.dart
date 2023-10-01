@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/widgets/chartBar.dart';
 import 'two_num_keyboard_page.dart';
@@ -11,21 +12,56 @@ class RiskRewardRatioPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      body: Column(
+    return Container(
+      // color: AppColor.riskRewardRatioPageBgColor,
+      child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.all(5),
-            child: AspectRatio(
-              aspectRatio: 11 / 9,
-              child: ChartBar(),
+          const AspectRatio(
+            aspectRatio: 13 / 9,
+            child: ChartBar(),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 20, bottom: 20),
+            child: ElevatedButton(
+              onPressed: () => showModalBottomSheet(
+                isScrollControlled: true,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(20),
+                  ),
+                ),
+                context: context,
+                // showModalBottomSheetで表示される中身
+                builder: (context) => const TwoNumKeyboardPage(),
+              ),
+              style: TextButton.styleFrom(
+                textStyle:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                foregroundColor: Colors.white, // foreground
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
+              child: Text(AppLocalizations.of(context)!.riskRewardsetting),
             ),
           ),
           Container(
-            margin: const EdgeInsets.all(15),
-            width: SizeConfig.screenWidth * 0.9,
-            height: SizeConfig.screenHeight * 0.15,
-            decoration: _boxDecoration(),
+            margin: const EdgeInsets.all(5),
+            //height: SizeConfig.screenHeight * 0.15,
+            decoration: BoxDecoration(
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.black // ダークモードの場合の色
+                  : Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? const Color.fromARGB(255, 176, 176, 176) // ダークモードの場合の色
+                      : const Color.fromARGB(255, 70, 70, 70),
+                  blurRadius: 1.0,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -51,47 +87,8 @@ class RiskRewardRatioPage extends ConsumerWidget {
               ],
             ),
           ),
-          ElevatedButton(
-            onPressed: () => showModalBottomSheet(
-              isScrollControlled: true,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.vertical(
-                  top: Radius.circular(20),
-                ),
-              ),
-              context: context,
-              // showModalBottomSheetで表示される中身
-              builder: (context) => const TwoNumKeyboardPage(),
-            ),
-            style: TextButton.styleFrom(
-              textStyle: const TextStyle(fontSize: 30),
-              foregroundColor: Colors.white, // foreground
-              fixedSize: const Size(220, 80),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-            ),
-            child: const Text("クリック不可"),
-          ),
         ],
       ),
-    );
-  }
-
-  _boxDecoration() {
-    return const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.all(
-        Radius.circular(10.0),
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: Color(0xFFd8dbe0),
-          offset: Offset(1, 1),
-          blurRadius: 20.0,
-          spreadRadius: 10,
-        ),
-      ],
     );
   }
 }
