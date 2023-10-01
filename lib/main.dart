@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(),
-      darkTheme: ThemeData.dark(), // ダーク用テーマ
-      themeMode: ThemeMode.system, // モードをシステム設定にする
+      theme: ThemeData(brightness: Brightness.light),
+      darkTheme: ThemeData(brightness: Brightness.dark), // ダーク用テーマ
+      //themeMode: ThemeMode.system, // モードをシステム設定にする
       // home: const FirstLoadingRatePage(),
       home: const AppHomePage(),
     );

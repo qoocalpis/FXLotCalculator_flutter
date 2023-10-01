@@ -7,6 +7,7 @@
   "riskRewardRatioTitle": "Risk Reward Ratio",
   "risk": "Risk",
   "reward": "Reward",
-  "close": "close"
+  "close": "close",
+  "riskRewardsetting": "Set profit and loss pips"
 
 }

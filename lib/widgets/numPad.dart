@@ -201,7 +201,7 @@ class NumPad extends ConsumerWidget {
                 child: Text(
                   'AC',
                   style: TextStyle(
-                    fontSize: buttonSize * 0.285,
+                    fontSize: buttonSize * 0.27,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),

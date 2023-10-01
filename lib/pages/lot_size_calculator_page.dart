@@ -181,7 +181,7 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
         BoxShadow(
           color: Color(0xFFd8dbe0),
           offset: Offset(1, 1),
-          blurRadius: 20.0,
+          blurRadius: 10.0,
           spreadRadius: 10,
         ),
       ],

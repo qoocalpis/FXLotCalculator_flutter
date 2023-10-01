@@ -8,12 +8,16 @@ class RiskPipsNotifier extends _$RiskPipsNotifier {
 
   void updateState(int num) {
     String oldState = state.toString();
-    oldState += num.toString();
-    var newState = int.tryParse(oldState);
-    if (newState == null) {
-      state = 0;
+    if (oldState.length == 5) {
+      return;
     } else {
-      state = newState;
+      oldState += num.toString();
+      var newState = int.tryParse(oldState);
+      if (newState == null) {
+        state = 0;
+      } else {
+        state = newState;
+      }
     }
   }
 
@@ -39,12 +43,16 @@ class RewardPipsNotifier extends _$RewardPipsNotifier {
 
   void updateState(int num) {
     String oldState = state.toString();
-    oldState += num.toString();
-    var newState = int.tryParse(oldState);
-    if (newState == null) {
-      state = 0;
+    if (oldState.length == 5) {
+      return;
     } else {
-      state = newState;
+      oldState += num.toString();
+      var newState = int.tryParse(oldState);
+      if (newState == null) {
+        state = 0;
+      } else {
+        state = newState;
+      }
     }
   }
 
