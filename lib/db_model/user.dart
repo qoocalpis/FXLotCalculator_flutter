@@ -3,10 +3,8 @@ import 'package:isar/isar.dart';
 part 'user.g.dart';
 
 @collection
-class User {
+class TestUser {
   Id id = Isar.autoIncrement; // id = nullでも自動インクリメントされます。
 
-  String? name;
-
-  int? age;
+  late String name;
 }

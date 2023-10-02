@@ -1,14 +1,14 @@
 import 'package:isar/isar.dart';
 import 'package:lot_size_calculator_app/db_model/user.dart';
 
-part 'favorite_currencyPair.g.dart';
+part 'favorite_currency_pair.g.dart';
 
 @collection
-class FavoriteCurrencyPairsList {
+class TestFavoriteCurrencyPairsList {
   Id id = Isar.autoIncrement; // id = nullでも自動インクリメントされます。
 
-  final favoriteCurrencyPairsList = IsarLink<User>();
-  String? name;
+  @Index(unique: true)
+  late String name;
 
-  int? age;
+  final user = IsarLinks<TestUser>();
 }
