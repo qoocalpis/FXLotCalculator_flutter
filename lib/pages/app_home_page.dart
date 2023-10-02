@@ -57,6 +57,7 @@ class AppHomePageState extends State<AppHomePage>
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(SizeConfig.appBarHeight), // AppBarの高さ
         child: AppBar(
+          elevation: 0,
           bottom: TabBar(
             indicatorColor: const Color(0xffF15C22),
             unselectedLabelColor: Colors.grey,

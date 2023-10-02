@@ -6,7 +6,7 @@ part of 'risk_reward_pips_controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$riskPipsNotifierHash() => r'708f5adbed45dc9b9931ab61e589264e115a64cf';
+String _$riskPipsNotifierHash() => r'7d57b13617be2eb5335cabc77076205ad7a72008';
 
 /// See also [RiskPipsNotifier].
 @ProviderFor(RiskPipsNotifier)
@@ -23,7 +23,7 @@ final riskPipsNotifierProvider =
 
 typedef _$RiskPipsNotifier = Notifier<int>;
 String _$rewardPipsNotifierHash() =>
-    r'18145131a30a6944daedf913d31a16de38c8cebf';
+    r'070dcda3d489620f28ae65a39e46ca338e8479c2';
 
 /// See also [RewardPipsNotifier].
 @ProviderFor(RewardPipsNotifier)

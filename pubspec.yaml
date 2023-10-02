@@ -27,6 +27,9 @@ environment:
 # dependencies can be manually updated by changing the version numbers below to
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
+
+isar_version: &isar_version 3.1.0 # define the version to be used
+
 dependencies:
   flutter:
     sdk: flutter
@@ -37,6 +40,9 @@ dependencies:
   flutter_hooks:
   flutter_riverpod: ^2.1.1
   riverpod_annotation:
+  isar: *isar_version
+  isar_flutter_libs: *isar_version # contains Isar Core
+  path_provider:
   
 
   # The following adds the Cupertino Icons font to your application.
@@ -48,7 +54,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner:
+  build_runner: ^2.4.6
   riverpod_generator:
 
   # The "flutter_lints" package below contains a set of recommended lints to
@@ -57,6 +63,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  isar_generator: ^3.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
