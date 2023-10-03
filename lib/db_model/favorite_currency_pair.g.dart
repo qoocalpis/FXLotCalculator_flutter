@@ -9,35 +9,45 @@ part of 'favorite_currency_pair.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetTestFavoriteCurrencyPairsListCollection on Isar {
-  IsarCollection<TestFavoriteCurrencyPairsList>
-      get testFavoriteCurrencyPairsLists => this.collection();
+extension GetFavoriteCurrencyPairsListCollection on Isar {
+  IsarCollection<FavoriteCurrencyPairsList> get favoriteCurrencyPairsLists =>
+      this.collection();
 }
 
-const TestFavoriteCurrencyPairsListSchema = CollectionSchema(
-  name: r'TestFavoriteCurrencyPairsList',
-  id: -3285994036970629818,
+const FavoriteCurrencyPairsListSchema = CollectionSchema(
+  name: r'FavoriteCurrencyPairsList',
+  id: 8551452234315885248,
   properties: {
-    r'name': PropertySchema(
+    r'pair': PropertySchema(
       id: 0,
-      name: r'name',
+      name: r'pair',
       type: IsarType.string,
+    ),
+    r'registered': PropertySchema(
+      id: 1,
+      name: r'registered',
+      type: IsarType.bool,
+    ),
+    r'selected': PropertySchema(
+      id: 2,
+      name: r'selected',
+      type: IsarType.bool,
     )
   },
-  estimateSize: _testFavoriteCurrencyPairsListEstimateSize,
-  serialize: _testFavoriteCurrencyPairsListSerialize,
-  deserialize: _testFavoriteCurrencyPairsListDeserialize,
-  deserializeProp: _testFavoriteCurrencyPairsListDeserializeProp,
+  estimateSize: _favoriteCurrencyPairsListEstimateSize,
+  serialize: _favoriteCurrencyPairsListSerialize,
+  deserialize: _favoriteCurrencyPairsListDeserialize,
+  deserializeProp: _favoriteCurrencyPairsListDeserializeProp,
   idName: r'id',
   indexes: {
-    r'name': IndexSchema(
-      id: 879695947855722453,
-      name: r'name',
+    r'pair': IndexSchema(
+      id: -2280073220056032088,
+      name: r'pair',
       unique: true,
       replace: false,
       properties: [
         IndexPropertySchema(
-          name: r'name',
+          name: r'pair',
           type: IndexType.hash,
           caseSensitive: true,
         )
@@ -46,51 +56,55 @@ const TestFavoriteCurrencyPairsListSchema = CollectionSchema(
   },
   links: {
     r'user': LinkSchema(
-      id: -3414877878026158551,
+      id: -4772442243072011268,
       name: r'user',
-      target: r'TestUser',
+      target: r'User',
       single: false,
     )
   },
   embeddedSchemas: {},
-  getId: _testFavoriteCurrencyPairsListGetId,
-  getLinks: _testFavoriteCurrencyPairsListGetLinks,
-  attach: _testFavoriteCurrencyPairsListAttach,
+  getId: _favoriteCurrencyPairsListGetId,
+  getLinks: _favoriteCurrencyPairsListGetLinks,
+  attach: _favoriteCurrencyPairsListAttach,
   version: '3.1.0',
 );
 
-int _testFavoriteCurrencyPairsListEstimateSize(
-  TestFavoriteCurrencyPairsList object,
+int _favoriteCurrencyPairsListEstimateSize(
+  FavoriteCurrencyPairsList object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.name.length * 3;
+  bytesCount += 3 + object.pair.length * 3;
   return bytesCount;
 }
 
-void _testFavoriteCurrencyPairsListSerialize(
-  TestFavoriteCurrencyPairsList object,
+void _favoriteCurrencyPairsListSerialize(
+  FavoriteCurrencyPairsList object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.name);
+  writer.writeString(offsets[0], object.pair);
+  writer.writeBool(offsets[1], object.registered);
+  writer.writeBool(offsets[2], object.selected);
 }
 
-TestFavoriteCurrencyPairsList _testFavoriteCurrencyPairsListDeserialize(
+FavoriteCurrencyPairsList _favoriteCurrencyPairsListDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = TestFavoriteCurrencyPairsList();
+  final object = FavoriteCurrencyPairsList();
   object.id = id;
-  object.name = reader.readString(offsets[0]);
+  object.pair = reader.readString(offsets[0]);
+  object.registered = reader.readBool(offsets[1]);
+  object.selected = reader.readBool(offsets[2]);
   return object;
 }
 
-P _testFavoriteCurrencyPairsListDeserializeProp<P>(
+P _favoriteCurrencyPairsListDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -99,88 +113,90 @@ P _testFavoriteCurrencyPairsListDeserializeProp<P>(
   switch (propertyId) {
     case 0:
       return (reader.readString(offset)) as P;
+    case 1:
+      return (reader.readBool(offset)) as P;
+    case 2:
+      return (reader.readBool(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _testFavoriteCurrencyPairsListGetId(TestFavoriteCurrencyPairsList object) {
+Id _favoriteCurrencyPairsListGetId(FavoriteCurrencyPairsList object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _testFavoriteCurrencyPairsListGetLinks(
-    TestFavoriteCurrencyPairsList object) {
+List<IsarLinkBase<dynamic>> _favoriteCurrencyPairsListGetLinks(
+    FavoriteCurrencyPairsList object) {
   return [object.user];
 }
 
-void _testFavoriteCurrencyPairsListAttach(
-    IsarCollection<dynamic> col, Id id, TestFavoriteCurrencyPairsList object) {
+void _favoriteCurrencyPairsListAttach(
+    IsarCollection<dynamic> col, Id id, FavoriteCurrencyPairsList object) {
   object.id = id;
-  object.user.attach(col, col.isar.collection<TestUser>(), r'user', id);
+  object.user.attach(col, col.isar.collection<User>(), r'user', id);
 }
 
-extension TestFavoriteCurrencyPairsListByIndex
-    on IsarCollection<TestFavoriteCurrencyPairsList> {
-  Future<TestFavoriteCurrencyPairsList?> getByName(String name) {
-    return getByIndex(r'name', [name]);
+extension FavoriteCurrencyPairsListByIndex
+    on IsarCollection<FavoriteCurrencyPairsList> {
+  Future<FavoriteCurrencyPairsList?> getByPair(String pair) {
+    return getByIndex(r'pair', [pair]);
   }
 
-  TestFavoriteCurrencyPairsList? getByNameSync(String name) {
-    return getByIndexSync(r'name', [name]);
+  FavoriteCurrencyPairsList? getByPairSync(String pair) {
+    return getByIndexSync(r'pair', [pair]);
   }
 
-  Future<bool> deleteByName(String name) {
-    return deleteByIndex(r'name', [name]);
+  Future<bool> deleteByPair(String pair) {
+    return deleteByIndex(r'pair', [pair]);
   }
 
-  bool deleteByNameSync(String name) {
-    return deleteByIndexSync(r'name', [name]);
+  bool deleteByPairSync(String pair) {
+    return deleteByIndexSync(r'pair', [pair]);
   }
 
-  Future<List<TestFavoriteCurrencyPairsList?>> getAllByName(
-      List<String> nameValues) {
-    final values = nameValues.map((e) => [e]).toList();
-    return getAllByIndex(r'name', values);
+  Future<List<FavoriteCurrencyPairsList?>> getAllByPair(
+      List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return getAllByIndex(r'pair', values);
   }
 
-  List<TestFavoriteCurrencyPairsList?> getAllByNameSync(
-      List<String> nameValues) {
-    final values = nameValues.map((e) => [e]).toList();
-    return getAllByIndexSync(r'name', values);
+  List<FavoriteCurrencyPairsList?> getAllByPairSync(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return getAllByIndexSync(r'pair', values);
   }
 
-  Future<int> deleteAllByName(List<String> nameValues) {
-    final values = nameValues.map((e) => [e]).toList();
-    return deleteAllByIndex(r'name', values);
+  Future<int> deleteAllByPair(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return deleteAllByIndex(r'pair', values);
   }
 
-  int deleteAllByNameSync(List<String> nameValues) {
-    final values = nameValues.map((e) => [e]).toList();
-    return deleteAllByIndexSync(r'name', values);
+  int deleteAllByPairSync(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return deleteAllByIndexSync(r'pair', values);
   }
 
-  Future<Id> putByName(TestFavoriteCurrencyPairsList object) {
-    return putByIndex(r'name', object);
+  Future<Id> putByPair(FavoriteCurrencyPairsList object) {
+    return putByIndex(r'pair', object);
   }
 
-  Id putByNameSync(TestFavoriteCurrencyPairsList object,
+  Id putByPairSync(FavoriteCurrencyPairsList object, {bool saveLinks = true}) {
+    return putByIndexSync(r'pair', object, saveLinks: saveLinks);
+  }
+
+  Future<List<Id>> putAllByPair(List<FavoriteCurrencyPairsList> objects) {
+    return putAllByIndex(r'pair', objects);
+  }
+
+  List<Id> putAllByPairSync(List<FavoriteCurrencyPairsList> objects,
       {bool saveLinks = true}) {
-    return putByIndexSync(r'name', object, saveLinks: saveLinks);
-  }
-
-  Future<List<Id>> putAllByName(List<TestFavoriteCurrencyPairsList> objects) {
-    return putAllByIndex(r'name', objects);
-  }
-
-  List<Id> putAllByNameSync(List<TestFavoriteCurrencyPairsList> objects,
-      {bool saveLinks = true}) {
-    return putAllByIndexSync(r'name', objects, saveLinks: saveLinks);
+    return putAllByIndexSync(r'pair', objects, saveLinks: saveLinks);
   }
 }
 
-extension TestFavoriteCurrencyPairsListQueryWhereSort on QueryBuilder<
-    TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList, QWhere> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+extension FavoriteCurrencyPairsListQueryWhereSort on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QWhere> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
@@ -188,11 +204,9 @@ extension TestFavoriteCurrencyPairsListQueryWhereSort on QueryBuilder<
   }
 }
 
-extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
-    TestFavoriteCurrencyPairsList,
-    TestFavoriteCurrencyPairsList,
-    QWhereClause> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+extension FavoriteCurrencyPairsListQueryWhere on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QWhereClause> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
@@ -202,7 +216,7 @@ extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
@@ -225,7 +239,7 @@ extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterWhereClause> idGreaterThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -234,7 +248,7 @@ extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterWhereClause> idLessThan(Id id, {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -243,7 +257,7 @@ extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
@@ -260,45 +274,45 @@ extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterWhereClause> nameEqualTo(String name) {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterWhereClause> pairEqualTo(String pair) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IndexWhereClause.equalTo(
-        indexName: r'name',
-        value: [name],
+        indexName: r'pair',
+        value: [pair],
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterWhereClause> nameNotEqualTo(String name) {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterWhereClause> pairNotEqualTo(String pair) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
             .addWhereClause(IndexWhereClause.between(
-              indexName: r'name',
+              indexName: r'pair',
               lower: [],
-              upper: [name],
+              upper: [pair],
               includeUpper: false,
             ))
             .addWhereClause(IndexWhereClause.between(
-              indexName: r'name',
-              lower: [name],
+              indexName: r'pair',
+              lower: [pair],
               includeLower: false,
               upper: [],
             ));
       } else {
         return query
             .addWhereClause(IndexWhereClause.between(
-              indexName: r'name',
-              lower: [name],
+              indexName: r'pair',
+              lower: [pair],
               includeLower: false,
               upper: [],
             ))
             .addWhereClause(IndexWhereClause.between(
-              indexName: r'name',
+              indexName: r'pair',
               lower: [],
-              upper: [name],
+              upper: [pair],
               includeUpper: false,
             ));
       }
@@ -306,11 +320,9 @@ extension TestFavoriteCurrencyPairsListQueryWhere on QueryBuilder<
   }
 }
 
-extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
-    TestFavoriteCurrencyPairsList,
-    TestFavoriteCurrencyPairsList,
-    QFilterCondition> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+extension FavoriteCurrencyPairsListQueryFilter on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QFilterCondition> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -320,7 +332,7 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
@@ -334,7 +346,7 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
@@ -348,7 +360,7 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
@@ -366,22 +378,22 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameEqualTo(
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameGreaterThan(
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -389,15 +401,15 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameLessThan(
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -405,15 +417,15 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameBetween(
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -422,7 +434,7 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'name',
+        property: r'pair',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -432,117 +444,133 @@ extension TestFavoriteCurrencyPairsListQueryFilter on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameStartsWith(
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameEndsWith(
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
           QAfterFilterCondition>
-      nameContains(String value, {bool caseSensitive = true}) {
+      pairContains(String value, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
           QAfterFilterCondition>
-      nameMatches(String pattern, {bool caseSensitive = true}) {
+      pairMatches(String pattern, {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'name',
+        property: r'pair',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameIsEmpty() {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'name',
+        property: r'pair',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> nameIsNotEmpty() {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> pairIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'name',
+        property: r'pair',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> registeredEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'registered',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> selectedEqualTo(bool value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'selected',
+        value: value,
       ));
     });
   }
 }
 
-extension TestFavoriteCurrencyPairsListQueryObject on QueryBuilder<
-    TestFavoriteCurrencyPairsList,
-    TestFavoriteCurrencyPairsList,
-    QFilterCondition> {}
+extension FavoriteCurrencyPairsListQueryObject on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QFilterCondition> {}
 
-extension TestFavoriteCurrencyPairsListQueryLinks on QueryBuilder<
-    TestFavoriteCurrencyPairsList,
-    TestFavoriteCurrencyPairsList,
-    QFilterCondition> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterFilterCondition> user(FilterQuery<TestUser> q) {
+extension FavoriteCurrencyPairsListQueryLinks on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QFilterCondition> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterFilterCondition> user(FilterQuery<User> q) {
     return QueryBuilder.apply(this, (query) {
       return query.link(q, r'user');
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> userLengthEqualTo(int length) {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'user', length, true, length, true);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> userIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'user', 0, true, 0, true);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> userIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.linkLength(r'user', 0, false, 999999, true);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> userLengthLessThan(
     int length, {
     bool include = false,
@@ -552,7 +580,7 @@ extension TestFavoriteCurrencyPairsListQueryLinks on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> userLengthGreaterThan(
     int length, {
     bool include = false,
@@ -562,7 +590,7 @@ extension TestFavoriteCurrencyPairsListQueryLinks on QueryBuilder<
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterFilterCondition> userLengthBetween(
     int lower,
     int upper, {
@@ -576,79 +604,160 @@ extension TestFavoriteCurrencyPairsListQueryLinks on QueryBuilder<
   }
 }
 
-extension TestFavoriteCurrencyPairsListQuerySortBy on QueryBuilder<
-    TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList, QSortBy> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterSortBy> sortByName() {
+extension FavoriteCurrencyPairsListQuerySortBy on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QSortBy> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> sortByPair() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.asc);
+      return query.addSortBy(r'pair', Sort.asc);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterSortBy> sortByNameDesc() {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> sortByPairDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.desc);
+      return query.addSortBy(r'pair', Sort.desc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> sortByRegistered() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'registered', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> sortByRegisteredDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'registered', Sort.desc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> sortBySelected() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'selected', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> sortBySelectedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'selected', Sort.desc);
     });
   }
 }
 
-extension TestFavoriteCurrencyPairsListQuerySortThenBy on QueryBuilder<
-    TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList, QSortThenBy> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+extension FavoriteCurrencyPairsListQuerySortThenBy on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QSortThenBy> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
       QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterSortBy> thenByName() {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> thenByPair() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.asc);
+      return query.addSortBy(r'pair', Sort.asc);
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QAfterSortBy> thenByNameDesc() {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> thenByPairDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.desc);
+      return query.addSortBy(r'pair', Sort.desc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> thenByRegistered() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'registered', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> thenByRegisteredDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'registered', Sort.desc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> thenBySelected() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'selected', Sort.asc);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList,
+      QAfterSortBy> thenBySelectedDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'selected', Sort.desc);
     });
   }
 }
 
-extension TestFavoriteCurrencyPairsListQueryWhereDistinct on QueryBuilder<
-    TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList, QDistinct> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, TestFavoriteCurrencyPairsList,
-      QDistinct> distinctByName({bool caseSensitive = true}) {
+extension FavoriteCurrencyPairsListQueryWhereDistinct on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QDistinct> {
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QDistinct>
+      distinctByPair({bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'pair', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QDistinct>
+      distinctByRegistered() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'registered');
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QDistinct>
+      distinctBySelected() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'selected');
     });
   }
 }
 
-extension TestFavoriteCurrencyPairsListQueryProperty on QueryBuilder<
-    TestFavoriteCurrencyPairsList,
-    TestFavoriteCurrencyPairsList,
-    QQueryProperty> {
-  QueryBuilder<TestFavoriteCurrencyPairsList, int, QQueryOperations>
-      idProperty() {
+extension FavoriteCurrencyPairsListQueryProperty on QueryBuilder<
+    FavoriteCurrencyPairsList, FavoriteCurrencyPairsList, QQueryProperty> {
+  QueryBuilder<FavoriteCurrencyPairsList, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<TestFavoriteCurrencyPairsList, String, QQueryOperations>
-      nameProperty() {
+  QueryBuilder<FavoriteCurrencyPairsList, String, QQueryOperations>
+      pairProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'name');
+      return query.addPropertyName(r'pair');
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, bool, QQueryOperations>
+      registeredProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'registered');
+    });
+  }
+
+  QueryBuilder<FavoriteCurrencyPairsList, bool, QQueryOperations>
+      selectedProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'selected');
     });
   }
 }

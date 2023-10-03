@@ -9,66 +9,88 @@ part of 'user.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetTestUserCollection on Isar {
-  IsarCollection<TestUser> get testUsers => this.collection();
+extension GetUserCollection on Isar {
+  IsarCollection<User> get users => this.collection();
 }
 
-const TestUserSchema = CollectionSchema(
-  name: r'TestUser',
-  id: 7601851789107781847,
+const UserSchema = CollectionSchema(
+  name: r'User',
+  id: -7838171048429979076,
   properties: {
-    r'name': PropertySchema(
+    r'accountCurrency': PropertySchema(
       id: 0,
-      name: r'name',
+      name: r'accountCurrency',
       type: IsarType.string,
+    ),
+    r'lot': PropertySchema(
+      id: 1,
+      name: r'lot',
+      type: IsarType.long,
+    ),
+    r'pair': PropertySchema(
+      id: 2,
+      name: r'pair',
+      type: IsarType.string,
+    ),
+    r'percent': PropertySchema(
+      id: 3,
+      name: r'percent',
+      type: IsarType.long,
     )
   },
-  estimateSize: _testUserEstimateSize,
-  serialize: _testUserSerialize,
-  deserialize: _testUserDeserialize,
-  deserializeProp: _testUserDeserializeProp,
+  estimateSize: _userEstimateSize,
+  serialize: _userSerialize,
+  deserialize: _userDeserialize,
+  deserializeProp: _userDeserializeProp,
   idName: r'id',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _testUserGetId,
-  getLinks: _testUserGetLinks,
-  attach: _testUserAttach,
+  getId: _userGetId,
+  getLinks: _userGetLinks,
+  attach: _userAttach,
   version: '3.1.0',
 );
 
-int _testUserEstimateSize(
-  TestUser object,
+int _userEstimateSize(
+  User object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.name.length * 3;
+  bytesCount += 3 + object.accountCurrency.length * 3;
+  bytesCount += 3 + object.pair.length * 3;
   return bytesCount;
 }
 
-void _testUserSerialize(
-  TestUser object,
+void _userSerialize(
+  User object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeString(offsets[0], object.name);
+  writer.writeString(offsets[0], object.accountCurrency);
+  writer.writeLong(offsets[1], object.lot);
+  writer.writeString(offsets[2], object.pair);
+  writer.writeLong(offsets[3], object.percent);
 }
 
-TestUser _testUserDeserialize(
+User _userDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = TestUser();
+  final object = User();
+  object.accountCurrency = reader.readString(offsets[0]);
   object.id = id;
-  object.name = reader.readString(offsets[0]);
+  object.lot = reader.readLong(offsets[1]);
+  object.pair = reader.readString(offsets[2]);
+  object.percent = reader.readLong(offsets[3]);
   return object;
 }
 
-P _testUserDeserializeProp<P>(
+P _userDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -77,33 +99,39 @@ P _testUserDeserializeProp<P>(
   switch (propertyId) {
     case 0:
       return (reader.readString(offset)) as P;
+    case 1:
+      return (reader.readLong(offset)) as P;
+    case 2:
+      return (reader.readString(offset)) as P;
+    case 3:
+      return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _testUserGetId(TestUser object) {
+Id _userGetId(User object) {
   return object.id;
 }
 
-List<IsarLinkBase<dynamic>> _testUserGetLinks(TestUser object) {
+List<IsarLinkBase<dynamic>> _userGetLinks(User object) {
   return [];
 }
 
-void _testUserAttach(IsarCollection<dynamic> col, Id id, TestUser object) {
+void _userAttach(IsarCollection<dynamic> col, Id id, User object) {
   object.id = id;
 }
 
-extension TestUserQueryWhereSort on QueryBuilder<TestUser, TestUser, QWhere> {
-  QueryBuilder<TestUser, TestUser, QAfterWhere> anyId() {
+extension UserQueryWhereSort on QueryBuilder<User, User, QWhere> {
+  QueryBuilder<User, User, QAfterWhere> anyId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension TestUserQueryWhere on QueryBuilder<TestUser, TestUser, QWhereClause> {
-  QueryBuilder<TestUser, TestUser, QAfterWhereClause> idEqualTo(Id id) {
+extension UserQueryWhere on QueryBuilder<User, User, QWhereClause> {
+  QueryBuilder<User, User, QAfterWhereClause> idEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: id,
@@ -112,7 +140,7 @@ extension TestUserQueryWhere on QueryBuilder<TestUser, TestUser, QWhereClause> {
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterWhereClause> idNotEqualTo(Id id) {
+  QueryBuilder<User, User, QAfterWhereClause> idNotEqualTo(Id id) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -134,7 +162,7 @@ extension TestUserQueryWhere on QueryBuilder<TestUser, TestUser, QWhereClause> {
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterWhereClause> idGreaterThan(Id id,
+  QueryBuilder<User, User, QAfterWhereClause> idGreaterThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -143,7 +171,7 @@ extension TestUserQueryWhere on QueryBuilder<TestUser, TestUser, QWhereClause> {
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterWhereClause> idLessThan(Id id,
+  QueryBuilder<User, User, QAfterWhereClause> idLessThan(Id id,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -152,7 +180,7 @@ extension TestUserQueryWhere on QueryBuilder<TestUser, TestUser, QWhereClause> {
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterWhereClause> idBetween(
+  QueryBuilder<User, User, QAfterWhereClause> idBetween(
     Id lowerId,
     Id upperId, {
     bool includeLower = true,
@@ -169,9 +197,138 @@ extension TestUserQueryWhere on QueryBuilder<TestUser, TestUser, QWhereClause> {
   }
 }
 
-extension TestUserQueryFilter
-    on QueryBuilder<TestUser, TestUser, QFilterCondition> {
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> idEqualTo(Id value) {
+extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'accountCurrency',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'accountCurrency',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'accountCurrency',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'accountCurrency',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'accountCurrency',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'accountCurrency',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'accountCurrency',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'accountCurrency',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'accountCurrency',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> accountCurrencyIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'accountCurrency',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> idEqualTo(Id value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'id',
@@ -180,7 +337,7 @@ extension TestUserQueryFilter
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> idGreaterThan(
+  QueryBuilder<User, User, QAfterFilterCondition> idGreaterThan(
     Id value, {
     bool include = false,
   }) {
@@ -193,7 +350,7 @@ extension TestUserQueryFilter
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> idLessThan(
+  QueryBuilder<User, User, QAfterFilterCondition> idLessThan(
     Id value, {
     bool include = false,
   }) {
@@ -206,7 +363,7 @@ extension TestUserQueryFilter
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> idBetween(
+  QueryBuilder<User, User, QAfterFilterCondition> idBetween(
     Id lower,
     Id upper, {
     bool includeLower = true,
@@ -223,20 +380,72 @@ extension TestUserQueryFilter
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameEqualTo(
+  QueryBuilder<User, User, QAfterFilterCondition> lotEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'lot',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> lotGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'lot',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> lotLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'lot',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> lotBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'lot',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> pairEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameGreaterThan(
+  QueryBuilder<User, User, QAfterFilterCondition> pairGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -244,14 +453,14 @@ extension TestUserQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         include: include,
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameLessThan(
+  QueryBuilder<User, User, QAfterFilterCondition> pairLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -259,14 +468,14 @@ extension TestUserQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.lessThan(
         include: include,
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameBetween(
+  QueryBuilder<User, User, QAfterFilterCondition> pairBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -275,7 +484,7 @@ extension TestUserQueryFilter
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.between(
-        property: r'name',
+        property: r'pair',
         lower: lower,
         includeLower: includeLower,
         upper: upper,
@@ -285,143 +494,298 @@ extension TestUserQueryFilter
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameStartsWith(
+  QueryBuilder<User, User, QAfterFilterCondition> pairStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameEndsWith(
+  QueryBuilder<User, User, QAfterFilterCondition> pairEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameContains(
-      String value,
+  QueryBuilder<User, User, QAfterFilterCondition> pairContains(String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'name',
+        property: r'pair',
         value: value,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameMatches(
-      String pattern,
+  QueryBuilder<User, User, QAfterFilterCondition> pairMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
-        property: r'name',
+        property: r'pair',
         wildcard: pattern,
         caseSensitive: caseSensitive,
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameIsEmpty() {
+  QueryBuilder<User, User, QAfterFilterCondition> pairIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'name',
+        property: r'pair',
         value: '',
       ));
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterFilterCondition> nameIsNotEmpty() {
+  QueryBuilder<User, User, QAfterFilterCondition> pairIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'name',
+        property: r'pair',
         value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> percentEqualTo(int value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'percent',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> percentGreaterThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'percent',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> percentLessThan(
+    int value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'percent',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> percentBetween(
+    int lower,
+    int upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'percent',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
       ));
     });
   }
 }
 
-extension TestUserQueryObject
-    on QueryBuilder<TestUser, TestUser, QFilterCondition> {}
+extension UserQueryObject on QueryBuilder<User, User, QFilterCondition> {}
 
-extension TestUserQueryLinks
-    on QueryBuilder<TestUser, TestUser, QFilterCondition> {}
+extension UserQueryLinks on QueryBuilder<User, User, QFilterCondition> {}
 
-extension TestUserQuerySortBy on QueryBuilder<TestUser, TestUser, QSortBy> {
-  QueryBuilder<TestUser, TestUser, QAfterSortBy> sortByName() {
+extension UserQuerySortBy on QueryBuilder<User, User, QSortBy> {
+  QueryBuilder<User, User, QAfterSortBy> sortByAccountCurrency() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.asc);
+      return query.addSortBy(r'accountCurrency', Sort.asc);
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterSortBy> sortByNameDesc() {
+  QueryBuilder<User, User, QAfterSortBy> sortByAccountCurrencyDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.desc);
+      return query.addSortBy(r'accountCurrency', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByLot() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lot', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByLotDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'lot', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByPair() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'pair', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByPairDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'pair', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByPercent() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'percent', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByPercentDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'percent', Sort.desc);
     });
   }
 }
 
-extension TestUserQuerySortThenBy
-    on QueryBuilder<TestUser, TestUser, QSortThenBy> {
-  QueryBuilder<TestUser, TestUser, QAfterSortBy> thenById() {
+extension UserQuerySortThenBy on QueryBuilder<User, User, QSortThenBy> {
+  QueryBuilder<User, User, QAfterSortBy> thenByAccountCurrency() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'accountCurrency', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByAccountCurrencyDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'accountCurrency', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenById() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.asc);
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterSortBy> thenByIdDesc() {
+  QueryBuilder<User, User, QAfterSortBy> thenByIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'id', Sort.desc);
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterSortBy> thenByName() {
+  QueryBuilder<User, User, QAfterSortBy> thenByLot() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.asc);
+      return query.addSortBy(r'lot', Sort.asc);
     });
   }
 
-  QueryBuilder<TestUser, TestUser, QAfterSortBy> thenByNameDesc() {
+  QueryBuilder<User, User, QAfterSortBy> thenByLotDesc() {
     return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'name', Sort.desc);
+      return query.addSortBy(r'lot', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByPair() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'pair', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByPairDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'pair', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByPercent() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'percent', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByPercentDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'percent', Sort.desc);
     });
   }
 }
 
-extension TestUserQueryWhereDistinct
-    on QueryBuilder<TestUser, TestUser, QDistinct> {
-  QueryBuilder<TestUser, TestUser, QDistinct> distinctByName(
+extension UserQueryWhereDistinct on QueryBuilder<User, User, QDistinct> {
+  QueryBuilder<User, User, QDistinct> distinctByAccountCurrency(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+      return query.addDistinctBy(r'accountCurrency',
+          caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<User, User, QDistinct> distinctByLot() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'lot');
+    });
+  }
+
+  QueryBuilder<User, User, QDistinct> distinctByPair(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'pair', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<User, User, QDistinct> distinctByPercent() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'percent');
     });
   }
 }
 
-extension TestUserQueryProperty
-    on QueryBuilder<TestUser, TestUser, QQueryProperty> {
-  QueryBuilder<TestUser, int, QQueryOperations> idProperty() {
+extension UserQueryProperty on QueryBuilder<User, User, QQueryProperty> {
+  QueryBuilder<User, int, QQueryOperations> idProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'id');
     });
   }
 
-  QueryBuilder<TestUser, String, QQueryOperations> nameProperty() {
+  QueryBuilder<User, String, QQueryOperations> accountCurrencyProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'name');
+      return query.addPropertyName(r'accountCurrency');
+    });
+  }
+
+  QueryBuilder<User, int, QQueryOperations> lotProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'lot');
+    });
+  }
+
+  QueryBuilder<User, String, QQueryOperations> pairProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'pair');
+    });
+  }
+
+  QueryBuilder<User, int, QQueryOperations> percentProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'percent');
     });
   }
 }

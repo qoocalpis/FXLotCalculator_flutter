@@ -3,14 +3,16 @@ import 'package:lot_size_calculator_app/component/colors.dart';
 import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
+import 'package:lot_size_calculator_app/services/isar_services.dart';
 
 class AppHomePage extends StatefulWidget {
   const AppHomePage({Key? key}) : super(key: key);
+
   @override
-  AppHomePageState createState() => AppHomePageState();
+  State<AppHomePage> createState() => _AppHomePageState();
 }
 
-class AppHomePageState extends State<AppHomePage>
+class _AppHomePageState extends State<AppHomePage>
     with SingleTickerProviderStateMixin {
   static const List<Tab> appTabs = <Tab>[
     Tab(
@@ -25,6 +27,7 @@ class AppHomePageState extends State<AppHomePage>
     ),
   ];
 
+  late IsarService isarService;
   late TabController _tabController;
   String appBarTitle = 'null';
 
@@ -32,6 +35,8 @@ class AppHomePageState extends State<AppHomePage>
   void initState() {
     super.initState();
     appBarTitle = 'Lot Size Calculator';
+    isarService = IsarService();
+    isarService.createUser();
     _tabController = TabController(length: appTabs.length, vsync: this);
     _tabController.addListener(() {
       setState(() {
