@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:lot_size_calculator_app/db_model/user.dart';
 
@@ -11,4 +12,8 @@ class TestFavoriteCurrencyPairsList {
   late String name;
 
   final user = IsarLinks<TestUser>();
+
+  int(String name) {
+    this.name = name;
+  }
 }
