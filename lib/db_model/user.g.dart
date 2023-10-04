@@ -83,7 +83,6 @@ User _userDeserialize(
 ) {
   final object = User();
   object.accountCurrency = reader.readString(offsets[0]);
-  object.id = id;
   object.lot = reader.readLong(offsets[1]);
   object.pair = reader.readString(offsets[2]);
   object.percent = reader.readLong(offsets[3]);
@@ -118,9 +117,7 @@ List<IsarLinkBase<dynamic>> _userGetLinks(User object) {
   return [];
 }
 
-void _userAttach(IsarCollection<dynamic> col, Id id, User object) {
-  object.id = id;
-}
+void _userAttach(IsarCollection<dynamic> col, Id id, User object) {}
 
 extension UserQueryWhereSort on QueryBuilder<User, User, QWhere> {
   QueryBuilder<User, User, QAfterWhere> anyId() {

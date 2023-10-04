@@ -1,3 +1,0 @@
-class CurrencyPairModel {
-  String a = '';
-}
