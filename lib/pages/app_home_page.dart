@@ -15,16 +15,8 @@ class AppHomePage extends StatefulWidget {
 class _AppHomePageState extends State<AppHomePage>
     with SingleTickerProviderStateMixin {
   static const List<Tab> appTabs = <Tab>[
-    Tab(
-      icon: ImageIcon(
-        AssetImage('images/calculator.png'),
-      ),
-    ),
-    Tab(
-      icon: ImageIcon(
-        AssetImage('images/risk_reward_ratio.png'),
-      ),
-    ),
+    Tab(icon: ImageIcon(AssetImage('images/calculator.png'))),
+    Tab(icon: ImageIcon(AssetImage('images/risk_reward_ratio.png'))),
   ];
 
   late IsarService isarService;

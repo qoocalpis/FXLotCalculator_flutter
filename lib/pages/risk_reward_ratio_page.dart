@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import 'package:lot_size_calculator_app/component/colors.dart';
 // import 'package:lot_size_calculator_app/component/sizes.dart';
-import 'package:lot_size_calculator_app/widgets/chartBar.dart';
+import 'package:lot_size_calculator_app/widgets/chart_bar.dart';
 import 'two_num_keyboard_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

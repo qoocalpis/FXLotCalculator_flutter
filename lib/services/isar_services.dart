@@ -33,7 +33,7 @@ class IsarService {
     if (userId == null) {
       final currencyPairObject = CurrencyPairObject();
       final currencyPairsList = currencyPairObject.currencyPairList;
-      final defaultPairs = currencyPairObject.currencyPairList;
+      final defaultPairs = currencyPairObject.defaultPairList;
 
       final user = User()
         ..pair = 'USD/JPY'
