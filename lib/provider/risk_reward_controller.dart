@@ -22,7 +22,6 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
       newStateNum = int.tryParse(oldStrNum);
       if (newStateNum == null) {
         state = state.copyWith(riskPips: 0);
-        return;
       } else {
         state = state.copyWith(riskPips: newStateNum);
       }
@@ -32,11 +31,11 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
       newStateNum = int.tryParse(oldStrNum);
       if (newStateNum == null) {
         state = state.copyWith(rewardPips: 0);
-        return;
       } else {
         state = state.copyWith(rewardPips: newStateNum);
       }
     }
+    onCalculateRiskRewardRatio();
   }
 
   bool checkNumLengthOver(bool isRisk) {
@@ -68,11 +67,33 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
           ? state.copyWith(riskPips: newNumState)
           : state.copyWith(rewardPips: newNumState);
     }
+    onCalculateRiskRewardRatio();
   }
 
   void allDeleteState(bool isRisk) {
     state = isRisk
         ? state.copyWith(riskPips: AppConst.zero)
         : state.copyWith(rewardPips: AppConst.zero);
+    onCalculateRiskRewardRatio();
+  }
+
+  void onCalculateRiskRewardRatio() {
+    final risk = state.riskPips;
+    final reward = state.rewardPips;
+
+    if (risk == 0 || reward == 0) {
+      state = state.copyWith(
+          riskRatio: AppConst.doubleZero, rewardRatio: AppConst.doubleZero);
+      return;
+    }
+    final roundedValue = reward.toDouble() / risk.toDouble();
+    final rewardRatio = double.parse(roundedValue.toStringAsFixed(1));
+
+    print(rewardRatio);
+
+    state = state.copyWith(riskRatio: 1, rewardRatio: rewardRatio);
+
+    print(state.riskRatio);
+    print(state.rewardRatio);
   }
 }
