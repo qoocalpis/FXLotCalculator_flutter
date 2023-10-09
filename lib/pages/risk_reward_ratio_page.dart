@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lot_size_calculator_app/l10n/translate.dart';
+import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 // import 'package:lot_size_calculator_app/component/colors.dart';
 // import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/widgets/chart_bar.dart';
@@ -11,6 +13,12 @@ class RiskRewardRatioPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('RiskRewardRatioPage');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .watch(mainScreenModelNotifierProvider.notifier)
+          .setScreenTitle(Translate.riskRewardRatioTitle!);
+    });
     return ListView(
       children: [
         const AspectRatio(

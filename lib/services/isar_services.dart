@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:lot_size_calculator_app/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/db_model/user.dart';
-import 'package:lot_size_calculator_app/model/currency_pair_object.dart';
+import 'package:lot_size_calculator_app/models/currency_pair_object.dart';
 import 'package:path_provider/path_provider.dart';
 
 class IsarService {
@@ -10,6 +10,7 @@ class IsarService {
 
   IsarService() {
     db = openIsar();
+    print('IsarService()');
   }
 
   Future<Isar> openIsar() async {

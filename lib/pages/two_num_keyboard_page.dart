@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/component/colors.dart';
-import 'package:lot_size_calculator_app/component/sizes.dart';
+import 'package:lot_size_calculator_app/utils/colors.dart';
+import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/widgets/num_pad.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

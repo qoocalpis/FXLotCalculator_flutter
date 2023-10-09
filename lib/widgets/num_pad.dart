@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/component/sizes.dart';
+import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

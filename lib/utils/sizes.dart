@@ -23,5 +23,6 @@ class SizeConfig {
     appBarHeight = screenHeight * 0.11;
     riskRewardPipsTextWidth = screenWidth * 0.45;
     twoNumKeyboardNumSize = twoNumKeyboardButtonSize * 0.7;
+    print('SizeConfig.init(BuildContext context)');
   }
 }

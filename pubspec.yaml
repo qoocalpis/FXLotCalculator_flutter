@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 
-isar_version: &isar_version 3.1.0 # define the version to be used
 
 dependencies:
   flutter:
@@ -40,9 +39,10 @@ dependencies:
   flutter_hooks:
   flutter_riverpod: ^2.1.1
   riverpod_annotation:
-  isar: *isar_version
-  isar_flutter_libs: *isar_version # contains Isar Core
+  isar:
+  isar_flutter_libs:
   path_provider:
+
   
 
   # The following adds the Cupertino Icons font to your application.
@@ -50,6 +50,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   onscreen_num_keyboard: ^1.0.4
   http: ^1.1.0
+  freezed_annotation: ^2.4.1
 
 dev_dependencies:
   flutter_test:
@@ -64,6 +65,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   isar_generator: ^3.1.0
+  freezed: ^2.4.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

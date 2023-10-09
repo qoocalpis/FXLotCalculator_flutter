@@ -1,17 +1,21 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/component/colors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lot_size_calculator_app/l10n/translate.dart';
+import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
+import 'package:lot_size_calculator_app/utils/colors.dart';
 
-class LotSizeCalculatorPage extends StatefulWidget {
+class LotSizeCalculatorPage extends ConsumerWidget {
   const LotSizeCalculatorPage({super.key});
 
   @override
-  State<LotSizeCalculatorPage> createState() => _LotSizeCalculatorPageState();
-}
-
-class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    print('LotSizeCalculatorPage');
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref
+          .watch(mainScreenModelNotifierProvider.notifier)
+          .setScreenTitle(Translate.lotSizeCalculatorTitle!);
+    });
     double h = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColor.lotSizeCalculatorPageBgColor,
@@ -19,17 +23,17 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
         height: h,
         child: Stack(
           children: [
-            _headSection(),
-            accountBalanceCell(),
-            lossPercentCell(),
-            lossPipsCell(),
+            _headSection(context),
+            accountBalanceCell(context),
+            lossPercentCell(context),
+            lossPipsCell(context),
           ],
         ),
       ),
     );
   }
 
-  _headSection() {
+  _headSection(BuildContext context) {
     double h = MediaQuery.of(context).size.height * 0.2;
     return Container(
       decoration: const BoxDecoration(
@@ -46,7 +50,7 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
     );
   }
 
-  accountBalanceCell() {
+  accountBalanceCell(BuildContext context) {
     double startPosition = MediaQuery.of(context).size.height * 0.22;
     double w = MediaQuery.of(context).size.width;
 
@@ -84,7 +88,7 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
     );
   }
 
-  lossPercentCell() {
+  lossPercentCell(BuildContext context) {
     double startPosition = MediaQuery.of(context).size.height * 0.37;
     double w = MediaQuery.of(context).size.width;
 
@@ -121,7 +125,7 @@ class _LotSizeCalculatorPageState extends State<LotSizeCalculatorPage> {
     );
   }
 
-  lossPipsCell() {
+  lossPipsCell(BuildContext context) {
     double startPosition = MediaQuery.of(context).size.height * 0.52;
     double w = MediaQuery.of(context).size.width;
     return Positioned(

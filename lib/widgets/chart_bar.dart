@@ -6,7 +6,7 @@ import 'package:d_chart/commons/style.dart';
 import 'package:d_chart/ordinal/bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/component/colors.dart';
+import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 

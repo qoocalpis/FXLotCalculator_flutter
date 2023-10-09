@@ -38,7 +38,21 @@ const CurrencyPairSchema = CollectionSchema(
   deserialize: _currencyPairDeserialize,
   deserializeProp: _currencyPairDeserializeProp,
   idName: r'id',
-  indexes: {},
+  indexes: {
+    r'pair': IndexSchema(
+      id: -2280073220056032088,
+      name: r'pair',
+      unique: true,
+      replace: false,
+      properties: [
+        IndexPropertySchema(
+          name: r'pair',
+          type: IndexType.hash,
+          caseSensitive: true,
+        )
+      ],
+    )
+  },
   links: {
     r'user': LinkSchema(
       id: 6227411217739410893,
@@ -121,6 +135,61 @@ void _currencyPairAttach(
   object.user.attach(col, col.isar.collection<User>(), r'user', id);
 }
 
+extension CurrencyPairByIndex on IsarCollection<CurrencyPair> {
+  Future<CurrencyPair?> getByPair(String pair) {
+    return getByIndex(r'pair', [pair]);
+  }
+
+  CurrencyPair? getByPairSync(String pair) {
+    return getByIndexSync(r'pair', [pair]);
+  }
+
+  Future<bool> deleteByPair(String pair) {
+    return deleteByIndex(r'pair', [pair]);
+  }
+
+  bool deleteByPairSync(String pair) {
+    return deleteByIndexSync(r'pair', [pair]);
+  }
+
+  Future<List<CurrencyPair?>> getAllByPair(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return getAllByIndex(r'pair', values);
+  }
+
+  List<CurrencyPair?> getAllByPairSync(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return getAllByIndexSync(r'pair', values);
+  }
+
+  Future<int> deleteAllByPair(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return deleteAllByIndex(r'pair', values);
+  }
+
+  int deleteAllByPairSync(List<String> pairValues) {
+    final values = pairValues.map((e) => [e]).toList();
+    return deleteAllByIndexSync(r'pair', values);
+  }
+
+  Future<Id> putByPair(CurrencyPair object) {
+    return putByIndex(r'pair', object);
+  }
+
+  Id putByPairSync(CurrencyPair object, {bool saveLinks = true}) {
+    return putByIndexSync(r'pair', object, saveLinks: saveLinks);
+  }
+
+  Future<List<Id>> putAllByPair(List<CurrencyPair> objects) {
+    return putAllByIndex(r'pair', objects);
+  }
+
+  List<Id> putAllByPairSync(List<CurrencyPair> objects,
+      {bool saveLinks = true}) {
+    return putAllByIndexSync(r'pair', objects, saveLinks: saveLinks);
+  }
+}
+
 extension CurrencyPairQueryWhereSort
     on QueryBuilder<CurrencyPair, CurrencyPair, QWhere> {
   QueryBuilder<CurrencyPair, CurrencyPair, QAfterWhere> anyId() {
@@ -196,6 +265,51 @@ extension CurrencyPairQueryWhere
         upper: upperId,
         includeUpper: includeUpper,
       ));
+    });
+  }
+
+  QueryBuilder<CurrencyPair, CurrencyPair, QAfterWhereClause> pairEqualTo(
+      String pair) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addWhereClause(IndexWhereClause.equalTo(
+        indexName: r'pair',
+        value: [pair],
+      ));
+    });
+  }
+
+  QueryBuilder<CurrencyPair, CurrencyPair, QAfterWhereClause> pairNotEqualTo(
+      String pair) {
+    return QueryBuilder.apply(this, (query) {
+      if (query.whereSort == Sort.asc) {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'pair',
+              lower: [],
+              upper: [pair],
+              includeUpper: false,
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'pair',
+              lower: [pair],
+              includeLower: false,
+              upper: [],
+            ));
+      } else {
+        return query
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'pair',
+              lower: [pair],
+              includeLower: false,
+              upper: [],
+            ))
+            .addWhereClause(IndexWhereClause.between(
+              indexName: r'pair',
+              lower: [],
+              upper: [pair],
+              includeUpper: false,
+            ));
+      }
     });
   }
 }

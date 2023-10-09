@@ -1,12 +1,12 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+// class CustomAppBar extends StatelessWidget {
+//   const CustomAppBar({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      title: Text('A'),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       title: Text('A'),
+//     );
+//   }
+// }
