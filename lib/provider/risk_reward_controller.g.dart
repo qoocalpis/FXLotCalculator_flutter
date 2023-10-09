@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'main_screen_controller.dart';
+part of 'risk_reward_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$mainScreenModelNotifierHash() =>
-    r'319716b24375468c359416a90b640c5047d3eb93';
+String _$riskRewardModelNotifierHash() =>
+    r'23bc50c3308aab9d456d193f0e4a019c862722ee';
 
-/// See also [MainScreenModelNotifier].
-@ProviderFor(MainScreenModelNotifier)
-final mainScreenModelNotifierProvider =
-    NotifierProvider<MainScreenModelNotifier, MainScreenModel>.internal(
-  MainScreenModelNotifier.new,
-  name: r'mainScreenModelNotifierProvider',
+/// See also [RiskRewardModelNotifier].
+@ProviderFor(RiskRewardModelNotifier)
+final riskRewardModelNotifierProvider =
+    NotifierProvider<RiskRewardModelNotifier, RiskRewardModel>.internal(
+  RiskRewardModelNotifier.new,
+  name: r'riskRewardModelNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$mainScreenModelNotifierHash,
+      : _$riskRewardModelNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$MainScreenModelNotifier = Notifier<MainScreenModel>;
+typedef _$RiskRewardModelNotifier = Notifier<RiskRewardModel>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

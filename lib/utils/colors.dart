@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
+  AppColor._();
   static Color firstLoadingRatePageBgColor =
       const Color.fromARGB(255, 109, 77, 170);
   static Color appBarBgColor = const Color.fromARGB(255, 44, 77, 90);
@@ -11,5 +12,6 @@ class AppColor {
   static Color twoNumKeyboardPageBgColor =
       const Color.fromARGB(255, 252, 252, 168);
   static Color chartBarBgColor = Colors.white;
-  static Color riskRewardRatioPageBgColor = Color.fromARGB(255, 78, 78, 78);
+  static Color riskRewardRatioPageBgColor =
+      const Color.fromARGB(255, 78, 78, 78);
 }

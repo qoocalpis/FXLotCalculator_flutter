@@ -63,7 +63,7 @@ class RiskRewardRatioPage extends ConsumerWidget {
             ],
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.all(10),
+            padding: const EdgeInsetsDirectional.all(10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

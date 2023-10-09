@@ -7,7 +7,7 @@ import 'package:d_chart/ordinal/bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
-import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dart';
+import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ChartBar extends ConsumerWidget {
@@ -21,10 +21,10 @@ class ChartBar extends ConsumerWidget {
         data: [
           OrdinalData(
               domain: AppLocalizations.of(context)!.risk,
-              measure: ref.watch(riskPipsNotifierProvider)),
+              measure: ref.watch(riskRewardModelNotifierProvider).riskPips),
           OrdinalData(
               domain: AppLocalizations.of(context)!.reward,
-              measure: ref.watch(rewardPipsNotifierProvider)),
+              measure: ref.watch(riskRewardModelNotifierProvider).rewardPips),
         ],
       )
     ];

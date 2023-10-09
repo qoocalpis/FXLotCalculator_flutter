@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/utils/sizes.dart';
-import 'package:lot_size_calculator_app/provider/risk_reward_pips_controller.dart';
+import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // KeyPad widget
@@ -12,8 +12,8 @@ class NumText extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final riskPips = ref.watch(riskPipsNotifierProvider);
-    final rewardPips = ref.watch(rewardPipsNotifierProvider);
+    final riskPips = ref.watch(riskRewardModelNotifierProvider).riskPips;
+    final rewardPips = ref.watch(riskRewardModelNotifierProvider).rewardPips;
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -182,15 +182,9 @@ class NumPad extends ConsumerWidget {
               width: buttonSize,
               child: ElevatedButton(
                 onPressed: () {
-                  if (isRisk) {
-                    ref
-                        .read(riskPipsNotifierProvider.notifier)
-                        .allDeleteState();
-                  } else {
-                    ref
-                        .read(rewardPipsNotifierProvider.notifier)
-                        .allDeleteState();
-                  }
+                  ref
+                      .read(riskRewardModelNotifierProvider.notifier)
+                      .allDeleteState(isRisk);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.yellow,
@@ -221,11 +215,9 @@ class NumPad extends ConsumerWidget {
               height: buttonSize,
               child: IconButton(
                 onPressed: () {
-                  if (isRisk) {
-                    ref.read(riskPipsNotifierProvider.notifier).deleteState();
-                  } else {
-                    ref.read(rewardPipsNotifierProvider.notifier).deleteState();
-                  }
+                  ref
+                      .read(riskRewardModelNotifierProvider.notifier)
+                      .deleteState(isRisk);
                 },
                 icon: Icon(
                   Icons.backspace,
@@ -270,15 +262,9 @@ class NumberButton extends ConsumerWidget {
           ),
         ),
         onPressed: () {
-          if (isRisk) {
-            final riskPipsNotifier =
-                ref.read(riskPipsNotifierProvider.notifier);
-            riskPipsNotifier.updateState(number);
-          } else {
-            final rewardPipsNotifier =
-                ref.read(rewardPipsNotifierProvider.notifier);
-            rewardPipsNotifier.updateState(number);
-          }
+          final riskRewardModelNotifier =
+              ref.read(riskRewardModelNotifierProvider.notifier);
+          riskRewardModelNotifier.updateState(number, isRisk);
         },
         child: Center(
           child: Text(
