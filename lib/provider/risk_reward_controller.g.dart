@@ -7,7 +7,7 @@ part of 'risk_reward_controller.dart';
 // **************************************************************************
 
 String _$riskRewardModelNotifierHash() =>
-    r'23bc50c3308aab9d456d193f0e4a019c862722ee';
+    r'068505ef9575dd6a36c34a4596c5a0d0d1369ef3';
 
 /// See also [RiskRewardModelNotifier].
 @ProviderFor(RiskRewardModelNotifier)

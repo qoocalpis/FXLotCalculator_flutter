@@ -82,16 +82,19 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
     final reward = state.rewardPips;
 
     if (risk == 0 || reward == 0) {
-      state = state.copyWith(
-          riskRatio: AppConst.doubleZero, rewardRatio: AppConst.doubleZero);
+      state = state.copyWith(riskRatio: "=", rewardRatio: '=');
       return;
     }
-    final roundedValue = reward.toDouble() / risk.toDouble();
-    final rewardRatio = double.parse(roundedValue.toStringAsFixed(1));
+    final roundedValue =
+        double.parse((reward.toDouble() / risk.toDouble()).toStringAsFixed(1));
 
-    print(rewardRatio);
+    String rewardRatio = roundedValue.toString();
 
-    state = state.copyWith(riskRatio: 1, rewardRatio: rewardRatio);
+    if (rewardRatio.toString().endsWith("0")) {
+      rewardRatio = rewardRatio.substring(0, rewardRatio.length - 2);
+    }
+
+    state = state.copyWith(riskRatio: '1', rewardRatio: rewardRatio);
 
     print(state.riskRatio);
     print(state.rewardRatio);

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/l10n/translate.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/sizes.dart';
@@ -91,7 +90,6 @@ class MainScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Translate().init(context);
     final modelProvider = ref.watch(mainScreenModelNotifierProvider);
     return DefaultTabController(
       length: appTabs.length,

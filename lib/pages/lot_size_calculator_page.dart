@@ -1,7 +1,6 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/l10n/translate.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 
@@ -14,7 +13,7 @@ class LotSizeCalculatorPage extends ConsumerWidget {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref
           .watch(mainScreenModelNotifierProvider.notifier)
-          .setScreenTitle(Translate.lotSizeCalculatorTitle!);
+          .setScreenTitle(AppLocalizations.of(context)!.lotSizeCalculatorTitle);
     });
     double h = MediaQuery.of(context).size.height;
     return Scaffold(

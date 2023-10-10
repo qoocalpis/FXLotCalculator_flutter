@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RiskRewardModel {
   int get riskPips => throw _privateConstructorUsedError;
   int get rewardPips => throw _privateConstructorUsedError;
-  double get riskRatio => throw _privateConstructorUsedError;
-  double get rewardRatio => throw _privateConstructorUsedError;
+  String get riskRatio => throw _privateConstructorUsedError;
+  String get rewardRatio => throw _privateConstructorUsedError;
   int get requiredWinRate => throw _privateConstructorUsedError;
   List<double> get continuedLossProbability =>
       throw _privateConstructorUsedError;
@@ -38,8 +38,8 @@ abstract class $RiskRewardModelCopyWith<$Res> {
   $Res call(
       {int riskPips,
       int rewardPips,
-      double riskRatio,
-      double rewardRatio,
+      String riskRatio,
+      String rewardRatio,
       int requiredWinRate,
       List<double> continuedLossProbability});
 }
@@ -76,11 +76,11 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
       riskRatio: null == riskRatio
           ? _value.riskRatio
           : riskRatio // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       rewardRatio: null == rewardRatio
           ? _value.rewardRatio
           : rewardRatio // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       requiredWinRate: null == requiredWinRate
           ? _value.requiredWinRate
           : requiredWinRate // ignore: cast_nullable_to_non_nullable
@@ -104,8 +104,8 @@ abstract class _$$_RiskRewardModelCopyWith<$Res>
   $Res call(
       {int riskPips,
       int rewardPips,
-      double riskRatio,
-      double rewardRatio,
+      String riskRatio,
+      String rewardRatio,
       int requiredWinRate,
       List<double> continuedLossProbability});
 }
@@ -140,11 +140,11 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
       riskRatio: null == riskRatio
           ? _value.riskRatio
           : riskRatio // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       rewardRatio: null == rewardRatio
           ? _value.rewardRatio
           : rewardRatio // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       requiredWinRate: null == requiredWinRate
           ? _value.requiredWinRate
           : requiredWinRate // ignore: cast_nullable_to_non_nullable
@@ -163,8 +163,8 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   const _$_RiskRewardModel(
       {this.riskPips = AppConst.zero,
       this.rewardPips = AppConst.zero,
-      this.riskRatio = AppConst.doubleZero,
-      this.rewardRatio = AppConst.doubleZero,
+      this.riskRatio = AppConst.strEmpty,
+      this.rewardRatio = AppConst.strEmpty,
       this.requiredWinRate = AppConst.zero,
       final List<double> continuedLossProbability = const []})
       : _continuedLossProbability = continuedLossProbability;
@@ -177,10 +177,10 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   final int rewardPips;
   @override
   @JsonKey()
-  final double riskRatio;
+  final String riskRatio;
   @override
   @JsonKey()
-  final double rewardRatio;
+  final String rewardRatio;
   @override
   @JsonKey()
   final int requiredWinRate;
@@ -239,8 +239,8 @@ abstract class _RiskRewardModel implements RiskRewardModel {
   const factory _RiskRewardModel(
       {final int riskPips,
       final int rewardPips,
-      final double riskRatio,
-      final double rewardRatio,
+      final String riskRatio,
+      final String rewardRatio,
       final int requiredWinRate,
       final List<double> continuedLossProbability}) = _$_RiskRewardModel;
 
@@ -249,9 +249,9 @@ abstract class _RiskRewardModel implements RiskRewardModel {
   @override
   int get rewardPips;
   @override
-  double get riskRatio;
+  String get riskRatio;
   @override
-  double get rewardRatio;
+  String get rewardRatio;
   @override
   int get requiredWinRate;
   @override

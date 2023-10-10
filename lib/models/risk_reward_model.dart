@@ -7,8 +7,8 @@ class RiskRewardModel with _$RiskRewardModel {
   const factory RiskRewardModel({
     @Default(AppConst.zero) int riskPips,
     @Default(AppConst.zero) int rewardPips,
-    @Default(AppConst.doubleZero) double riskRatio,
-    @Default(AppConst.doubleZero) double rewardRatio,
+    @Default(AppConst.strEmpty) String riskRatio,
+    @Default(AppConst.strEmpty) String rewardRatio,
     @Default(AppConst.zero) int requiredWinRate,
     @Default([]) List<double> continuedLossProbability,
   }) = _RiskRewardModel;
