@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
-import 'package:lot_size_calculator_app/db_model/currency_pair.dart';
-import 'package:lot_size_calculator_app/db_model/user.dart';
 import 'package:lot_size_calculator_app/models/currency_pair_object.dart';
+import 'package:lot_size_calculator_app/models/user_model.dart';
+import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
+import 'package:lot_size_calculator_app/services/db_model/user.dart';
 import 'package:path_provider/path_provider.dart';
 
 class IsarService {
   late Future<Isar> db;
 
   IsarService() {
-    db = openIsar();
     print('IsarService()');
+
+    db = openIsar();
+    createUser();
   }
+
+  get recipes => null;
 
   Future<Isar> openIsar() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +32,8 @@ class IsarService {
   }
 
   Future<void> createUser() async {
+    print('IsarService().createUser()');
+
     final isar = await db;
     final userId = await isar.users.get(0);
 
@@ -70,5 +77,15 @@ class IsarService {
         }
       });
     }
+  }
+
+  Future<UserModel> fecthDatabase() async {
+    final isar = await db;
+    final User? user = await isar.users.get(0);
+    final List<CurrencyPair> currencyPairs =
+        await isar.currencyPairs.where().findAll();
+
+    final UserModel model = UserModel(user: user!, currencyPais: currencyPairs);
+    return model;
   }
 }

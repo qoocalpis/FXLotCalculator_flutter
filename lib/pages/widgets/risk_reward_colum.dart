@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class RiskRewardColumn extends StatelessWidget {
-  const RiskRewardColumn({
+class RiskRewardColum extends StatelessWidget {
+  const RiskRewardColum({
     super.key,
     required this.title,
     required this.text,

@@ -51,6 +51,8 @@ dependencies:
   onscreen_num_keyboard: ^1.0.4
   http: ^1.1.0
   freezed_annotation: ^2.4.1
+  line_icons: ^2.0.3
+  bottom_picker: ^2.1.1
 
 dev_dependencies:
   flutter_test:

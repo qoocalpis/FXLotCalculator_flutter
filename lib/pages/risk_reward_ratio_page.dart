@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:lot_size_calculator_app/pages/widgets/risk_reward_column.dart';
+import 'package:lot_size_calculator_app/pages/widgets/risk_reward_colum.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 // import 'package:lot_size_calculator_app/component/colors.dart';
@@ -74,15 +74,15 @@ class RiskRewardRatioPage extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  RiskRewardColumn(
+                  RiskRewardColum(
                     title: AppLocalizations.of(context)!.risk,
                     text: modelProvider.riskRatio,
                   ),
-                  const RiskRewardColumn(
+                  const RiskRewardColum(
                     title: AppConst.strEmpty,
                     text: ':',
                   ),
-                  RiskRewardColumn(
+                  RiskRewardColum(
                     title: AppLocalizations.of(context)!.reward,
                     text: modelProvider.rewardRatio,
                   ),

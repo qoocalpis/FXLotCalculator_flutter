@@ -8,5 +8,6 @@
     "risk": "リスク",
     "reward": "リワード",
     "close": "閉じる",
-    "riskRewardsetting": "損益pips設定"
+    "riskRewardsetting": "損益pips設定",
+    "settingPageTitle": "設定"
 }

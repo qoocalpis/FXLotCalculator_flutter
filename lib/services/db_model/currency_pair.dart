@@ -1,5 +1,5 @@
 import 'package:isar/isar.dart';
-import 'package:lot_size_calculator_app/db_model/user.dart';
+import 'package:lot_size_calculator_app/services/db_model/user.dart';
 
 part 'currency_pair.g.dart';
 
