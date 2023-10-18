@@ -1,5 +1,8 @@
 import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lot_size_calculator_app/provider/user_controller.dart';
+import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:lot_size_calculator_app/utils/sizes.dart';
 
 enum OnClickedType {
@@ -7,7 +10,7 @@ enum OnClickedType {
   navigator,
 }
 
-class SettingCell extends StatelessWidget {
+class SettingCell extends ConsumerWidget {
   const SettingCell({
     super.key,
     required this.title,
@@ -21,10 +24,24 @@ class SettingCell extends StatelessWidget {
   final String text;
   final Icon icon;
   final OnClickedType onClickedType;
-  final List<Text>? items;
+  final List<String>? items;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userModelProvider = ref.watch(userModelNotifierProvider).when(
+          loading: () => '',
+          error: (e, s) => '',
+          data: (d) {
+            switch (items) {
+              case SettingConst.accountCurrencys:
+                return d.user.accountCurrency;
+              case SettingConst.constractSizes:
+                return d.user.lot.toString();
+              case SettingConst.percentList:
+                return d.user.percent.toString();
+            }
+          },
+        );
     return Padding(
       padding: const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 20),
       child: Column(
@@ -59,7 +76,14 @@ class SettingCell extends StatelessWidget {
             onPressed: () {
               if (onClickedType == OnClickedType.picker) {
                 BottomPicker(
-                  items: items,
+                  items: List<Text>.generate(
+                    items!.length,
+                    (index) => Text(
+                      items![index],
+                      style: const TextStyle(fontSize: 30),
+                    ),
+                  ),
+                  selectedItemIndex: items!.indexOf(userModelProvider!),
                   title: title,
                   titleStyle: const TextStyle(
                     fontWeight: FontWeight.bold,
@@ -68,11 +92,21 @@ class SettingCell extends StatelessWidget {
                   ),
                   displaySubmitButton: false,
                   onChange: (index) {
-                    print(index);
+                    final notifier =
+                        ref.read(userModelNotifierProvider.notifier);
+                    notifier.onChangeProperty(index, items!);
                   },
                 ).show(context);
               }
-              if (onClickedType == OnClickedType.navigator) {}
+              if (onClickedType == OnClickedType.navigator) {
+                Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return Text('A');
+                    },
+                  ),
+                );
+              }
             },
           ),
         ],

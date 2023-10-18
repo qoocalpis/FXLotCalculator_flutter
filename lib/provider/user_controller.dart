@@ -5,8 +5,16 @@ part 'user_controller.g.dart';
 
 @Riverpod(keepAlive: true)
 class UserModelNotifier extends _$UserModelNotifier {
+  final test = IsarService();
   @override
   Future<UserModel> build() async {
-    return await IsarService().fecthDatabase();
+    return await test.fecthDatabase();
+  }
+
+  Future<void> onChangeProperty(int index, List<String> items) async {
+    await test.changedData(index, items);
+    state = await AsyncValue.guard(
+      () async => await test.fecthDatabase(),
+    );
   }
 }

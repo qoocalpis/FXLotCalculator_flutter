@@ -47,7 +47,7 @@ class MainScreen extends ConsumerWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return SettingPage(isarService: isarService);
+                      return SettingPage();
                     },
                   ),
                 );

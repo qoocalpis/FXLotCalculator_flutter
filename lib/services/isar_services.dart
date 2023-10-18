@@ -4,6 +4,7 @@ import 'package:lot_size_calculator_app/models/currency_pair_object.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/db_model/user.dart';
+import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:path_provider/path_provider.dart';
 
 class IsarService {
@@ -87,5 +88,26 @@ class IsarService {
 
     final UserModel model = UserModel(user: user!, currencyPais: currencyPairs);
     return model;
+  }
+
+  Future<void> changedData(int index, List<String> items) async {
+    final isar = await db;
+    await isar.writeTxn(
+      () async {
+        final user = await isar.users.get(0);
+        if (user != null) {
+          if (items == SettingConst.accountCurrencys) {
+            user.accountCurrency = items[index];
+          }
+          if (items == SettingConst.constractSizes) {
+            user.lot = int.parse(items[index]);
+          }
+          if (items == SettingConst.percentList) {
+            user.percent = int.parse(items[index]);
+          }
+          await isar.users.put(user); // 更新操作の実行
+        }
+      },
+    );
   }
 }
