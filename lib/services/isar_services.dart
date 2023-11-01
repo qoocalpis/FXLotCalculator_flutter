@@ -40,9 +40,8 @@ class IsarService {
 
     //デフォルトでUser,CurrencyPairコレクションにObjectを挿入
     if (userId == null) {
-      final currencyPairObject = CurrencyPairObject();
-      final currencyPairsList = currencyPairObject.currencyPairList;
-      final defaultPairs = currencyPairObject.defaultPairList;
+      const currencyPairsList = CurrencyPairObject.currencyPairList;
+      const defaultPairs = CurrencyPairObject.defaultPairList;
 
       final user = User()
         ..pair = 'USD/JPY'

@@ -35,7 +35,7 @@ class MainScreen extends ConsumerWidget {
               tabs: appTabs,
             ),
             title: Text(modelProvider.screenTitle),
-            backgroundColor: AppColor.appBarBgColor,
+            backgroundColor: AppColor.mainBgColor,
             centerTitle: true,
             leading: IconButton(
               icon: const Icon(

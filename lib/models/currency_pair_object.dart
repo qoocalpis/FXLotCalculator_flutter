@@ -1,11 +1,11 @@
 class CurrencyPairObject {
-  List<String> defaultPairList = [
+  static const defaultPairList = [
     'USD/JPY',
     'EUR/USD',
     'GBP/JPY',
   ];
 
-  List<String> currencyPairList = [
+  static const currencyPairList = [
     'USD/JPY',
     'EUR/JPY',
     'AUD/JPY',

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
+import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 
 class SettingPage extends ConsumerWidget {
@@ -21,7 +22,8 @@ class SettingPage extends ConsumerWidget {
       backgroundColor: const Color.fromARGB(255, 56, 74, 82),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 56, 74, 82),
+        backgroundColor:
+            AppColor.mainBgColor, //const Color.fromARGB(255, 56, 74, 82),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -58,7 +60,7 @@ class SettingPage extends ConsumerWidget {
           const SettingCell(
             title: '通貨ペア一覧',
             text: '通貨ペア一覧',
-            icon: Icon(Icons.expand_more_outlined),
+            icon: Icon(Icons.list_outlined),
             onClickedType: OnClickedType.navigator,
           ),
         ],

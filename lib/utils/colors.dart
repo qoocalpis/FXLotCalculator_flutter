@@ -14,4 +14,5 @@ class AppColor {
   static Color chartBarBgColor = Colors.white;
   static Color riskRewardRatioPageBgColor =
       const Color.fromARGB(255, 78, 78, 78);
+  static Color mainBgColor = const Color.fromARGB(255, 47, 37, 37);
 }
