@@ -5,7 +5,7 @@ part 'currency_pair_model.freezed.dart';
 class CurrencyPairModel with _$CurrencyPairModel {
   const factory CurrencyPairModel({
     required String currencyPair,
-    required int rate,
+    required String rate,
     required String currencyCode,
     required bool selected,
     required bool addedToFavorite,
