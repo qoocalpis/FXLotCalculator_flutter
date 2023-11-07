@@ -94,7 +94,7 @@ class CurrencyPairListPage extends ConsumerWidget {
               ),
             ),
             onTap: () {
-              print(CurrencyPairObject.currencyPairList[index]);
+              // print(CurrencyPairObject.currencyPairList[index]);
             },
           );
         },

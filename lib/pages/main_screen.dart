@@ -6,7 +6,6 @@ import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
-import 'package:lot_size_calculator_app/services/isar_services.dart';
 
 class MainScreen extends ConsumerWidget {
   static const List<Tab> appTabs = <Tab>[
@@ -14,9 +13,7 @@ class MainScreen extends ConsumerWidget {
     Tab(icon: ImageIcon(AssetImage('images/risk_reward_ratio.png'))),
   ];
 
-  final IsarService isarService = IsarService();
-
-  MainScreen({super.key});
+  const MainScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
