@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CurrencyPairModel {
   String get currencyPair => throw _privateConstructorUsedError;
-  double get rate => throw _privateConstructorUsedError;
+  String get rate => throw _privateConstructorUsedError;
   String get currencyCode => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
   bool get addedToFavorite => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $CurrencyPairModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String currencyPair,
-      double rate,
+      String rate,
       String currencyCode,
       bool selected,
       bool addedToFavorite});
@@ -68,7 +68,7 @@ class _$CurrencyPairModelCopyWithImpl<$Res, $Val extends CurrencyPairModel>
       rate: null == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
@@ -95,7 +95,7 @@ abstract class _$$_CurrencyPairModelCopyWith<$Res>
   @useResult
   $Res call(
       {String currencyPair,
-      double rate,
+      String rate,
       String currencyCode,
       bool selected,
       bool addedToFavorite});
@@ -126,7 +126,7 @@ class __$$_CurrencyPairModelCopyWithImpl<$Res>
       rate: null == rate
           ? _value.rate
           : rate // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
@@ -156,7 +156,7 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
   @override
   final String currencyPair;
   @override
-  final double rate;
+  final String rate;
   @override
   final String currencyCode;
   @override
@@ -200,7 +200,7 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
 abstract class _CurrencyPairModel implements CurrencyPairModel {
   const factory _CurrencyPairModel(
       {required final String currencyPair,
-      required final double rate,
+      required final String rate,
       required final String currencyCode,
       required final bool selected,
       required final bool addedToFavorite}) = _$_CurrencyPairModel;
@@ -208,7 +208,7 @@ abstract class _CurrencyPairModel implements CurrencyPairModel {
   @override
   String get currencyPair;
   @override
-  double get rate;
+  String get rate;
   @override
   String get currencyCode;
   @override

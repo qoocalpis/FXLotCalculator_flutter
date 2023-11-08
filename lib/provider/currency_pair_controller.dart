@@ -37,7 +37,6 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
             }
           }
         }
-
         modelList.add(CurrencyPairModel(
           currencyPair: item.currencyPair,
           rate: rate,
@@ -45,9 +44,16 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
           selected: d.currencyPais[index].selected,
           addedToFavorite: d.currencyPais[index].addedToFavorite,
         ));
+
+        print(index);
+        print(item.currencyPair);
+        print(rate);
+        print(d.currencyPais[index].selected);
+        print(d.currencyPais[index].addedToFavorite);
       } else {
         print("データなし");
       }
     }
+    return modelList;
   }
 }
