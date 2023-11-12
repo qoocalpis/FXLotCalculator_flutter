@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/models/currency_pair_object.dart';
+import 'package:lot_size_calculator_app/models/currency_pair_model.dart';
+import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class CurrencyPairListPage extends ConsumerWidget {
-  const CurrencyPairListPage({super.key});
-
+  CurrencyPairListPage({super.key});
+  final List<CurrencyPairModel> emptyList = [];
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final List<CurrencyPairModel> currencyPairModelProvider =
+        ref.watch(currencyPairModelNotifierProvider).when(
+              loading: () => emptyList,
+              error: (e, s) => emptyList,
+              data: (d) => d,
+            );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.mainBgColor,
@@ -25,7 +33,7 @@ class CurrencyPairListPage extends ConsumerWidget {
         title: const Text("通貨ペアリスト"),
       ),
       body: ListView.builder(
-        itemCount: CurrencyPairObject.currencyPairList.length, // この行を追加
+        itemCount: currencyPairModelProvider.length, // この行を追加
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             child: Container(
@@ -46,13 +54,13 @@ class CurrencyPairListPage extends ConsumerWidget {
                     children: [
                       const Text(AppConst.strEmpty),
                       Text(
-                        CurrencyPairObject.currencyPairList[index],
+                        currencyPairModelProvider[index].currencyPair,
                         style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
-                      const Text(
-                        "JapaneseYen vs US dollar",
-                        style: TextStyle(fontSize: 15),
+                      Text(
+                        currencyPairModelProvider[index].currencyPairName,
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ],
                   ),
@@ -83,18 +91,25 @@ class CurrencyPairListPage extends ConsumerWidget {
                                 fit: BoxFit.fill,
                                 image: AssetImage("images/USD.png"))),
                       ),
+                      const SizedBox(
+                        width: 12,
+                      ),
+                      Icon(
+                        Icons.grade,
+                        size: 35,
+                        color: currencyPairModelProvider[index].addedToFavorite
+                            ? const Color.fromARGB(255, 255, 216, 124)
+                            : const Color.fromARGB(0, 255, 216, 124),
+                      ),
                     ],
-                  ),
-                  const Icon(
-                    Icons.grade,
-                    size: 35,
-                    color: Colors.orange,
                   ),
                 ],
               ),
             ),
-            onTap: () {
-              // print(CurrencyPairObject.currencyPairList[index]);
+            onTap: () async {
+              final notifier =
+                  ref.read(currencyPairModelNotifierProvider.notifier);
+              await notifier.onChangeProperty(index);
             },
           );
         },

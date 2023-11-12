@@ -103,7 +103,7 @@ class SettingCell extends ConsumerWidget {
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return const CurrencyPairListPage();
+                      return CurrencyPairListPage();
                     },
                   ),
                 );

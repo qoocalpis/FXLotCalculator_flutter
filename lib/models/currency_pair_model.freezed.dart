@@ -19,6 +19,7 @@ mixin _$CurrencyPairModel {
   String get currencyPair => throw _privateConstructorUsedError;
   String get rate => throw _privateConstructorUsedError;
   String get currencyCode => throw _privateConstructorUsedError;
+  String get currencyPairName => throw _privateConstructorUsedError;
   bool get selected => throw _privateConstructorUsedError;
   bool get addedToFavorite => throw _privateConstructorUsedError;
 
@@ -37,6 +38,7 @@ abstract class $CurrencyPairModelCopyWith<$Res> {
       {String currencyPair,
       String rate,
       String currencyCode,
+      String currencyPairName,
       bool selected,
       bool addedToFavorite});
 }
@@ -57,6 +59,7 @@ class _$CurrencyPairModelCopyWithImpl<$Res, $Val extends CurrencyPairModel>
     Object? currencyPair = null,
     Object? rate = null,
     Object? currencyCode = null,
+    Object? currencyPairName = null,
     Object? selected = null,
     Object? addedToFavorite = null,
   }) {
@@ -72,6 +75,10 @@ class _$CurrencyPairModelCopyWithImpl<$Res, $Val extends CurrencyPairModel>
       currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      currencyPairName: null == currencyPairName
+          ? _value.currencyPairName
+          : currencyPairName // ignore: cast_nullable_to_non_nullable
               as String,
       selected: null == selected
           ? _value.selected
@@ -97,6 +104,7 @@ abstract class _$$_CurrencyPairModelCopyWith<$Res>
       {String currencyPair,
       String rate,
       String currencyCode,
+      String currencyPairName,
       bool selected,
       bool addedToFavorite});
 }
@@ -115,6 +123,7 @@ class __$$_CurrencyPairModelCopyWithImpl<$Res>
     Object? currencyPair = null,
     Object? rate = null,
     Object? currencyCode = null,
+    Object? currencyPairName = null,
     Object? selected = null,
     Object? addedToFavorite = null,
   }) {
@@ -130,6 +139,10 @@ class __$$_CurrencyPairModelCopyWithImpl<$Res>
       currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
+              as String,
+      currencyPairName: null == currencyPairName
+          ? _value.currencyPairName
+          : currencyPairName // ignore: cast_nullable_to_non_nullable
               as String,
       selected: null == selected
           ? _value.selected
@@ -150,6 +163,7 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
       {required this.currencyPair,
       required this.rate,
       required this.currencyCode,
+      required this.currencyPairName,
       required this.selected,
       required this.addedToFavorite});
 
@@ -160,13 +174,15 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
   @override
   final String currencyCode;
   @override
+  final String currencyPairName;
+  @override
   final bool selected;
   @override
   final bool addedToFavorite;
 
   @override
   String toString() {
-    return 'CurrencyPairModel(currencyPair: $currencyPair, rate: $rate, currencyCode: $currencyCode, selected: $selected, addedToFavorite: $addedToFavorite)';
+    return 'CurrencyPairModel(currencyPair: $currencyPair, rate: $rate, currencyCode: $currencyCode, currencyPairName: $currencyPairName, selected: $selected, addedToFavorite: $addedToFavorite)';
   }
 
   @override
@@ -179,6 +195,8 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
             (identical(other.rate, rate) || other.rate == rate) &&
             (identical(other.currencyCode, currencyCode) ||
                 other.currencyCode == currencyCode) &&
+            (identical(other.currencyPairName, currencyPairName) ||
+                other.currencyPairName == currencyPairName) &&
             (identical(other.selected, selected) ||
                 other.selected == selected) &&
             (identical(other.addedToFavorite, addedToFavorite) ||
@@ -186,8 +204,8 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, currencyPair, rate, currencyCode, selected, addedToFavorite);
+  int get hashCode => Object.hash(runtimeType, currencyPair, rate, currencyCode,
+      currencyPairName, selected, addedToFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -202,6 +220,7 @@ abstract class _CurrencyPairModel implements CurrencyPairModel {
       {required final String currencyPair,
       required final String rate,
       required final String currencyCode,
+      required final String currencyPairName,
       required final bool selected,
       required final bool addedToFavorite}) = _$_CurrencyPairModel;
 
@@ -211,6 +230,8 @@ abstract class _CurrencyPairModel implements CurrencyPairModel {
   String get rate;
   @override
   String get currencyCode;
+  @override
+  String get currencyPairName;
   @override
   bool get selected;
   @override

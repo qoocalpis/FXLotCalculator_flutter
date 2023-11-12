@@ -11,12 +11,16 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
   final isarService = IsarService.instance;
 
   @override
-  Future<List<CurrencyPairModel>?> build() async {
+  Future<List<CurrencyPairModel>> build() async {
+    return await fecthList();
+  }
+
+  Future<List<CurrencyPairModel>> fecthList() async {
     final list = googleSheetService.list;
     final d = await isarService.fecthDatabase();
-    if (list.isEmpty || d.currencyPais.isEmpty) return null;
 
     List<CurrencyPairModel> modelList = [];
+
     for (var item in list) {
       final index =
           d.currencyPais.indexWhere((para) => para.pair == item.currencyPair);
@@ -41,19 +45,22 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
           currencyPair: item.currencyPair,
           rate: rate,
           currencyCode: item.currencyCode,
+          currencyPairName: item.currencyPairName,
           selected: d.currencyPais[index].selected,
           addedToFavorite: d.currencyPais[index].addedToFavorite,
         ));
-
-        print(index);
-        print(item.currencyPair);
-        print(rate);
-        print(d.currencyPais[index].selected);
-        print(d.currencyPais[index].addedToFavorite);
       } else {
         print("データなし");
       }
     }
     return modelList;
+  }
+
+  Future<void> onChangeProperty(int index) async {
+    state = const AsyncValue.loading();
+    await isarService.changedAddedFavorite(index);
+    // データを上書き
+    state = AsyncValue.data(await fecthList());
+    print(index);
   }
 }

@@ -7,12 +7,12 @@ part of 'currency_pair_controller.dart';
 // **************************************************************************
 
 String _$currencyPairModelNotifierHash() =>
-    r'be5d3e05de9dfaade694fda4b1c8799f17ba9642';
+    r'1125d60cd54f333bf514cbecb98bb80d659bfef1';
 
 /// See also [CurrencyPairModelNotifier].
 @ProviderFor(CurrencyPairModelNotifier)
 final currencyPairModelNotifierProvider = AsyncNotifierProvider<
-    CurrencyPairModelNotifier, List<CurrencyPairModel>?>.internal(
+    CurrencyPairModelNotifier, List<CurrencyPairModel>>.internal(
   CurrencyPairModelNotifier.new,
   name: r'currencyPairModelNotifierProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -22,6 +22,6 @@ final currencyPairModelNotifierProvider = AsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$CurrencyPairModelNotifier = AsyncNotifier<List<CurrencyPairModel>?>;
+typedef _$CurrencyPairModelNotifier = AsyncNotifier<List<CurrencyPairModel>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

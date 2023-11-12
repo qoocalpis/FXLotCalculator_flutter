@@ -113,4 +113,18 @@ class IsarService {
       },
     );
   }
+
+  Future<void> changedAddedFavorite(int index) async {
+    final isar = await db;
+    await isar.writeTxn(
+      () async {
+        final currencyPair = await isar.currencyPairs.get(index + 1);
+        if (currencyPair != null) {
+          currencyPair.addedToFavorite =
+              currencyPair.addedToFavorite ? false : true;
+          await isar.currencyPairs.put(currencyPair); // 更新操作の実行
+        }
+      },
+    );
+  }
 }

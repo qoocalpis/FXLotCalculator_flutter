@@ -31,8 +31,10 @@ class GoogleSheetService {
           String currencyPair = value[0];
           String price = value[1];
           String currencyCode = value[2];
+          String currencyPairName = value[3];
 
-          list.add(GoogleSheetAPIModel(currencyPair, price, currencyCode));
+          list.add(GoogleSheetAPIModel(
+              currencyPair, price, currencyCode, currencyPairName));
         }
         return true;
       } else {
@@ -50,6 +52,8 @@ class GoogleSheetAPIModel {
   final String currencyPair;
   final String rate;
   final String currencyCode;
+  final String currencyPairName;
 
-  GoogleSheetAPIModel(this.currencyPair, this.rate, this.currencyCode);
+  GoogleSheetAPIModel(
+      this.currencyPair, this.rate, this.currencyCode, this.currencyPairName);
 }
