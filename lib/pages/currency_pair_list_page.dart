@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/currency_pair_model.dart';
-import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
@@ -67,10 +66,10 @@ class CurrencyPairListPage extends ConsumerWidget {
                   ),
                   Row(
                     children: [
-                      NationalFlag(
-                        currencyPair:
-                            currencyPairModelProvider[index].currencyPair,
-                      ),
+                      // NationalFlag(
+                      //   currencyPair:
+                      //       currencyPairModelProvider[index].currencyPair,
+                      // ),
                       const SizedBox(
                         width: 12,
                       ),

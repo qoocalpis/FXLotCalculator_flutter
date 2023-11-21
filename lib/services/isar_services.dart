@@ -127,4 +127,22 @@ class IsarService {
       },
     );
   }
+
+  Future<String> fechAccountCurrency() async {
+    final isar = await db;
+    final User? user = await isar.users.get(0);
+    return user!.accountCurrency;
+  }
+
+  Future<int> fechPercent() async {
+    final isar = await db;
+    final User? user = await isar.users.get(0);
+    return user!.percent;
+  }
+
+  Future<int> fechLot() async {
+    final isar = await db;
+    final User? user = await isar.users.get(0);
+    return user!.lot;
+  }
 }

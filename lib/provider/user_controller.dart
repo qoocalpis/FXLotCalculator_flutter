@@ -11,7 +11,7 @@ class UserModelNotifier extends _$UserModelNotifier {
     return await isarService.fecthDatabase();
   }
 
-  Future<void> onChangeProperty(int index, List<String> items) async {
+  void onChangeUserModelProperty(int index, List<String> items) async {
     await isarService.changedData(index, items);
     state = await AsyncValue.guard(
       () async => await isarService.fecthDatabase(),

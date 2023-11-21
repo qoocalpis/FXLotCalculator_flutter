@@ -95,7 +95,7 @@ class SettingCell extends ConsumerWidget {
                   onChange: (index) {
                     final notifier =
                         ref.read(userModelNotifierProvider.notifier);
-                    notifier.onChangeProperty(index, items!);
+                    notifier.onChangeUserModelProperty(index, items!);
                   },
                 ).show(context);
               }

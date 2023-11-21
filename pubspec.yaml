@@ -42,6 +42,7 @@ dependencies:
   isar:
   isar_flutter_libs:
   path_provider:
+  keyboard_actions: ^4.2.0
 
   
 

@@ -36,9 +36,9 @@ class MainScreen extends ConsumerWidget {
             centerTitle: true,
             leading: IconButton(
               icon: const Icon(
-                Icons.segment_outlined,
+                Icons.manage_accounts,
                 size: 35,
-                color: Colors.purple,
+                color: Color.fromARGB(255, 74, 48, 220),
               ),
               onPressed: () {
                 Navigator.of(context).push(
