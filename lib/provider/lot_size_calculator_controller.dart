@@ -16,7 +16,7 @@ class LotSizeCalculatorModelNotifier extends _$LotSizeCalculatorModelNotifier {
   @override
   LotSizeCalculatorModel build() => const LotSizeCalculatorModel();
 
-  void updateProperty(String text, UpdatePropertyType type, UserModel model) {
+  void updateProperty(String text, UpdatePropertyType type) async {
     final value = int.tryParse(text);
     if (value != null) {
       switch (type) {
@@ -31,9 +31,10 @@ class LotSizeCalculatorModelNotifier extends _$LotSizeCalculatorModelNotifier {
           break;
       }
     }
+    final isarService = IsarService.instance;
     state = state.copyWith(
-      accountCurrency: model.user.accountCurrency,
-      lot: model.user.lot,
+      accountCurrency: await isarService.fechAccountCurrency(),
+      lot: await isarService.fechLot(),
     );
     if (checkProperty()) {
       //lot size計算処理

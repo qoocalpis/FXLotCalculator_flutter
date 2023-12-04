@@ -7,7 +7,7 @@ part of 'lot_size_calculator_controller.dart';
 // **************************************************************************
 
 String _$lotSizeCalculatorModelNotifierHash() =>
-    r'0fd74cf49945fcce986685ecb2bbd1d0abc06fa0';
+    r'39ef03a660d020357152ade49a328ac876772061';
 
 /// See also [LotSizeCalculatorModelNotifier].
 @ProviderFor(LotSizeCalculatorModelNotifier)

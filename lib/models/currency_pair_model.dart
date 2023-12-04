@@ -7,7 +7,6 @@ class CurrencyPairModel with _$CurrencyPairModel {
     required String currencyPair,
     required String rate,
     required String currencyCode,
-    required String currencyPairName,
     required bool selected,
     required bool addedToFavorite,
   }) = _CurrencyPairModel;

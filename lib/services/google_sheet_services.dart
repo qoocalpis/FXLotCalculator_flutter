@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lot_size_calculator_app/services/isar_services.dart';
 
 class GoogleSheetService {
   /// private constructor
@@ -12,6 +13,7 @@ class GoogleSheetService {
 
   Future<bool> callGoogleSheetAPI() async {
     print("callGoogleSheetAPI");
+    final isar = IsarService.instance;
 
     String apiKey = 'AIzaSyA0w_ZecwgQJ9XHcrfsxLpW92i_FacfzRU';
     String spreadsheetId = '1osAu_AWYqWaMMxd2JGo7yJfTTSKVOyqodAV9dCDRILs';
@@ -31,10 +33,8 @@ class GoogleSheetService {
           String currencyPair = value[0];
           String price = value[1];
           String currencyCode = value[2];
-          String currencyPairName = value[3];
 
-          list.add(GoogleSheetAPIModel(
-              currencyPair, price, currencyCode, currencyPairName));
+          list.add(GoogleSheetAPIModel(currencyPair, price, currencyCode));
         }
         return true;
       } else {
@@ -52,8 +52,10 @@ class GoogleSheetAPIModel {
   final String currencyPair;
   final String rate;
   final String currencyCode;
-  final String currencyPairName;
 
   GoogleSheetAPIModel(
-      this.currencyPair, this.rate, this.currencyCode, this.currencyPairName);
+    this.currencyPair,
+    this.rate,
+    this.currencyCode,
+  );
 }

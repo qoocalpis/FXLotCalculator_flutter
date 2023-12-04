@@ -11,10 +11,20 @@ class UserModelNotifier extends _$UserModelNotifier {
     return await isarService.fecthDatabase();
   }
 
-  void onChangeUserModelProperty(int index, List<String> items) async {
+  void onChangePropertyToIsar(int index, List<String> items) async {
     await isarService.changedData(index, items);
     state = await AsyncValue.guard(
       () async => await isarService.fecthDatabase(),
     );
+  }
+
+  void updatePercentProperty(String text) async {
+    if (text.isEmpty) {
+      return;
+    }
+    state = const AsyncValue.loading();
+    final tmp = await isarService.fecthDatabase();
+    tmp.user.percent = int.parse(text);
+    state = AsyncData(tmp);
   }
 }

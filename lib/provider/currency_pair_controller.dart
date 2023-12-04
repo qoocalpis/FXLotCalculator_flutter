@@ -20,7 +20,7 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
     final d = await isarService.fecthDatabase();
 
     List<CurrencyPairModel> modelList = [];
-
+    var i = 1;
     for (var item in list) {
       final index =
           d.currencyPais.indexWhere((para) => para.pair == item.currencyPair);
@@ -45,13 +45,14 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
           currencyPair: item.currencyPair,
           rate: rate,
           currencyCode: item.currencyCode,
-          currencyPairName: item.currencyPairName,
           selected: d.currencyPais[index].selected,
           addedToFavorite: d.currencyPais[index].addedToFavorite,
         ));
+        print("データあり");
       } else {
         print("データなし");
       }
+      print(i++);
     }
     return modelList;
   }
@@ -61,6 +62,5 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
     await isarService.changedAddedFavorite(index);
     // データを上書き
     state = AsyncValue.data(await fecthList());
-    print(index);
   }
 }

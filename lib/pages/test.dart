@@ -1,161 +1,77 @@
-// import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
+class SampleListView extends StatefulWidget {
+  const SampleListView({super.key});
 
+  @override
+  SampleListViewState createState() => SampleListViewState();
+}
 
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
+class SampleListViewState extends State<SampleListView> {
+  late String _message = '';
+  late int _index = 0;
 
-//   _openWidget(BuildContext context, Widget widget) =>
-//       Navigator.of(context).push(
-//         MaterialPageRoute(builder: (_) => widget),
-//       );
+  @override
+  void initState() {
+    _message = 'OK';
+    super.initState();
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: Scaffold(
-//         backgroundColor: Colors.amber,
-//         body: Builder(
-//           builder: (myContext) => Center(
-//             child: Padding(
-//               padding: const EdgeInsets.all(18.0),
-//               child: Column(
-//                 mainAxisAlignment: MainAxisAlignment.center,
-//                 crossAxisAlignment: CrossAxisAlignment.stretch,
-//                 children: [
-//                   ElevatedButton(
-//                     child: Text("Full Screen form"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       ScaffoldTest(),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 25,
-//                   ),
-//                   ElevatedButton(
-//                     child: Text("Dialog form"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       DialogTest(),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 25,
-//                   ),
-//                   ElevatedButton(
-//                     child: Text("Custom Sample 1"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       Sample(),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 25,
-//                   ),
-//                   ElevatedButton(
-//                     child: Text("Custom Sample 2"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       Sample2(),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 25,
-//                   ),
-//                   ElevatedButton(
-//                     child: Text("Custom Sample 3"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       Sample3(),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 25,
-//                   ),
-//                   ElevatedButton(
-//                     child: Text("Custom Sample 4"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       Sample4(),
-//                     ),
-//                   ),
-//                   const SizedBox(
-//                     height: 25,
-//                   ),
-//                   ElevatedButton(
-//                     child: Text("Custom Sample 5"),
-//                     onPressed: () => _openWidget(
-//                       myContext,
-//                       Sample5(),
-//                     ),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    List<int> text = [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ];
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Sample List View App'),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              Text(
+                _message,
+                style: TextStyle(fontSize: 20.0),
+              ),
+              for (var index in text)
+                ListTile(
+                  leading: Icon(Icons.favorite),
+                  title: Text('$index'),
+                  selected: _index == index,
+                  onTap: () {
+                    _index = index;
+                    _tapTile();
+                  },
+                )
+            ],
+          ),
+        ));
+  }
 
-// /// Displays our [TextField]s in a [Scaffold] with a [FormKeyboardActions].
-// class ScaffoldTest extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Keyboard Actions Sample"),
-//       ),
-//       body: Content(),
-//     );
-//   }
-// }
-
-// /// Displays our [FormKeyboardActions] nested in a [AlertDialog].
-// class DialogTest extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Keyboard Actions Sample"),
-//       ),
-//       body: Center(
-//         child: TextButton(
-//           child: Text('Launch dialog'),
-//           onPressed: () => _launchInDialog(context),
-//         ),
-//       ),
-//     );
-//   }
-
-//   void _launchInDialog(BuildContext context) async {
-//     final height = MediaQuery.of(context).size.height / 3;
-//     await showDialog(
-//       context: context,
-//       builder: (context) {
-//         return AlertDialog(
-//           title: Text('Dialog test'),
-//           content: SizedBox(
-//             height: height,
-//             child: Content(
-//               isDialog: true,
-//             ),
-//           ),
-//           actions: [
-//             TextButton(
-//               child: Text('Ok'),
-//               onPressed: () {
-//                 Navigator.of(context).pop();
-//               },
-//             ),
-//           ],
-//         );
-//       },
-//     );
-//   }
-// }
+  void _tapTile() {
+    setState(() {
+      _message = 'No. $_index を選択しました';
+    });
+  }
+}

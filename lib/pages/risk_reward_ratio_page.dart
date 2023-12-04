@@ -10,17 +10,36 @@ import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'two_num_keyboard_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RiskRewardRatioPage extends ConsumerWidget {
-  const RiskRewardRatioPage({super.key});
-
+class RiskRewardRatioPage extends ConsumerStatefulWidget {
+  const RiskRewardRatioPage({
+    super.key,
+    required this.title,
+  });
+  final String title;
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  RiskRewardRatioState createState() => RiskRewardRatioState();
+}
+
+class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
+  @override
+  void initState() {
+    super.initState();
     print('RiskRewardRatioPage');
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    Future(() async {
       ref
           .watch(mainScreenModelNotifierProvider.notifier)
-          .setScreenTitle(AppLocalizations.of(context)!.riskRewardRatioTitle);
+          .setScreenTitle(widget.title);
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final modelProvider = ref.watch(riskRewardModelNotifierProvider);
     return SingleChildScrollView(
       child: Column(

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class NationalFlag extends StatefulWidget {
   final String currencyPair;
-
+  final double size;
   const NationalFlag({
     super.key,
     required this.currencyPair,
+    required this.size,
   });
   @override
   State<NationalFlag> createState() => _NationalFlag();
@@ -27,26 +28,26 @@ class _NationalFlag extends State<NationalFlag> {
   Widget build(BuildContext context) {
     return Row(children: [
       Container(
-        width: 40.0,
-        height: 40.0,
-        decoration: BoxDecoration(
+        width: widget.size,
+        height: widget.size,
+        decoration: const BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage(flag1),
+            image: AssetImage("images/USD.png"),
           ),
         ),
       ),
-      const Text(
+      Text(
         "/",
         style: TextStyle(
-          fontSize: 50,
+          fontSize: widget.size,
           fontWeight: FontWeight.w100,
         ),
       ),
       Container(
-        width: 40.0,
-        height: 40.0,
+        width: widget.size,
+        height: widget.size,
         decoration: const BoxDecoration(
             shape: BoxShape.circle,
             image: DecorationImage(

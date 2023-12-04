@@ -6,6 +6,7 @@ import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainScreen extends ConsumerWidget {
   static const List<Tab> appTabs = <Tab>[
@@ -53,9 +54,13 @@ class MainScreen extends ConsumerWidget {
             ),
           ),
         ),
-        body: const TabBarView(children: [
-          LotSizeCalculatorPage(),
-          RiskRewardRatioPage(),
+        body: TabBarView(children: [
+          LotSizeCalculatorPage(
+            title: AppLocalizations.of(context)!.riskRewardRatioTitle,
+          ),
+          RiskRewardRatioPage(
+            title: AppLocalizations.of(context)!.riskRewardRatioTitle,
+          ),
           // MyWidget(),
         ]),
       ),

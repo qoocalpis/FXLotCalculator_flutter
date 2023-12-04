@@ -7,7 +7,7 @@ part of 'currency_pair_controller.dart';
 // **************************************************************************
 
 String _$currencyPairModelNotifierHash() =>
-    r'0c24299f565c833788bc1ebc98830479693141ec';
+    r'82a4db64d819d6b7231d05e6cf06922d80edcb36';
 
 /// See also [CurrencyPairModelNotifier].
 @ProviderFor(CurrencyPairModelNotifier)

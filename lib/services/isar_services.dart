@@ -145,4 +145,20 @@ class IsarService {
     final User? user = await isar.users.get(0);
     return user!.lot;
   }
+
+  Future<List<CurrencyPair>> fechFavoriteCurrencyPairList() async {
+    final isar = await db;
+    final List<CurrencyPair> currencyPairs = await isar.currencyPairs
+        .filter()
+        .addedToFavoriteEqualTo(true)
+        .findAll();
+    return currencyPairs;
+  }
+
+  Future<List<CurrencyPair>> fechCurrencyPairList() async {
+    final isar = await db;
+    final List<CurrencyPair> currencyPairs =
+        await isar.currencyPairs.where().findAll();
+    return currencyPairs;
+  }
 }
