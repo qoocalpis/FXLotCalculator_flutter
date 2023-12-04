@@ -2,16 +2,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
-import 'package:lot_size_calculator_app/pages/currency_pair_list_page.dart';
 import 'package:lot_size_calculator_app/pages/favorite_currency_pair_list_page.dart';
 import 'package:lot_size_calculator_app/pages/result_lot_size_page.dart';
-import 'package:lot_size_calculator_app/pages/two_num_keyboard_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/calculation_set_cell.dart';
 import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
-import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 
 class LotSizeCalculatorPage extends ConsumerStatefulWidget {
   const LotSizeCalculatorPage({

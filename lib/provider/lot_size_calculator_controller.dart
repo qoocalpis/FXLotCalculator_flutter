@@ -1,5 +1,4 @@
 import 'package:lot_size_calculator_app/models/lot_size_calculator_model.dart';
-import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
