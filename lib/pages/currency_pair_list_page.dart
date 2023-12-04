@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/models/currency_pair_model.dart';
+import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
@@ -11,12 +11,20 @@ class CurrencyPairListPage extends StatefulWidget {
 }
 
 class CurrencyPairListState extends State<CurrencyPairListPage> {
-  final isar = IsarService.instance.fechCurrencyPairList();
-  final list = GoogleSheetService.instance.list;
-  late int _index = 0;
+  final isar = IsarService.instance;
+  final googleSheet = GoogleSheetService.instance;
+  late List<GoogleSheetAPIModel> list = [];
+  late List<CurrencyPair> list2 = [];
   @override
   void initState() {
     super.initState();
+    initialize();
+  }
+
+  Future<void> initialize() async {
+    list2 = await isar.fechCurrencyPairList();
+    list = googleSheet.list;
+    setState(() {});
   }
 
   @override
@@ -41,12 +49,14 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            for (var item in list)
+            for (int i = 0; i < list.length; i++)
               ListTile(
-                leading: Icon(Icons.favorite),
-                title: Text(item.currencyPair),
-                selected: true,
+                trailing: const Icon(Icons.grade),
+                title: Text(list[i].currencyPair),
+                subtitle: Text(list[i].currencyCode),
+                selected: list2[i].addedToFavorite,
                 onTap: () {
+                  list2[i].addedToFavorite = !list2[i].addedToFavorite;
                   _tapTile();
                 },
               )
