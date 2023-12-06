@@ -10,5 +10,6 @@
     "close": "閉じる",
     "riskRewardsetting": "損益pips設定",
     "settingPageTitle": "設定",
-    "calculate": "計算"
+    "calculate": "計算",
+    "currencyPairListTitle": "通貨ペアリスト"
 }

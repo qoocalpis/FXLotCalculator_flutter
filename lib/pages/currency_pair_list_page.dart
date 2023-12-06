@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:lot_size_calculator_app/pages/widgets/currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CurrencyPairListPage extends StatefulWidget {
   const CurrencyPairListPage({super.key});
@@ -13,17 +15,22 @@ class CurrencyPairListPage extends StatefulWidget {
 class CurrencyPairListState extends State<CurrencyPairListPage> {
   final isar = IsarService.instance;
   final googleSheet = GoogleSheetService.instance;
-  late List<GoogleSheetAPIModel> list = [];
-  late List<CurrencyPair> list2 = [];
+  late List<GoogleSheetAPIModel> googleSheetAPIModelList = [];
+  late List<CurrencyPair> currencyPairList = [];
+  late List<String> currencyPairFullNameList = [];
+
   @override
   void initState() {
     super.initState();
     initialize();
   }
 
-  Future<void> initialize() async {
-    list2 = await isar.fechCurrencyPairList();
-    list = googleSheet.list;
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final t = ttt();
+    for (var pair in googleSheet.list) {}
+    AppLocalizations.of(context)!.currencyPairListTitle;
     setState(() {});
   }
 
@@ -42,22 +49,21 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
             color: Colors.blue,
           ),
         ),
-        title: const Text("通貨ペアリスト"),
+        title: Text(AppLocalizations.of(context)!.currencyPairListTitle),
       ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            for (int i = 0; i < list.length; i++)
-              ListTile(
-                trailing: const Icon(Icons.grade),
-                title: Text(list[i].currencyPair),
-                subtitle: Text(list[i].currencyCode),
-                selected: list2[i].addedToFavorite,
-                onTap: () {
-                  list2[i].addedToFavorite = !list2[i].addedToFavorite;
-                  _tapTile();
+            for (int i = 0; i < googleSheetAPIModelList.length; i++)
+              CurrencyPairListCell(
+                title: googleSheetAPIModelList[i].currencyPair,
+                selected: currencyPairList[i].addedToFavorite,
+                onTap: (context) {
+                  currencyPairList[i].addedToFavorite =
+                      !currencyPairList[i].addedToFavorite;
+                  _tapTile(i);
                 },
               )
           ],
@@ -66,9 +72,21 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
     );
   }
 
-  void _tapTile() {
-    setState(() {
-      // _message = 'No. $_index を選択しました';
-    });
+  Future<void> initialize() async {
+    currencyPairList = await isar.fechCurrencyPairList();
+    googleSheetAPIModelList = googleSheet.list;
+
+    setState(() {});
+  }
+
+  String ttt() {
+    AppLocalizations.of(context)!.currencyPairListTitle;
+
+    return '';
+  }
+
+  Future<void> _tapTile(int index) async {
+    setState(() {});
+    await isar.changedAddedFavorite(index);
   }
 }

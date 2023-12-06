@@ -10,5 +10,6 @@
   "close": "close",
   "riskRewardsetting": "Set profit and loss pips",
   "settingPageTitle": "Setting",
-  "calculate": "Calculate"
+  "calculate": "Calculate",
+  "currencyPairListTitle": "Currency Pair List"
 }
