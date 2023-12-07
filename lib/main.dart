@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
-import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'pages/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -51,7 +50,6 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return MaterialApp(
       supportedLocales: L10n.all,
       locale: const Locale('ja'),

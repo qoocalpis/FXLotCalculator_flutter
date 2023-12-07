@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/setting_page.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
-import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
 import 'package:lot_size_calculator_app/pages/risk_reward_ratio_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,7 +22,8 @@ class MainScreen extends ConsumerWidget {
       length: appTabs.length,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(SizeConfig.appBarHeight), // AppBarの高さ
+          preferredSize: Size.fromHeight(
+              MediaQuery.of(context).size.height * 0.11), // AppBarの高さ
           child: AppBar(
             elevation: 0,
             bottom: const TabBar(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -14,14 +13,16 @@ class NumText extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final riskPips = ref.watch(riskRewardModelNotifierProvider).riskPips;
     final rewardPips = ref.watch(riskRewardModelNotifierProvider).rewardPips;
-
+    final twoNumKeyboardNumSize =
+        MediaQuery.of(context).size.width * 0.13 * 0.7;
+    final riskRewardPipsTextWidth = MediaQuery.of(context).size.width * 0.45;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Container(
           alignment: Alignment.center,
-          width: SizeConfig.riskRewardPipsTextWidth,
-          height: SizeConfig.riskRewardPipsTextWidth,
+          width: riskRewardPipsTextWidth,
+          height: riskRewardPipsTextWidth,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -32,8 +33,7 @@ class NumText extends ConsumerWidget {
                   Text(
                     '$riskPips',
                     style: TextStyle(
-                        fontSize: SizeConfig.twoNumKeyboardNumSize,
-                        color: Colors.black87),
+                        fontSize: twoNumKeyboardNumSize, color: Colors.black87),
                   ),
                   const Text(
                     'pips',
@@ -50,8 +50,8 @@ class NumText extends ConsumerWidget {
         ),
         Container(
           alignment: Alignment.center,
-          width: SizeConfig.riskRewardPipsTextWidth,
-          height: SizeConfig.riskRewardPipsTextWidth,
+          width: riskRewardPipsTextWidth,
+          height: riskRewardPipsTextWidth,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -62,8 +62,7 @@ class NumText extends ConsumerWidget {
                   Text(
                     '$rewardPips',
                     style: TextStyle(
-                        fontSize: SizeConfig.twoNumKeyboardNumSize,
-                        color: Colors.black87),
+                        fontSize: twoNumKeyboardNumSize, color: Colors.black87),
                   ),
                   const Text(
                     'pips',

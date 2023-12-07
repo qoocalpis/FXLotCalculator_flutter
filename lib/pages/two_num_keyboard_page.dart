@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
-import 'package:lot_size_calculator_app/utils/sizes.dart';
 import 'package:lot_size_calculator_app/pages/widgets/num_pad.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -9,8 +8,9 @@ class TwoNumKeyboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final twoNumKeyboardButtonSize = MediaQuery.of(context).size.width * 0.13;
     return Container(
-      height: SizeConfig.twoNumKeyboardPageHeigh,
+      height: MediaQuery.of(context).size.height * 0.8,
       color: AppColor.twoNumKeyboardPageBgColor,
       child: Padding(
         padding: const EdgeInsets.only(top: 30),
@@ -23,13 +23,13 @@ class TwoNumKeyboardPage extends StatelessWidget {
               children: [
                 // implement the custom NumPad
                 NumPad(
-                  buttonSize: SizeConfig.twoNumKeyboardButtonSize,
+                  buttonSize: twoNumKeyboardButtonSize,
                   buttonColor: AppColor.lossCutBgColor,
                   iconColor: Colors.purple,
                   isRisk: true,
                 ),
                 NumPad(
-                  buttonSize: SizeConfig.twoNumKeyboardButtonSize,
+                  buttonSize: twoNumKeyboardButtonSize,
                   buttonColor: AppColor.takeProfitBgColor,
                   isRisk: false,
                   iconColor: Colors.purple,

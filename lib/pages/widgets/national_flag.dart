@@ -19,9 +19,26 @@ class _NationalFlag extends State<NationalFlag> {
   @override
   void initState() {
     super.initState();
-    flag1 = "images/${widget.currencyPair.substring(0, 3)}.png";
-    flag2 = "images/USD.png";
-    print(flag1);
+
+    final fromCurrency = widget.currencyPair.substring(0, 3);
+    final toCurrency = widget.currencyPair.substring(3, 6);
+    switch (fromCurrency) {
+      case 'CHF' || 'EUR':
+        flag1 = "images/$fromCurrency.jpeg";
+      case "XAU":
+        flag1 = "images/$fromCurrency.jpg";
+      default:
+        flag1 = "images/$fromCurrency.png";
+    }
+
+    switch (toCurrency) {
+      case 'CHF' || 'EUR':
+        flag2 = "images/$toCurrency.jpeg";
+      case "XAU":
+        flag2 = "images/$toCurrency.jpg";
+      default:
+        flag2 = "images/$toCurrency.png";
+    }
   }
 
   @override
@@ -30,11 +47,11 @@ class _NationalFlag extends State<NationalFlag> {
       Container(
         width: widget.size,
         height: widget.size,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
             fit: BoxFit.fill,
-            image: AssetImage("images/USD.png"),
+            image: AssetImage(flag1),
           ),
         ),
       ),
@@ -48,10 +65,13 @@ class _NationalFlag extends State<NationalFlag> {
       Container(
         width: widget.size,
         height: widget.size,
-        decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            image: DecorationImage(
-                fit: BoxFit.fill, image: AssetImage("images/USD.png"))),
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage(flag2),
+          ),
+        ),
       ),
     ]);
   }

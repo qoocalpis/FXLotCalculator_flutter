@@ -25,14 +25,11 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
     initialize();
   }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final t = ttt();
-    for (var pair in googleSheet.list) {}
-    AppLocalizations.of(context)!.currencyPairListTitle;
-    setState(() {});
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,14 +72,7 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
   Future<void> initialize() async {
     currencyPairList = await isar.fechCurrencyPairList();
     googleSheetAPIModelList = googleSheet.list;
-
     setState(() {});
-  }
-
-  String ttt() {
-    AppLocalizations.of(context)!.currencyPairListTitle;
-
-    return '';
   }
 
   Future<void> _tapTile(int index) async {

@@ -5,7 +5,6 @@ import 'package:lot_size_calculator_app/pages/currency_pair_list_page.dart';
 import 'package:lot_size_calculator_app/pages/test.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
-import 'package:lot_size_calculator_app/utils/sizes.dart';
 
 enum OnClickedType {
   picker,
@@ -58,7 +57,8 @@ class SettingCell extends ConsumerWidget {
           ),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-              fixedSize: Size.fromHeight(SizeConfig.screenHeight * 0.09),
+              fixedSize:
+                  Size.fromHeight(MediaQuery.of(context).size.height * 0.09),
               //Sizeクラスで高さを指定
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20), //角の丸み
