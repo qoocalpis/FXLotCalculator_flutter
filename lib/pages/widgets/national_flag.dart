@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class NationalFlag extends StatefulWidget {
   final String currencyPair;
