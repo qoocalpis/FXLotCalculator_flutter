@@ -76,7 +76,7 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
   }
 
   Future<void> _tapTile(int index) async {
-    setState(() {});
     await isar.changedAddedFavorite(index);
+    setState(() {});
   }
 }

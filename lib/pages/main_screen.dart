@@ -18,12 +18,12 @@ class MainScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final modelProvider = ref.watch(mainScreenModelNotifierProvider);
+    final appBarHeigh = MediaQuery.of(context).size.height * 0.12;
     return DefaultTabController(
       length: appTabs.length,
       child: Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(
-              MediaQuery.of(context).size.height * 0.11), // AppBarの高さ
+          preferredSize: Size.fromHeight(appBarHeigh), // AppBarの高さ
           child: AppBar(
             elevation: 0,
             bottom: const TabBar(
@@ -36,10 +36,10 @@ class MainScreen extends ConsumerWidget {
             backgroundColor: AppColor.mainBgColor,
             centerTitle: true,
             leading: IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.manage_accounts,
-                size: 35,
-                color: Color.fromARGB(255, 74, 48, 220),
+                size: appBarHeigh * 0.38,
+                color: const Color.fromARGB(255, 74, 48, 220),
               ),
               onPressed: () {
                 Navigator.of(context).push(

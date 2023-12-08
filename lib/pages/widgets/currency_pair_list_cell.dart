@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class CurrencyPairListCell extends StatelessWidget {
@@ -34,7 +35,7 @@ class CurrencyPairListCell extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Text(AppConst.strEmpty),
+                const Text(AppConst.strEmpty), //dummy
                 Text(
                   title,
                   style: const TextStyle(
@@ -45,6 +46,10 @@ class CurrencyPairListCell extends StatelessWidget {
                   style: const TextStyle(fontSize: 12),
                 ),
               ],
+            ),
+            NationalFlag(
+              currencyPair: title,
+              size: 40,
             ),
             Row(
               children: [

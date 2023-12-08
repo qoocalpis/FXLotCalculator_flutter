@@ -6,9 +6,11 @@ import 'package:lot_size_calculator_app/pages/favorite_currency_pair_list_page.d
 import 'package:lot_size_calculator_app/pages/result_lot_size_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/calculation_set_cell.dart';
 import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
+import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
+import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class LotSizeCalculatorPage extends ConsumerStatefulWidget {
   const LotSizeCalculatorPage({
@@ -42,6 +44,21 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
               error: (e, s) => null,
               data: (d) => d,
             );
+    final String selectedCurrencyPair = ref
+        .watch(currencyPairModelNotifierProvider)
+        .when(
+          loading: () => AppConst.strEmpty,
+          error: (e, s) => AppConst.strEmpty,
+          data: (d) =>
+              d.firstWhere((element) => element.selected == true).currencyPair,
+        );
+    final String selectedCurrencyPairRate = ref
+        .watch(currencyPairModelNotifierProvider)
+        .when(
+          loading: () => AppConst.loadingText,
+          error: (e, s) => AppConst.errorText,
+          data: (d) => d.firstWhere((element) => element.selected == true).rate,
+        );
     final fontSize = MediaQuery.of(context).size.height * 0.035;
     final topContainerSize = MediaQuery.of(context).size.height * 0.15;
     return Scaffold(
@@ -49,7 +66,6 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
       body: SingleChildScrollView(
         reverse: true,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,19 +80,30 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                   ),
                   height: topContainerSize,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Text("", style: TextStyle(fontSize: fontSize)), //dummy
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("USD/JPY", style: TextStyle(fontSize: fontSize)),
+                          Text(selectedCurrencyPair,
+                              style: TextStyle(fontSize: fontSize)),
                           const SizedBox(width: 10),
-                          NationalFlag(
-                            currencyPair: "USD/JPY",
-                            size: fontSize,
-                          )
+                          selectedCurrencyPair != AppConst.strEmpty
+                              ? NationalFlag(
+                                  currencyPair: selectedCurrencyPair,
+                                  size: fontSize,
+                                )
+                              : const SizedBox(
+                                  width: 10,
+                                )
                         ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        selectedCurrencyPairRate,
+                        style: TextStyle(
+                          fontSize: fontSize * 0.6,
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,

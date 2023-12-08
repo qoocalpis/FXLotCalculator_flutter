@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class NationalFlag extends StatefulWidget {
   final String currencyPair;
@@ -21,7 +22,8 @@ class _NationalFlag extends State<NationalFlag> {
     super.initState();
 
     final fromCurrency = widget.currencyPair.substring(0, 3);
-    final toCurrency = widget.currencyPair.substring(3, 6);
+    final toCurrency = widget.currencyPair.substring(4, 7);
+
     switch (fromCurrency) {
       case 'CHF' || 'EUR':
         flag1 = "images/$fromCurrency.jpeg";
@@ -50,8 +52,12 @@ class _NationalFlag extends State<NationalFlag> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
             image: AssetImage(flag1),
+          ),
+          border: Border.all(
+            color: Colors.black,
+            width: 0.1,
           ),
         ),
       ),
@@ -68,8 +74,12 @@ class _NationalFlag extends State<NationalFlag> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           image: DecorationImage(
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
             image: AssetImage(flag2),
+          ),
+          border: Border.all(
+            color: Colors.black,
+            width: 0.1,
           ),
         ),
       ),

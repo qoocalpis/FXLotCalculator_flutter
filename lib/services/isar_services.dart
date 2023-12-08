@@ -161,4 +161,24 @@ class IsarService {
         await isar.currencyPairs.where().findAll();
     return currencyPairs;
   }
+
+  Future<void> changedSelected(String currencyPair, bool result) async {
+    final isar = await db;
+    var targetCurrencyPairfrom =
+        await isar.currencyPairs.filter().selectedEqualTo(true).findFirst();
+    var targetCurrencyPairTo =
+        await isar.currencyPairs.filter().pairEqualTo(currencyPair).findFirst();
+
+    if (targetCurrencyPairTo?.pair == targetCurrencyPairfrom?.pair) {
+      return;
+    }
+    await isar.writeTxn(
+      () async {
+        targetCurrencyPairfrom?.selected = false;
+        targetCurrencyPairTo?.selected = result;
+        await isar.currencyPairs.put(targetCurrencyPairTo!); // 更新操作の実行
+        await isar.currencyPairs.put(targetCurrencyPairfrom!); // 更新操作の実行
+      },
+    );
+  }
 }
