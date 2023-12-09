@@ -40,6 +40,8 @@ class _NationalFlag extends State<NationalFlag> {
       default:
         flag2 = "images/$toCurrency.png";
     }
+    print(widget.currencyPair);
+    setState(() {});
   }
 
   @override
@@ -60,12 +62,18 @@ class _NationalFlag extends State<NationalFlag> {
           ),
         ),
       ),
+      const SizedBox(
+        width: 10,
+      ),
       Text(
         "/",
         style: TextStyle(
           fontSize: widget.size,
-          fontWeight: FontWeight.w100,
+          fontWeight: FontWeight.w300,
         ),
+      ),
+      const SizedBox(
+        width: 10,
       ),
       Container(
         width: widget.size,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/currency_pair_model.dart';
+import 'package:lot_size_calculator_app/pages/widgets/favorite_currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
@@ -59,16 +60,17 @@ class FavoriteCurrencyPairListState
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
             for (int i = 0; i < googleSheetAPIModelList.length; i++)
-              ListTile(
-                title: Text(googleSheetAPIModelList[i].currencyPair),
+              FavoriteCurrencyPairListCell(
+                title: googleSheetAPIModelList[i].currencyPair,
+                subTitle: googleSheetAPIModelList[i].rate,
                 selected: _index == i,
-                selectedTileColor: Colors.orange,
-                onTap: () {
+                onTap: (context) {
                   if (_index == i) {
                     return;
                   }
                   _index = i;
                   _tapTile(currencyPairList[i].pair, true);
+                  // Navigator.pop(context, true);
                 },
               )
           ],

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class GoogleSheetService {
   /// private constructor
@@ -32,7 +33,28 @@ class GoogleSheetService {
           String price = value[1];
           String currencyCode = value[2];
 
-          list.add(GoogleSheetAPIModel(currencyPair, price, currencyCode));
+          String formattedPrice;
+          if (double.tryParse(price) != null) {
+            if (currencyPair == "XAU/USD") {
+              formattedPrice = double.parse(price).toStringAsFixed(2);
+            } else {
+              switch (currencyPair.substring(currencyPair.length - 3)) {
+                case "JPY":
+                  formattedPrice = double.parse(price).toStringAsFixed(3);
+                  break;
+                default:
+                  formattedPrice = double.parse(price).toStringAsFixed(5);
+                  break;
+              }
+            }
+          } else {
+            formattedPrice = AppConst.strEmpty;
+          }
+          print(currencyPair);
+          print(formattedPrice);
+
+          list.add(
+              GoogleSheetAPIModel(currencyPair, formattedPrice, currencyCode));
         }
         return true;
       } else {

@@ -48,11 +48,9 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
           selected: d.currencyPais[index].selected,
           addedToFavorite: d.currencyPais[index].addedToFavorite,
         ));
-        print("データあり");
       } else {
         print("データなし");
       }
-      print(i++);
     }
     return modelList;
   }

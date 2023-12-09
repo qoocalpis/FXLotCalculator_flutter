@@ -1,15 +1,18 @@
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/date_symbol_data_http_request.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/pages/favorite_currency_pair_list_page.dart';
 import 'package:lot_size_calculator_app/pages/result_lot_size_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/calculation_set_cell.dart';
 import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
+import 'package:lot_size_calculator_app/pages/widgets/price_text.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
+import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class LotSizeCalculatorPage extends ConsumerStatefulWidget {
@@ -24,6 +27,9 @@ class LotSizeCalculatorPage extends ConsumerStatefulWidget {
 }
 
 class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
+  late String selectedCurrencyPair;
+  late String rate;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +40,7 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
     Future(() async {
       mainScreenModelNotifier.setScreenTitle(widget.title);
     });
+    // initialize();
   }
 
   @override
@@ -80,13 +87,16 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                   ),
                   height: topContainerSize,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      SizedBox(height: topContainerSize * 0.2),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(selectedCurrencyPair,
-                              style: TextStyle(fontSize: fontSize)),
+                              style:
+                                  TextStyle(fontSize: topContainerSize * 0.25)),
                           const SizedBox(width: 10),
                           selectedCurrencyPair != AppConst.strEmpty
                               ? NationalFlag(
@@ -98,19 +108,23 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                                 )
                         ],
                       ),
-                      const SizedBox(height: 10),
-                      Text(
-                        selectedCurrencyPairRate,
-                        style: TextStyle(
-                          fontSize: fontSize * 0.6,
-                        ),
-                      ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          const SizedBox(),
+                          Text(
+                            selectedCurrencyPairRate,
+                            style: TextStyle(
+                              fontSize: fontSize * 0.7,
+                            ),
+                          ),
                           IconButton(
                             icon: const Icon(Icons.backspace),
                             onPressed: () => {
+                              // pushWithReloadByReturn(context),
                               Navigator.of(context).push(
                                 MaterialPageRoute<void>(
                                   builder: (BuildContext context) {
@@ -174,4 +188,29 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
       ),
     );
   }
+  // Future<void> initialize() async {
+  //   final isar = IsarService.instance;
+  //   final data = await isar.fechSelectedCurrencyPair();
+
+  //   selectedCurrencyPair = data!.pair;
+  //   setState(() {});
+  // }
+
+  // void pushWithReloadByReturn(BuildContext context) async {
+  //   // [*2]
+  //   final result = await Navigator.push(
+  //     // [*3]
+  //     context,
+  //     MaterialPageRoute<bool>(
+  //       // [*4]
+  //       builder: (BuildContext context) => const FavoriteCurrencyPairListPage(),
+  //     ),
+  //   );
+
+  //   if (result!) {
+  //     // [*5]
+  //     setState(() {});
+  //     // notifyListeners();
+  //   }
+  // }
 }

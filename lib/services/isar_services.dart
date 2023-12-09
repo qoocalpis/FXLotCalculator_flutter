@@ -181,4 +181,11 @@ class IsarService {
       },
     );
   }
+
+  Future<CurrencyPair?> fechSelectedCurrencyPair() async {
+    final isar = await db;
+    final CurrencyPair? currencyPair =
+        await isar.currencyPairs.filter().selectedEqualTo(true).findFirst();
+    return currencyPair;
+  }
 }
