@@ -54,11 +54,15 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
     return modelList;
   }
 
-  Future<void> onChangeAddedFavoriteProperty(String targetCurrencyPair) async {
+  Future<bool> onChangeAddedFavoriteProperty(String targetCurrencyPair) async {
     state = const AsyncValue.loading();
-    await isarService.changedAddedFavorite(targetCurrencyPair);
+    final res = await isarService.changedAddedFavorite(targetCurrencyPair);
+    if (!res) {
+      return false;
+    }
     // データを上書き
     state = AsyncValue.data(await fecthList());
+    return true;
   }
 
   Future<void> onChangeSelectedProperty(

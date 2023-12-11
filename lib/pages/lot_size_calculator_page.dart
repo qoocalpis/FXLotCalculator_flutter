@@ -7,6 +7,7 @@ import 'package:lot_size_calculator_app/pages/favorite_currency_pair_list_page.d
 import 'package:lot_size_calculator_app/pages/result_lot_size_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/calculation_set_cell.dart';
 import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
+import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
@@ -26,8 +27,8 @@ class LotSizeCalculatorPage extends ConsumerStatefulWidget {
 }
 
 class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
-  late String selectedCurrencyPair = AppConst.strEmpty;
-  late String selectedCurrencyPairRate = AppConst.strEmpty;
+  // late String selectedCurrencyPair = AppConst.strEmpty;
+  // late String selectedCurrencyPairRate = AppConst.strEmpty;
 
   @override
   void initState() {
@@ -52,21 +53,21 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
               error: (e, s) => null,
               data: (d) => d,
             );
-    // final String selectedCurrencyPair = ref
-    //     .watch(currencyPairModelNotifierProvider)
-    //     .when(
-    //       loading: () => AppConst.strEmpty,
-    //       error: (e, s) => AppConst.strEmpty,
-    //       data: (d) =>
-    //           d.firstWhere((element) => element.selected == true).currencyPair,
-    //     );
-    // final String selectedCurrencyPairRate = ref
-    //     .watch(currencyPairModelNotifierProvider)
-    //     .when(
-    //       loading: () => AppConst.loadingText,
-    //       error: (e, s) => AppConst.errorText,
-    //       data: (d) => d.firstWhere((element) => element.selected == true).rate,
-    //     );
+    final String selectedCurrencyPair = ref
+        .watch(currencyPairModelNotifierProvider)
+        .when(
+          loading: () => AppConst.strEmpty,
+          error: (e, s) => AppConst.strEmpty,
+          data: (d) =>
+              d.firstWhere((element) => element.selected == true).currencyPair,
+        );
+    final String selectedCurrencyPairRate = ref
+        .watch(currencyPairModelNotifierProvider)
+        .when(
+          loading: () => AppConst.loadingText,
+          error: (e, s) => AppConst.errorText,
+          data: (d) => d.firstWhere((element) => element.selected == true).rate,
+        );
     final fontSize = screenHeight * 0.035;
     final topContainerSize = screenHeight * 0.15;
     return Scaffold(
@@ -214,13 +215,13 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
     if (kDebugMode) {
       print('LotSizeCalculatorPage initialize');
     }
-    final isar = IsarService.instance;
-    final list = GoogleSheetService.instance.list;
-    final isarData = await isar.fechSelectedCurrencyPair();
-    selectedCurrencyPair = isarData!.pair;
-    final data = list
-        .firstWhere((element) => element.currencyPair == selectedCurrencyPair);
-    selectedCurrencyPairRate = data.rate;
+    // final isar = IsarService.instance;
+    // final list = GoogleSheetService.instance.list;
+    // final isarData = await isar.fechSelectedCurrencyPair();
+    // selectedCurrencyPair = isarData!.pair;
+    // final data = list
+    //     .firstWhere((element) => element.currencyPair == selectedCurrencyPair);
+    // selectedCurrencyPairRate = data.rate;
     setState(() {});
   }
 }

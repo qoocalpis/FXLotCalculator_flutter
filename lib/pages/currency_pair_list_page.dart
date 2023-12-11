@@ -1,19 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/widgets/currency_pair_list_cell.dart';
+import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class CurrencyPairListPage extends StatefulWidget {
+class CurrencyPairListPage extends ConsumerStatefulWidget {
   const CurrencyPairListPage({super.key});
   @override
   CurrencyPairListState createState() => CurrencyPairListState();
 }
 
-class CurrencyPairListState extends State<CurrencyPairListPage> {
+class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
   final isar = IsarService.instance;
   final googleSheet = GoogleSheetService.instance;
   late List<GoogleSheetAPIModel> googleSheetAPIModelList = [];
@@ -79,7 +81,8 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
   }
 
   Future<void> _tapTile(String currencyPair, int index) async {
-    final res = await isar.changedAddedFavorite(currencyPair);
+    final notifier = ref.read(currencyPairModelNotifierProvider.notifier);
+    final res = await notifier.onChangeAddedFavoriteProperty(currencyPair);
     if (res) {
       currencyPairList[index].addedToFavorite =
           !currencyPairList[index].addedToFavorite;

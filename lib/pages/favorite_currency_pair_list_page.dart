@@ -80,19 +80,24 @@ class FavoriteCurrencyPairListState
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        height: screenHeight * 0.05,
+        height: screenHeight * 0.075,
         color: Colors.black,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(AppLocalizations.of(context)!.lastUpdatedTime),
+            Text(
+              AppLocalizations.of(context)!.lastUpdatedTime,
+              style: const TextStyle(color: Colors.white),
+            ),
             Text(
               googleSheet.date,
               textAlign: TextAlign.center,
+              style: const TextStyle(color: Colors.white),
             ),
           ],
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
         child: const Icon(
           Icons.add,
@@ -137,7 +142,6 @@ class FavoriteCurrencyPairListState
   }
 
   Future<void> _tapTile(String pair, bool selected) async {
-    await isar.changedSelected(pair, selected);
     final notifier = ref.read(currencyPairModelNotifierProvider.notifier);
     notifier.onChangeSelectedProperty(pair, selected);
     setState(() {});

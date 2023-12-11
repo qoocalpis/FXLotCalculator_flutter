@@ -41,13 +41,14 @@ class _PriceTextState extends State<PriceText> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: widget.textSize * 6,
+      // height: 80,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
             frontText,
-            textAlign: TextAlign.end,
+            textAlign: TextAlign.start,
             style: TextStyle(
               fontSize: widget.textSize,
             ),
@@ -62,7 +63,7 @@ class _PriceTextState extends State<PriceText> {
           ),
           Text(
             endText,
-            textAlign: TextAlign.end,
+            textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: widget.textSize,
             ),
