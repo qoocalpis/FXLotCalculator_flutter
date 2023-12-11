@@ -19,10 +19,14 @@ class _NationalFlag extends State<NationalFlag> {
   @override
   void initState() {
     super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    late String flag1;
+    late String flag2;
     final fromCurrency = widget.currencyPair.substring(0, 3);
     final toCurrency = widget.currencyPair.substring(4, 7);
-
     switch (fromCurrency) {
       case 'CHF' || 'EUR':
         flag1 = "images/$fromCurrency.jpeg";
@@ -40,12 +44,6 @@ class _NationalFlag extends State<NationalFlag> {
       default:
         flag2 = "images/$toCurrency.png";
     }
-    print(widget.currencyPair);
-    setState(() {});
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Row(children: [
       Container(
         width: widget.size,

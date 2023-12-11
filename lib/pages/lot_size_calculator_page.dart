@@ -1,17 +1,16 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/date_symbol_data_http_request.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/pages/favorite_currency_pair_list_page.dart';
 import 'package:lot_size_calculator_app/pages/result_lot_size_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/calculation_set_cell.dart';
 import 'package:lot_size_calculator_app/pages/widgets/national_flag.dart';
-import 'package:lot_size_calculator_app/pages/widgets/price_text.dart';
-import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
+import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
@@ -27,47 +26,49 @@ class LotSizeCalculatorPage extends ConsumerStatefulWidget {
 }
 
 class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
-  late String selectedCurrencyPair;
-  late String rate;
+  late String selectedCurrencyPair = AppConst.strEmpty;
+  late String selectedCurrencyPairRate = AppConst.strEmpty;
 
   @override
   void initState() {
     super.initState();
     print('LotSizeCalculatorPage');
+    initialize();
 
     final mainScreenModelNotifier =
         ref.read(mainScreenModelNotifierProvider.notifier);
     Future(() async {
       mainScreenModelNotifier.setScreenTitle(widget.title);
     });
-    // initialize();
   }
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     final UserModel? userModelProvider =
         ref.watch(userModelNotifierProvider).when(
               loading: () => null,
               error: (e, s) => null,
               data: (d) => d,
             );
-    final String selectedCurrencyPair = ref
-        .watch(currencyPairModelNotifierProvider)
-        .when(
-          loading: () => AppConst.strEmpty,
-          error: (e, s) => AppConst.strEmpty,
-          data: (d) =>
-              d.firstWhere((element) => element.selected == true).currencyPair,
-        );
-    final String selectedCurrencyPairRate = ref
-        .watch(currencyPairModelNotifierProvider)
-        .when(
-          loading: () => AppConst.loadingText,
-          error: (e, s) => AppConst.errorText,
-          data: (d) => d.firstWhere((element) => element.selected == true).rate,
-        );
-    final fontSize = MediaQuery.of(context).size.height * 0.035;
-    final topContainerSize = MediaQuery.of(context).size.height * 0.15;
+    // final String selectedCurrencyPair = ref
+    //     .watch(currencyPairModelNotifierProvider)
+    //     .when(
+    //       loading: () => AppConst.strEmpty,
+    //       error: (e, s) => AppConst.strEmpty,
+    //       data: (d) =>
+    //           d.firstWhere((element) => element.selected == true).currencyPair,
+    //     );
+    // final String selectedCurrencyPairRate = ref
+    //     .watch(currencyPairModelNotifierProvider)
+    //     .when(
+    //       loading: () => AppConst.loadingText,
+    //       error: (e, s) => AppConst.errorText,
+    //       data: (d) => d.firstWhere((element) => element.selected == true).rate,
+    //     );
+    final fontSize = screenHeight * 0.035;
+    final topContainerSize = screenHeight * 0.15;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -87,10 +88,9 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                   ),
                   height: topContainerSize,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       SizedBox(height: topContainerSize * 0.2),
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -108,34 +108,55 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                                 )
                         ],
                       ),
-                      // const SizedBox(
-                      //   height: 20,
-                      // ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          const SizedBox(),
-                          Text(
-                            selectedCurrencyPairRate,
-                            style: TextStyle(
-                              fontSize: fontSize * 0.7,
+                          SizedBox(
+                            width: screenWidth * 0.3,
+                            child: Text(
+                              AppLocalizations.of(context)!.rate,
+                              style: TextStyle(fontSize: fontSize * 0.5),
+                              textAlign: TextAlign.end,
                             ),
                           ),
-                          IconButton(
-                            icon: const Icon(Icons.backspace),
-                            onPressed: () => {
-                              // pushWithReloadByReturn(context),
-                              Navigator.of(context).push(
-                                MaterialPageRoute<void>(
-                                  builder: (BuildContext context) {
-                                    return const FavoriteCurrencyPairListPage();
-                                  },
-                                ),
+                          SizedBox(
+                            width: screenWidth * 0.3,
+                            child: Text(
+                              selectedCurrencyPairRate,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: fontSize * 0.7),
+                            ),
+                          ),
+                          SizedBox(
+                            width: screenWidth * 0.3,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 5,
+                                shadowColor: Colors.black,
                               ),
-                            },
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.fact_check,
+                                      size: screenWidth * 0.07),
+                                  const SizedBox(width: 5),
+                                  const Text('MyList'),
+                                ],
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const FavoriteCurrencyPairListPage()),
+                                ).then((result) {
+                                  initialize();
+                                });
+                              },
+                            ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -158,8 +179,8 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
             Padding(
               padding: const EdgeInsets.only(top: 20, bottom: 20),
               child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.4, //横幅
-                height: MediaQuery.of(context).size.height * 0.05, //高さ
+                width: screenWidth * 0.4, //横幅
+                height: screenHeight * 0.05, //高さ
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.yellow,
@@ -188,29 +209,18 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
       ),
     );
   }
-  // Future<void> initialize() async {
-  //   final isar = IsarService.instance;
-  //   final data = await isar.fechSelectedCurrencyPair();
 
-  //   selectedCurrencyPair = data!.pair;
-  //   setState(() {});
-  // }
-
-  // void pushWithReloadByReturn(BuildContext context) async {
-  //   // [*2]
-  //   final result = await Navigator.push(
-  //     // [*3]
-  //     context,
-  //     MaterialPageRoute<bool>(
-  //       // [*4]
-  //       builder: (BuildContext context) => const FavoriteCurrencyPairListPage(),
-  //     ),
-  //   );
-
-  //   if (result!) {
-  //     // [*5]
-  //     setState(() {});
-  //     // notifyListeners();
-  //   }
-  // }
+  Future<void> initialize() async {
+    if (kDebugMode) {
+      print('LotSizeCalculatorPage initialize');
+    }
+    final isar = IsarService.instance;
+    final list = GoogleSheetService.instance.list;
+    final isarData = await isar.fechSelectedCurrencyPair();
+    selectedCurrencyPair = isarData!.pair;
+    final data = list
+        .firstWhere((element) => element.currencyPair == selectedCurrencyPair);
+    selectedCurrencyPairRate = data.rate;
+    setState(() {});
+  }
 }

@@ -20,7 +20,6 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
     final d = await isarService.fecthDatabase();
 
     List<CurrencyPairModel> modelList = [];
-    var i = 1;
     for (var item in list) {
       final index =
           d.currencyPais.indexWhere((para) => para.pair == item.currencyPair);
@@ -55,9 +54,9 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
     return modelList;
   }
 
-  Future<void> onChangeAddedFavoriteProperty(int index) async {
+  Future<void> onChangeAddedFavoriteProperty(String targetCurrencyPair) async {
     state = const AsyncValue.loading();
-    await isarService.changedAddedFavorite(index);
+    await isarService.changedAddedFavorite(targetCurrencyPair);
     // データを上書き
     state = AsyncValue.data(await fecthList());
   }

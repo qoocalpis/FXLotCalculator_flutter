@@ -29,7 +29,7 @@ class FavoriteCurrencyPairListCell extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(5),
           color: selected
-              ? const Color.fromARGB(255, 244, 206, 54)
+              ? const Color.fromARGB(255, 53, 245, 114)
               : const Color.fromARGB(0, 9, 8, 5),
         ),
         padding: const EdgeInsets.only(left: 10, right: 10),

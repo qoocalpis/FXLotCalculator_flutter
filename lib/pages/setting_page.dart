@@ -26,7 +26,7 @@ class SettingPage extends ConsumerWidget {
             AppColor.mainBgColor, //const Color.fromARGB(255, 56, 74, 82),
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
           },
           icon: const Icon(
             Icons.first_page,

@@ -11,5 +11,8 @@
   "riskRewardsetting": "Set profit and loss pips",
   "settingPageTitle": "Setting",
   "calculate": "Calculate",
-  "currencyPairListTitle": "Currency Pair List"
+  "currencyPairListTitle": "Currency Pair List",
+  "favoriteCurrencyPairListTitle": "Favorite Currency Pair List",
+  "rate": "rate",
+  "lastUpdatedTime": "Last Modified"
 }

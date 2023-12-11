@@ -11,5 +11,8 @@
     "riskRewardsetting": "損益pips設定",
     "settingPageTitle": "設定",
     "calculate": "計算",
-    "currencyPairListTitle": "通貨ペアリスト"
+    "currencyPairListTitle": "通貨ペアリスト",
+    "favoriteCurrencyPairListTitle": "お気に入り通貨ペアリスト",
+    "rate": "レート",
+    "lastUpdatedTime": "最終更新日時"
 }

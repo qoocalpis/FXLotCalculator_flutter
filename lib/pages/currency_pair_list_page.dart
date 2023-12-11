@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lot_size_calculator_app/pages/widgets/currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
@@ -38,7 +39,7 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
         backgroundColor: AppColor.mainBgColor,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Navigator.of(context).pop(true);
           },
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -57,10 +58,8 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
               CurrencyPairListCell(
                 title: googleSheetAPIModelList[i].currencyPair,
                 selected: currencyPairList[i].addedToFavorite,
-                onTap: (context) {
-                  currencyPairList[i].addedToFavorite =
-                      !currencyPairList[i].addedToFavorite;
-                  _tapTile(i);
+                onTap: (context) async {
+                  await _tapTile(googleSheetAPIModelList[i].currencyPair, i);
                 },
               )
           ],
@@ -70,13 +69,21 @@ class CurrencyPairListState extends State<CurrencyPairListPage> {
   }
 
   Future<void> initialize() async {
+    if (kDebugMode) {
+      print('CurrencyPairListPage initialize');
+    }
+
     currencyPairList = await isar.fechCurrencyPairList();
     googleSheetAPIModelList = googleSheet.list;
     setState(() {});
   }
 
-  Future<void> _tapTile(int index) async {
-    await isar.changedAddedFavorite(index);
-    setState(() {});
+  Future<void> _tapTile(String currencyPair, int index) async {
+    final res = await isar.changedAddedFavorite(currencyPair);
+    if (res) {
+      currencyPairList[index].addedToFavorite =
+          !currencyPairList[index].addedToFavorite;
+      setState(() {});
+    }
   }
 }

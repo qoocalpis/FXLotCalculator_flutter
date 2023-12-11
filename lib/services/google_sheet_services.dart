@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:lot_size_calculator_app/utils/constants.dart';
+import 'package:intl/intl.dart';
 
 class GoogleSheetService {
   /// private constructor
@@ -10,9 +11,14 @@ class GoogleSheetService {
   static final instance = GoogleSheetService._();
 
   List<GoogleSheetAPIModel> list = [];
+  String date = AppConst.strEmpty;
 
   Future<bool> callGoogleSheetAPI() async {
     print("callGoogleSheetAPI");
+
+    DateTime now = DateTime.now();
+    DateFormat outputFormat = DateFormat('yyyy/MM/dd H:m');
+    date = outputFormat.format(now);
 
     String apiKey = 'AIzaSyA0w_ZecwgQJ9XHcrfsxLpW92i_FacfzRU';
     String spreadsheetId = '1osAu_AWYqWaMMxd2JGo7yJfTTSKVOyqodAV9dCDRILs';

@@ -114,18 +114,48 @@ class IsarService {
     );
   }
 
-  Future<void> changedAddedFavorite(int index) async {
+  Future<bool> changedAddedFavorite(String targetCurrencyPair) async {
     final isar = await db;
+
+    final currencyPair = await isar.currencyPairs
+        .filter()
+        .pairEqualTo(targetCurrencyPair)
+        .findFirst();
+
+    final favoriteCurrencyPairs = await isar.currencyPairs
+        .filter()
+        .addedToFavoriteEqualTo(true)
+        .findAll();
+    if (favoriteCurrencyPairs.length == 1 &&
+        favoriteCurrencyPairs.first.pair == currencyPair!.pair) {
+      return false;
+    }
+
+    if (!currencyPair!.addedToFavorite) {
+      currencyPair.addedToFavorite = true;
+    } else {
+      if (currencyPair.selected) {
+        final nextSlectedCurrencyPair = await isar.currencyPairs
+            .filter()
+            .addedToFavoriteEqualTo(true)
+            .selectedEqualTo(false)
+            .not()
+            .pairEqualTo(currencyPair.pair)
+            .findFirst();
+        await changedSelected(nextSlectedCurrencyPair!.pair, true);
+
+        currencyPair.addedToFavorite = false;
+        currencyPair.selected = false;
+      } else {
+        currencyPair.addedToFavorite = false;
+      }
+    }
     await isar.writeTxn(
       () async {
-        final currencyPair = await isar.currencyPairs.get(index + 1);
-        if (currencyPair != null) {
-          currencyPair.addedToFavorite =
-              currencyPair.addedToFavorite ? false : true;
-          await isar.currencyPairs.put(currencyPair); // 更新操作の実行
-        }
+        await isar.currencyPairs.put(currencyPair); // 更新操作の実行
       },
     );
+    return true;
   }
 
   Future<String> fechAccountCurrency() async {

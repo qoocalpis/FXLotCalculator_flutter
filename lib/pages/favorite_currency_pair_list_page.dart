@@ -1,14 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lot_size_calculator_app/models/currency_pair_model.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lot_size_calculator_app/pages/currency_pair_list_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/favorite_currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
-import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
-import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class FavoriteCurrencyPairListPage extends ConsumerStatefulWidget {
   const FavoriteCurrencyPairListPage({super.key});
@@ -25,7 +25,7 @@ class FavoriteCurrencyPairListState
   late List<GoogleSheetAPIModel> googleSheetAPIModelList = [];
   late List<CurrencyPair> currencyPairList = [];
   late List<String> currencyPairFullNameList = [];
-  late int _index = 0;
+  late int _index;
   @override
   void initState() {
     super.initState();
@@ -40,19 +40,23 @@ class FavoriteCurrencyPairListState
 
   @override
   Widget build(BuildContext context) {
+    // final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.mainBgColor,
         leading: IconButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
           icon: const Icon(
-            Icons.arrow_back_ios,
-            size: 30,
+            Icons.first_page,
+            size: 35,
             color: Colors.blue,
           ),
+          onPressed: () {
+            Navigator.of(context).pop(true);
+          },
         ),
+        title:
+            Text(AppLocalizations.of(context)!.favoriteCurrencyPairListTitle),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -70,26 +74,64 @@ class FavoriteCurrencyPairListState
                   }
                   _index = i;
                   _tapTile(currencyPairList[i].pair, true);
-                  // Navigator.pop(context, true);
                 },
               )
           ],
         ),
       ),
+      bottomNavigationBar: BottomAppBar(
+        height: screenHeight * 0.05,
+        color: Colors.black,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Text(AppLocalizations.of(context)!.lastUpdatedTime),
+            Text(
+              googleSheet.date,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
+          Icons.add,
+          size: 35,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CurrencyPairListPage(),
+            ),
+          ).then(
+            (result) {
+              initialize();
+            },
+          );
+        },
+      ),
     );
   }
 
   Future<void> initialize() async {
+    if (kDebugMode) {
+      print('FavoriteCurrencyPairListPage initialize');
+    }
     currencyPairList.clear();
     googleSheetAPIModelList.clear();
     currencyPairList = await isar.fechFavoriteCurrencyPairList();
-
+    var index = 0;
     for (var i in currencyPairList) {
       for (var j in googleSheet.list) {
         if (i.pair == j.currencyPair) {
+          if (i.selected) {
+            _index = index;
+          }
           googleSheetAPIModelList.add(j);
         }
       }
+      index++;
     }
     setState(() {});
   }
