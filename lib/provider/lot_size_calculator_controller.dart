@@ -35,9 +35,8 @@ class LotSizeCalculatorModelNotifier extends _$LotSizeCalculatorModelNotifier {
       accountCurrency: await isarService.fechAccountCurrency(),
       lot: await isarService.fechLot(),
     );
-    if (checkProperty()) {
-      //lot size計算処理
-    }
+    print(state.accountBalance);
+    state = state.copyWith(isEnable: checkProperty() ? true : false);
   }
 
   bool checkProperty() {

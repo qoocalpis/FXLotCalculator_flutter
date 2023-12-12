@@ -142,7 +142,8 @@ class CalculationSetState extends ConsumerState<CalculationSetCell> {
                   }
                   final calculatorModelNotifier =
                       ref.read(lotSizeCalculatorModelNotifierProvider.notifier);
-                  calculatorModelNotifier.updateProperty(text, widget.type);
+                  calculatorModelNotifier.updateProperty(
+                      textController.text, widget.type);
                 },
               ),
             ),

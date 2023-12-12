@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,8 +10,6 @@ import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
-import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
-import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class LotSizeCalculatorPage extends ConsumerStatefulWidget {
@@ -27,15 +24,9 @@ class LotSizeCalculatorPage extends ConsumerStatefulWidget {
 }
 
 class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
-  // late String selectedCurrencyPair = AppConst.strEmpty;
-  // late String selectedCurrencyPairRate = AppConst.strEmpty;
-
   @override
   void initState() {
     super.initState();
-    print('LotSizeCalculatorPage');
-    initialize();
-
     final mainScreenModelNotifier =
         ref.read(mainScreenModelNotifierProvider.notifier);
     Future(() async {
@@ -68,6 +59,9 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
           error: (e, s) => AppConst.errorText,
           data: (d) => d.firstWhere((element) => element.selected == true).rate,
         );
+    final bool lotSizeModelIsEnable =
+        ref.watch(lotSizeCalculatorModelNotifierProvider).isEnable;
+
     final fontSize = screenHeight * 0.035;
     final topContainerSize = screenHeight * 0.15;
     return Scaffold(
@@ -150,9 +144,7 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const FavoriteCurrencyPairListPage()),
-                                ).then((result) {
-                                  initialize();
-                                });
+                                ).then((result) {});
                               },
                             ),
                           ),
@@ -184,24 +176,27 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                 height: screenHeight * 0.05, //高さ
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.yellow,
+                    backgroundColor:
+                        !lotSizeModelIsEnable ? Colors.grey : Colors.yellow,
                     foregroundColor: Colors.black,
                     shape: BeveledRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   child: Text(AppLocalizations.of(context)!.calculate),
-                  onPressed: () => showModalBottomSheet(
-                    isScrollControlled: true,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(20),
-                      ),
-                    ),
-                    context: context,
-                    // showModalBottomSheetで表示される中身
-                    builder: (context) => const ResultLotSizePage(),
-                  ),
+                  onPressed: () => !lotSizeModelIsEnable
+                      ? null
+                      : showModalBottomSheet(
+                          isScrollControlled: true,
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(20),
+                            ),
+                          ),
+                          context: context,
+                          // showModalBottomSheetで表示される中身
+                          builder: (context) => const ResultLotSizePage(),
+                        ),
                 ),
               ),
             ),
@@ -209,19 +204,5 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
         ),
       ),
     );
-  }
-
-  Future<void> initialize() async {
-    if (kDebugMode) {
-      print('LotSizeCalculatorPage initialize');
-    }
-    // final isar = IsarService.instance;
-    // final list = GoogleSheetService.instance.list;
-    // final isarData = await isar.fechSelectedCurrencyPair();
-    // selectedCurrencyPair = isarData!.pair;
-    // final data = list
-    //     .firstWhere((element) => element.currencyPair == selectedCurrencyPair);
-    // selectedCurrencyPairRate = data.rate;
-    setState(() {});
   }
 }

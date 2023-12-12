@@ -11,5 +11,6 @@ class LotSizeCalculatorModel with _$LotSizeCalculatorModel {
     @Default(AppConst.strEmpty) String accountCurrency,
     @Default(AppConst.zero) int percent,
     @Default(AppConst.zero) int lot,
+    @Default(false) bool isEnable,
   }) = _LotSizeCalculatorModel;
 }
