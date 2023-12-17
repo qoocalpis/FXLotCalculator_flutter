@@ -18,7 +18,7 @@ class RiskRewardColum extends StatelessWidget {
         Text(title),
         Text(
           text,
-          style: const TextStyle(fontSize: 30),
+          style: const TextStyle(fontSize: 35),
         ),
       ],
     );

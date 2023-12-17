@@ -74,6 +74,7 @@ class FavoriteCurrencyPairListState
                   }
                   _index = i;
                   _tapTile(currencyPairList[i].pair, true);
+                  Navigator.of(context).pop(true);
                 },
               )
           ],

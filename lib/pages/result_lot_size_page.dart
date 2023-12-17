@@ -69,15 +69,16 @@ class ResultLotSizePage extends ConsumerWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const Text(
-                  " Lots",
-                  style: TextStyle(
+                const SizedBox(height: 5),
+                Text(
+                  "${lotSizeModel.lotSize} Lots",
+                  style: const TextStyle(
                     fontSize: 32.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 buildRow("証拠金", '${lotSizeModel.accountBalance}'),
-                buildRow("損失許容額(円)", "円"),
+                buildRow("損失許容額(円)", "${lotSizeModel.lossAllowableAmount}円"),
                 buildRow("損失許容額(%)", "${lotSizeModel.percent}%"),
                 buildRow("ストップロス", "${lotSizeModel.pips}pips"),
                 buildRow("通貨ペア", selectedCurrencyPair),

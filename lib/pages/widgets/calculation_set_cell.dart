@@ -43,8 +43,12 @@ class CalculationSetState extends ConsumerState<CalculationSetCell> {
       Future(() async {
         final percent = await isar.fechPercent();
         textController.text = percent.toString();
+        final calculatorModelNotifier =
+            ref.read(lotSizeCalculatorModelNotifierProvider.notifier);
+        calculatorModelNotifier.updateProperty(
+            textController.text, widget.type);
+        return;
       });
-      return;
     }
     if (widget.type == UpdatePropertyType.accountBalance) {
       textController.text = ref
@@ -122,7 +126,9 @@ class CalculationSetState extends ConsumerState<CalculationSetCell> {
                     ? const TextInputType.numberWithOptions(
                         decimal: true, signed: true)
                     : TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                // inputFormatters: <TextInputFormatter>[
+                //   FilteringTextInputFormatter.allow(RegExp(r'^\d*\.?\d{0,1}$')),
+                // ],
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -139,6 +145,24 @@ class CalculationSetState extends ConsumerState<CalculationSetCell> {
                   }
                   if (value.isEmpty) {
                     textController.text = AppConst.strZero;
+                  }
+                  if (UpdatePropertyType.pips != widget.type &&
+                      RegExp(r'^\d*\.?\d*$').hasMatch(value)) {
+                    // ルールに合致する場合は何もしない
+                  } else if (UpdatePropertyType.pips == widget.type &&
+                      RegExp(r'^\d*\.?\d{0,1}$').hasMatch(value)) {
+                    // ルールに合致する場合は何もしない
+                  } else {
+                    // ルールに合致しない場合は変更前の状態に戻す
+                    setState(() {
+                      textController.text =
+                          value.substring(0, value.length - 1);
+                    });
+                  }
+                  if (UpdatePropertyType.percent == widget.type) {
+                    if (double.parse(textController.text) > 100) {
+                      textController.text = '100';
+                    }
                   }
                   final calculatorModelNotifier =
                       ref.read(lotSizeCalculatorModelNotifierProvider.notifier);

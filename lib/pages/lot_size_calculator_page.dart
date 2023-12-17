@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -175,34 +177,66 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                 width: screenWidth * 0.4, //横幅
                 height: screenHeight * 0.05, //高さ
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        !lotSizeModelIsEnable ? Colors.grey : Colors.yellow,
-                    foregroundColor: Colors.black,
-                    shape: BeveledRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor:
+                          !lotSizeModelIsEnable ? Colors.grey : Colors.yellow,
+                      foregroundColor: Colors.black,
+                      shape: BeveledRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                     ),
-                  ),
-                  child: Text(AppLocalizations.of(context)!.calculate),
-                  onPressed: () => !lotSizeModelIsEnable
-                      ? null
-                      : showModalBottomSheet(
-                          isScrollControlled: true,
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(20),
-                            ),
-                          ),
-                          context: context,
-                          // showModalBottomSheetで表示される中身
-                          builder: (context) => const ResultLotSizePage(),
-                        ),
-                ),
+                    child: Text(AppLocalizations.of(context)!.calculate),
+                    onPressed: () {
+                      final calculatorModelNotifier = ref.read(
+                          lotSizeCalculatorModelNotifierProvider.notifier);
+                      calculatorModelNotifier.calculate(
+                          selectedCurrencyPair, selectedCurrencyPairRate);
+                      !lotSizeModelIsEnable
+                          ? null
+                          : showModalBottomSheet(
+                              isScrollControlled: true,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(20),
+                                ),
+                              ),
+                              context: context,
+                              // showModalBottomSheetで表示される中身
+                              builder: (context) => const ResultLotSizePage(),
+                            );
+                    }),
               ),
             ),
           ],
         ),
       ),
     );
+  }
+
+  double? solveEquation(double p, double k) {
+    // 初期値を設定
+    double X = 0;
+
+    // 収束条件や反復回数の設定
+    double epsilon = 1e-6;
+    int maxIterations = 1000;
+    int iteration = 0;
+
+    // 反復により方程式を解く
+    while (iteration < maxIterations) {
+      double nextX = p * pow(X, 1 + k) + (1 - p);
+
+      // 収束条件を満たせば結果を返す
+      if ((X - nextX).abs() < epsilon) {
+        return nextX;
+      }
+
+      // 次の反復に進む
+      X = nextX;
+      iteration++;
+    }
+
+    // 収束しない場合はnullを返すなど、エラーハンドリングが必要です
+    return null;
   }
 }

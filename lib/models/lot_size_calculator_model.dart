@@ -6,11 +6,12 @@ part 'lot_size_calculator_model.freezed.dart';
 class LotSizeCalculatorModel with _$LotSizeCalculatorModel {
   const factory LotSizeCalculatorModel({
     @Default(AppConst.zero) int accountBalance,
-    @Default(AppConst.doubleZero) double lotSize,
+    @Default(AppConst.strEmpty) String lotSize,
     @Default(AppConst.zero) int pips,
-    @Default(AppConst.strEmpty) String accountCurrency,
+    // @Default(AppConst.strEmpty) String accountCurrency,
     @Default(AppConst.zero) int percent,
-    @Default(AppConst.zero) int lot,
+    // @Default(AppConst.zero) int lot,
     @Default(false) bool isEnable,
+    @Default(AppConst.zero) int lossAllowableAmount,
   }) = _LotSizeCalculatorModel;
 }

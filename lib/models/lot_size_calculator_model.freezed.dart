@@ -17,12 +17,13 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LotSizeCalculatorModel {
   int get accountBalance => throw _privateConstructorUsedError;
-  double get lotSize => throw _privateConstructorUsedError;
-  int get pips => throw _privateConstructorUsedError;
-  String get accountCurrency => throw _privateConstructorUsedError;
-  int get percent => throw _privateConstructorUsedError;
-  int get lot => throw _privateConstructorUsedError;
+  String get lotSize => throw _privateConstructorUsedError;
+  int get pips =>
+      throw _privateConstructorUsedError; // @Default(AppConst.strEmpty) String accountCurrency,
+  int get percent =>
+      throw _privateConstructorUsedError; // @Default(AppConst.zero) int lot,
   bool get isEnable => throw _privateConstructorUsedError;
+  int get lossAllowableAmount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LotSizeCalculatorModelCopyWith<LotSizeCalculatorModel> get copyWith =>
@@ -37,12 +38,11 @@ abstract class $LotSizeCalculatorModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int accountBalance,
-      double lotSize,
+      String lotSize,
       int pips,
-      String accountCurrency,
       int percent,
-      int lot,
-      bool isEnable});
+      bool isEnable,
+      int lossAllowableAmount});
 }
 
 /// @nodoc
@@ -62,10 +62,9 @@ class _$LotSizeCalculatorModelCopyWithImpl<$Res,
     Object? accountBalance = null,
     Object? lotSize = null,
     Object? pips = null,
-    Object? accountCurrency = null,
     Object? percent = null,
-    Object? lot = null,
     Object? isEnable = null,
+    Object? lossAllowableAmount = null,
   }) {
     return _then(_value.copyWith(
       accountBalance: null == accountBalance
@@ -75,27 +74,23 @@ class _$LotSizeCalculatorModelCopyWithImpl<$Res,
       lotSize: null == lotSize
           ? _value.lotSize
           : lotSize // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       pips: null == pips
           ? _value.pips
           : pips // ignore: cast_nullable_to_non_nullable
               as int,
-      accountCurrency: null == accountCurrency
-          ? _value.accountCurrency
-          : accountCurrency // ignore: cast_nullable_to_non_nullable
-              as String,
       percent: null == percent
           ? _value.percent
           : percent // ignore: cast_nullable_to_non_nullable
-              as int,
-      lot: null == lot
-          ? _value.lot
-          : lot // ignore: cast_nullable_to_non_nullable
               as int,
       isEnable: null == isEnable
           ? _value.isEnable
           : isEnable // ignore: cast_nullable_to_non_nullable
               as bool,
+      lossAllowableAmount: null == lossAllowableAmount
+          ? _value.lossAllowableAmount
+          : lossAllowableAmount // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -110,12 +105,11 @@ abstract class _$$_LotSizeCalculatorModelCopyWith<$Res>
   @useResult
   $Res call(
       {int accountBalance,
-      double lotSize,
+      String lotSize,
       int pips,
-      String accountCurrency,
       int percent,
-      int lot,
-      bool isEnable});
+      bool isEnable,
+      int lossAllowableAmount});
 }
 
 /// @nodoc
@@ -133,10 +127,9 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
     Object? accountBalance = null,
     Object? lotSize = null,
     Object? pips = null,
-    Object? accountCurrency = null,
     Object? percent = null,
-    Object? lot = null,
     Object? isEnable = null,
+    Object? lossAllowableAmount = null,
   }) {
     return _then(_$_LotSizeCalculatorModel(
       accountBalance: null == accountBalance
@@ -146,27 +139,23 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
       lotSize: null == lotSize
           ? _value.lotSize
           : lotSize // ignore: cast_nullable_to_non_nullable
-              as double,
+              as String,
       pips: null == pips
           ? _value.pips
           : pips // ignore: cast_nullable_to_non_nullable
               as int,
-      accountCurrency: null == accountCurrency
-          ? _value.accountCurrency
-          : accountCurrency // ignore: cast_nullable_to_non_nullable
-              as String,
       percent: null == percent
           ? _value.percent
           : percent // ignore: cast_nullable_to_non_nullable
-              as int,
-      lot: null == lot
-          ? _value.lot
-          : lot // ignore: cast_nullable_to_non_nullable
               as int,
       isEnable: null == isEnable
           ? _value.isEnable
           : isEnable // ignore: cast_nullable_to_non_nullable
               as bool,
+      lossAllowableAmount: null == lossAllowableAmount
+          ? _value.lossAllowableAmount
+          : lossAllowableAmount // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -176,38 +165,36 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
 class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
   const _$_LotSizeCalculatorModel(
       {this.accountBalance = AppConst.zero,
-      this.lotSize = AppConst.doubleZero,
+      this.lotSize = AppConst.strEmpty,
       this.pips = AppConst.zero,
-      this.accountCurrency = AppConst.strEmpty,
       this.percent = AppConst.zero,
-      this.lot = AppConst.zero,
-      this.isEnable = false});
+      this.isEnable = false,
+      this.lossAllowableAmount = AppConst.zero});
 
   @override
   @JsonKey()
   final int accountBalance;
   @override
   @JsonKey()
-  final double lotSize;
+  final String lotSize;
   @override
   @JsonKey()
   final int pips;
-  @override
-  @JsonKey()
-  final String accountCurrency;
+// @Default(AppConst.strEmpty) String accountCurrency,
   @override
   @JsonKey()
   final int percent;
-  @override
-  @JsonKey()
-  final int lot;
+// @Default(AppConst.zero) int lot,
   @override
   @JsonKey()
   final bool isEnable;
+  @override
+  @JsonKey()
+  final int lossAllowableAmount;
 
   @override
   String toString() {
-    return 'LotSizeCalculatorModel(accountBalance: $accountBalance, lotSize: $lotSize, pips: $pips, accountCurrency: $accountCurrency, percent: $percent, lot: $lot, isEnable: $isEnable)';
+    return 'LotSizeCalculatorModel(accountBalance: $accountBalance, lotSize: $lotSize, pips: $pips, percent: $percent, isEnable: $isEnable, lossAllowableAmount: $lossAllowableAmount)';
   }
 
   @override
@@ -219,17 +206,16 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
                 other.accountBalance == accountBalance) &&
             (identical(other.lotSize, lotSize) || other.lotSize == lotSize) &&
             (identical(other.pips, pips) || other.pips == pips) &&
-            (identical(other.accountCurrency, accountCurrency) ||
-                other.accountCurrency == accountCurrency) &&
             (identical(other.percent, percent) || other.percent == percent) &&
-            (identical(other.lot, lot) || other.lot == lot) &&
             (identical(other.isEnable, isEnable) ||
-                other.isEnable == isEnable));
+                other.isEnable == isEnable) &&
+            (identical(other.lossAllowableAmount, lossAllowableAmount) ||
+                other.lossAllowableAmount == lossAllowableAmount));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, accountBalance, lotSize, pips,
-      accountCurrency, percent, lot, isEnable);
+      percent, isEnable, lossAllowableAmount);
 
   @JsonKey(ignore: true)
   @override
@@ -242,27 +228,24 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
 abstract class _LotSizeCalculatorModel implements LotSizeCalculatorModel {
   const factory _LotSizeCalculatorModel(
       {final int accountBalance,
-      final double lotSize,
+      final String lotSize,
       final int pips,
-      final String accountCurrency,
       final int percent,
-      final int lot,
-      final bool isEnable}) = _$_LotSizeCalculatorModel;
+      final bool isEnable,
+      final int lossAllowableAmount}) = _$_LotSizeCalculatorModel;
 
   @override
   int get accountBalance;
   @override
-  double get lotSize;
+  String get lotSize;
   @override
   int get pips;
-  @override
-  String get accountCurrency;
-  @override
+  @override // @Default(AppConst.strEmpty) String accountCurrency,
   int get percent;
-  @override
-  int get lot;
-  @override
+  @override // @Default(AppConst.zero) int lot,
   bool get isEnable;
+  @override
+  int get lossAllowableAmount;
   @override
   @JsonKey(ignore: true)
   _$$_LotSizeCalculatorModelCopyWith<_$_LotSizeCalculatorModel> get copyWith =>

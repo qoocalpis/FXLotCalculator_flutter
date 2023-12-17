@@ -3,8 +3,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/pages/widgets/risk_reward_colum.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
-// import 'package:lot_size_calculator_app/component/colors.dart';
-// import 'package:lot_size_calculator_app/component/sizes.dart';
 import 'package:lot_size_calculator_app/pages/widgets/chart_bar.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'two_num_keyboard_page.dart';
@@ -25,7 +23,6 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
   void initState() {
     super.initState();
     print('RiskRewardRatioPage');
-
     Future(() async {
       ref
           .watch(mainScreenModelNotifierProvider.notifier)
@@ -43,37 +40,40 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
     final modelProvider = ref.watch(riskRewardModelNotifierProvider);
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const ChartBar(),
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: ElevatedButton(
-              onPressed: () => showModalBottomSheet(
-                isScrollControlled: true,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: ElevatedButton(
+                  onPressed: () => showModalBottomSheet(
+                    isScrollControlled: true,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(20),
+                      ),
+                    ),
+                    context: context,
+                    // showModalBottomSheetで表示される中身
+                    builder: (context) => const TwoNumKeyboardPage(),
+                  ),
+                  child: Text(
+                    AppLocalizations.of(context)!.riskRewardsetting,
+                    style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
-                context: context,
-                // showModalBottomSheetで表示される中身
-                builder: (context) => const TwoNumKeyboardPage(),
               ),
-              child: Text(
-                AppLocalizations.of(context)!.riskRewardsetting,
-                style: const TextStyle(fontWeight: FontWeight.bold),
-              ),
-            ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Row(children: [
-              Text(AppLocalizations.of(context)!.riskRewardRatioTitle)
-            ]),
+          Text(
+            AppLocalizations.of(context)!.riskRewardRatioTitle,
+            textAlign: TextAlign.end,
           ),
           Container(
             margin: const EdgeInsets.all(5),
-            //height: SizeConfig.screenHeight * 0.15,
             decoration: BoxDecoration(
               color: Theme.of(context).brightness == Brightness.dark
                   ? Colors.black // ダークモードの場合の色
@@ -109,6 +109,44 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
               ),
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text('資金率 2%'),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.7,
+                child: Column(
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      color: Colors.orange,
+                      child: const Text(
+                        "損益比",
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      color: Colors.red,
+                      child: Text(
+                        modelProvider.rewardRatio,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    //   children: [
+                    //     for (var i in winFirstPercentList)
+                    //       Text(
+                    //         "$i %",
+                    //       ),
+                    //   ],
+                    // )
+                  ],
+                ),
+              ),
+            ],
+          )
         ],
       ),
     );

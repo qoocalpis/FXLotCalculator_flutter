@@ -21,6 +21,7 @@ mixin _$RiskRewardModel {
   String get riskRatio => throw _privateConstructorUsedError;
   String get rewardRatio => throw _privateConstructorUsedError;
   int get requiredWinRate => throw _privateConstructorUsedError;
+  String get moneyRatio => throw _privateConstructorUsedError;
   List<double> get continuedLossProbability =>
       throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $RiskRewardModelCopyWith<$Res> {
       String riskRatio,
       String rewardRatio,
       int requiredWinRate,
+      String moneyRatio,
       List<double> continuedLossProbability});
 }
 
@@ -62,6 +64,7 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
     Object? riskRatio = null,
     Object? rewardRatio = null,
     Object? requiredWinRate = null,
+    Object? moneyRatio = null,
     Object? continuedLossProbability = null,
   }) {
     return _then(_value.copyWith(
@@ -85,6 +88,10 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
           ? _value.requiredWinRate
           : requiredWinRate // ignore: cast_nullable_to_non_nullable
               as int,
+      moneyRatio: null == moneyRatio
+          ? _value.moneyRatio
+          : moneyRatio // ignore: cast_nullable_to_non_nullable
+              as String,
       continuedLossProbability: null == continuedLossProbability
           ? _value.continuedLossProbability
           : continuedLossProbability // ignore: cast_nullable_to_non_nullable
@@ -107,6 +114,7 @@ abstract class _$$_RiskRewardModelCopyWith<$Res>
       String riskRatio,
       String rewardRatio,
       int requiredWinRate,
+      String moneyRatio,
       List<double> continuedLossProbability});
 }
 
@@ -126,6 +134,7 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
     Object? riskRatio = null,
     Object? rewardRatio = null,
     Object? requiredWinRate = null,
+    Object? moneyRatio = null,
     Object? continuedLossProbability = null,
   }) {
     return _then(_$_RiskRewardModel(
@@ -149,6 +158,10 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
           ? _value.requiredWinRate
           : requiredWinRate // ignore: cast_nullable_to_non_nullable
               as int,
+      moneyRatio: null == moneyRatio
+          ? _value.moneyRatio
+          : moneyRatio // ignore: cast_nullable_to_non_nullable
+              as String,
       continuedLossProbability: null == continuedLossProbability
           ? _value._continuedLossProbability
           : continuedLossProbability // ignore: cast_nullable_to_non_nullable
@@ -166,6 +179,7 @@ class _$_RiskRewardModel implements _RiskRewardModel {
       this.riskRatio = AppConst.strEmpty,
       this.rewardRatio = AppConst.strEmpty,
       this.requiredWinRate = AppConst.zero,
+      this.moneyRatio = "2",
       final List<double> continuedLossProbability = const []})
       : _continuedLossProbability = continuedLossProbability;
 
@@ -184,6 +198,9 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   @override
   @JsonKey()
   final int requiredWinRate;
+  @override
+  @JsonKey()
+  final String moneyRatio;
   final List<double> _continuedLossProbability;
   @override
   @JsonKey()
@@ -196,7 +213,7 @@ class _$_RiskRewardModel implements _RiskRewardModel {
 
   @override
   String toString() {
-    return 'RiskRewardModel(riskPips: $riskPips, rewardPips: $rewardPips, riskRatio: $riskRatio, rewardRatio: $rewardRatio, requiredWinRate: $requiredWinRate, continuedLossProbability: $continuedLossProbability)';
+    return 'RiskRewardModel(riskPips: $riskPips, rewardPips: $rewardPips, riskRatio: $riskRatio, rewardRatio: $rewardRatio, requiredWinRate: $requiredWinRate, moneyRatio: $moneyRatio, continuedLossProbability: $continuedLossProbability)';
   }
 
   @override
@@ -214,6 +231,8 @@ class _$_RiskRewardModel implements _RiskRewardModel {
                 other.rewardRatio == rewardRatio) &&
             (identical(other.requiredWinRate, requiredWinRate) ||
                 other.requiredWinRate == requiredWinRate) &&
+            (identical(other.moneyRatio, moneyRatio) ||
+                other.moneyRatio == moneyRatio) &&
             const DeepCollectionEquality().equals(
                 other._continuedLossProbability, _continuedLossProbability));
   }
@@ -226,6 +245,7 @@ class _$_RiskRewardModel implements _RiskRewardModel {
       riskRatio,
       rewardRatio,
       requiredWinRate,
+      moneyRatio,
       const DeepCollectionEquality().hash(_continuedLossProbability));
 
   @JsonKey(ignore: true)
@@ -242,6 +262,7 @@ abstract class _RiskRewardModel implements RiskRewardModel {
       final String riskRatio,
       final String rewardRatio,
       final int requiredWinRate,
+      final String moneyRatio,
       final List<double> continuedLossProbability}) = _$_RiskRewardModel;
 
   @override
@@ -254,6 +275,8 @@ abstract class _RiskRewardModel implements RiskRewardModel {
   String get rewardRatio;
   @override
   int get requiredWinRate;
+  @override
+  String get moneyRatio;
   @override
   List<double> get continuedLossProbability;
   @override
