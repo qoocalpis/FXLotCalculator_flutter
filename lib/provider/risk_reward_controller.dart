@@ -110,20 +110,28 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
     double n = 1; // 資金
     double b = int.parse(moneyRatio) / 100; // 資金率
 
-    double p = 0.35; // 勝率
     double k = double.parse(rewardRatio); // 損益比率
 
-    double? X = solveEquation(p, k);
+    List<String> list = [];
+    for (var p in AppConst.winPercentList) {
+      // double p = 0.35; // 勝率
 
-    print("方程式の解 X: $X");
+      double? X = solveEquation(p / 100, k);
+      print("方程式の解 X: $X");
+      if (X == null) {
+        list.add("==");
+      } else {
+        num Q = pow(X, n / b);
+        var res = (Q * 100).toStringAsFixed(1);
+        if (res.substring(res.length - 2) == '.0') {
+          res = res.substring(0, res.length - 2);
+        }
+        print("破産確率 Q(n): $Q");
 
-    if (X == null) {
-      print("AAAA");
-      return;
+        list.add("$res %");
+      }
     }
-    num Q = pow(X, n / b);
-
-    print("破産確率 Q(n): $Q");
+    state = state.copyWith(continuedLossProbability: list);
   }
 
   double? solveEquation(double p, double k) {

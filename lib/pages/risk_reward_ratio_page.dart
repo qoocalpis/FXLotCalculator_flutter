@@ -110,43 +110,58 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('資金率 2%'),
               SizedBox(
-                width: MediaQuery.of(context).size.width * 0.7,
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      color: Colors.orange,
-                      child: const Text(
-                        "損益比",
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.7,
-                      color: Colors.red,
-                      child: Text(
-                        modelProvider.rewardRatio,
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    //   children: [
-                    //     for (var i in winFirstPercentList)
-                    //       Text(
-                    //         "$i %",
-                    //       ),
-                    //   ],
-                    // )
-                  ],
+                child: Text(
+                  "資金率",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              SizedBox(
+                child: Text(
+                  "勝率",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Container(
+                child: Text(
+                  "破産確率",
+                  textAlign: TextAlign.center,
                 ),
               ),
             ],
-          )
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text("AAA"),
+              Column(
+                children: [
+                  for (var i = 0;
+                      i < modelProvider.continuedLossProbability.length;
+                      i++)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Container(
+                          child: Text(
+                            '${AppConst.winPercentList[i]} %',
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Container(
+                          child: Text(
+                            modelProvider.continuedLossProbability[i],
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ],
+                    )
+                ],
+              )
+            ],
+          ),
         ],
       ),
     );

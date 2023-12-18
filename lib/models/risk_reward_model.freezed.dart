@@ -22,7 +22,7 @@ mixin _$RiskRewardModel {
   String get rewardRatio => throw _privateConstructorUsedError;
   int get requiredWinRate => throw _privateConstructorUsedError;
   String get moneyRatio => throw _privateConstructorUsedError;
-  List<double> get continuedLossProbability =>
+  List<String> get continuedLossProbability =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -43,7 +43,7 @@ abstract class $RiskRewardModelCopyWith<$Res> {
       String rewardRatio,
       int requiredWinRate,
       String moneyRatio,
-      List<double> continuedLossProbability});
+      List<String> continuedLossProbability});
 }
 
 /// @nodoc
@@ -95,7 +95,7 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
       continuedLossProbability: null == continuedLossProbability
           ? _value.continuedLossProbability
           : continuedLossProbability // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as List<String>,
     ) as $Val);
   }
 }
@@ -115,7 +115,7 @@ abstract class _$$_RiskRewardModelCopyWith<$Res>
       String rewardRatio,
       int requiredWinRate,
       String moneyRatio,
-      List<double> continuedLossProbability});
+      List<String> continuedLossProbability});
 }
 
 /// @nodoc
@@ -165,7 +165,7 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
       continuedLossProbability: null == continuedLossProbability
           ? _value._continuedLossProbability
           : continuedLossProbability // ignore: cast_nullable_to_non_nullable
-              as List<double>,
+              as List<String>,
     ));
   }
 }
@@ -180,7 +180,7 @@ class _$_RiskRewardModel implements _RiskRewardModel {
       this.rewardRatio = AppConst.strEmpty,
       this.requiredWinRate = AppConst.zero,
       this.moneyRatio = "2",
-      final List<double> continuedLossProbability = const []})
+      final List<String> continuedLossProbability = const []})
       : _continuedLossProbability = continuedLossProbability;
 
   @override
@@ -201,10 +201,10 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   @override
   @JsonKey()
   final String moneyRatio;
-  final List<double> _continuedLossProbability;
+  final List<String> _continuedLossProbability;
   @override
   @JsonKey()
-  List<double> get continuedLossProbability {
+  List<String> get continuedLossProbability {
     if (_continuedLossProbability is EqualUnmodifiableListView)
       return _continuedLossProbability;
     // ignore: implicit_dynamic_type
@@ -263,7 +263,7 @@ abstract class _RiskRewardModel implements RiskRewardModel {
       final String rewardRatio,
       final int requiredWinRate,
       final String moneyRatio,
-      final List<double> continuedLossProbability}) = _$_RiskRewardModel;
+      final List<String> continuedLossProbability}) = _$_RiskRewardModel;
 
   @override
   int get riskPips;
@@ -278,7 +278,7 @@ abstract class _RiskRewardModel implements RiskRewardModel {
   @override
   String get moneyRatio;
   @override
-  List<double> get continuedLossProbability;
+  List<String> get continuedLossProbability;
   @override
   @JsonKey(ignore: true)
   _$$_RiskRewardModelCopyWith<_$_RiskRewardModel> get copyWith =>
