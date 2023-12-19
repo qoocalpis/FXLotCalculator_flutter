@@ -112,20 +112,26 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
+              const SizedBox(
                 child: Text(
                   "資金率",
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
+                child: Text(
+                  "損益率",
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              const SizedBox(
                 child: Text(
                   "勝率",
                   textAlign: TextAlign.center,
                 ),
               ),
               Container(
-                child: Text(
+                child: const Text(
                   "破産確率",
                   textAlign: TextAlign.center,
                 ),
@@ -133,31 +139,34 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text("AAA"),
+              const Text("AAA"),
+              Text(modelProvider.rewardRatio),
               Column(
                 children: [
                   for (var i = 0;
                       i < modelProvider.continuedLossProbability.length;
                       i++)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Container(
-                          child: Text(
-                            '${AppConst.winPercentList[i]} %',
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            modelProvider.continuedLossProbability[i],
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ],
-                    )
+                    Container(
+                      child: Text(
+                        '${AppConst.winPercentList[i]} %',
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                ],
+              ),
+              Column(
+                children: [
+                  for (var i = 0;
+                      i < modelProvider.continuedLossProbability.length;
+                      i++)
+                    Container(
+                      child: Text(
+                        modelProvider.continuedLossProbability[i],
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
                 ],
               )
             ],
