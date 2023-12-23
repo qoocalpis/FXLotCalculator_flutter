@@ -12,5 +12,7 @@ class RiskRewardModel with _$RiskRewardModel {
     @Default(AppConst.zero) int requiredWinRate,
     @Default("2") String moneyRatio,
     @Default([]) List<String> continuedLossProbability,
+    @Default(false) bool isExist,
+    @Default(-1) int showType,
   }) = _RiskRewardModel;
 }

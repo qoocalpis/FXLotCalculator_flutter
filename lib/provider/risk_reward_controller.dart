@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:lot_size_calculator_app/models/risk_reward_model.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
+import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'dart:math';
 
@@ -7,6 +9,7 @@ part 'risk_reward_controller.g.dart';
 
 @Riverpod(keepAlive: true)
 class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
+  static const equal = "=";
   @override
   RiskRewardModel build() => const RiskRewardModel();
 
@@ -79,12 +82,22 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
     onCalculateRiskRewardRatio();
   }
 
+  void onUpdateMoneyRatio(String moneyRatio) {
+    state = state.copyWith(moneyRatio: moneyRatio);
+  }
+
+  void onCalculateContinuedLossProbabilityFromButton() {
+    onCalculateContinuedLossProbability(state.moneyRatio, state.rewardRatio);
+  }
+
   void onCalculateRiskRewardRatio() {
     final risk = state.riskPips;
     final reward = state.rewardPips;
+    bool isExist;
 
     if (risk == 0 || reward == 0) {
-      state = state.copyWith(riskRatio: "=", rewardRatio: '=');
+      state = state.copyWith(riskRatio: equal, rewardRatio: equal);
+      isExist = false;
       return;
     }
     final roundedValue =
@@ -95,12 +108,10 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
     if (rewardRatio.toString().endsWith("0")) {
       rewardRatio = rewardRatio.substring(0, rewardRatio.length - 2);
     }
-
-    state = state.copyWith(riskRatio: '1', rewardRatio: rewardRatio);
+    isExist = true;
+    state = state.copyWith(
+        riskRatio: '1', rewardRatio: rewardRatio, isExist: isExist);
     onCalculateContinuedLossProbability(state.moneyRatio, rewardRatio);
-
-    print(state.riskRatio);
-    print(state.rewardRatio);
   }
 
   void onCalculateContinuedLossProbability(
@@ -109,26 +120,31 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
   ) {
     double n = 1; // 資金
     double b = int.parse(moneyRatio) / 100; // 資金率
-
-    double k = double.parse(rewardRatio); // 損益比率
-
+    double? k = double.tryParse(rewardRatio); // 損益比率
     List<String> list = [];
-    for (var p in AppConst.winPercentList) {
-      // double p = 0.35; // 勝率
 
-      double? X = solveEquation(p / 100, k);
-      print("方程式の解 X: $X");
+    if (k == null) {
+      for (var p in SettingConst.percentList) {
+        list.add(equal);
+      }
+
+      return;
+    }
+    for (var p in SettingConst.percentList) {
+      double? X = solveEquation(int.parse(p) / 100, k);
       if (X == null) {
-        list.add("==");
+        list.add("error");
       } else {
         num Q = pow(X, n / b);
         var res = (Q * 100).toStringAsFixed(1);
         if (res.substring(res.length - 2) == '.0') {
           res = res.substring(0, res.length - 2);
         }
-        print("破産確率 Q(n): $Q");
-
-        list.add("$res %");
+        if (kDebugMode) {
+          // print("方程式の解 X: $X");
+          // print("破産確率 Q(n): $Q");
+        }
+        list.add(res);
       }
     }
     state = state.copyWith(continuedLossProbability: list);
@@ -146,18 +162,19 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
     // 反復により方程式を解く
     while (iteration < maxIterations) {
       double nextX = p * pow(X, 1 + k) + (1 - p);
-
       // 収束条件を満たせば結果を返す
       if ((X - nextX).abs() < epsilon) {
         return nextX;
       }
-
       // 次の反復に進む
       X = nextX;
       iteration++;
     }
-
     // 収束しない場合はnullを返すなど、エラーハンドリングが必要です
     return null;
+  }
+
+  void changeShowType(int type) {
+    state = state.copyWith(showType: type);
   }
 }

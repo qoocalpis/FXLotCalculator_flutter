@@ -83,17 +83,59 @@ class FavoriteCurrencyPairListState
       bottomNavigationBar: BottomAppBar(
         height: screenHeight * 0.075,
         color: Colors.black,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              AppLocalizations.of(context)!.lastUpdatedTime,
-              style: const TextStyle(color: Colors.white),
+            const Icon(
+              Icons.refresh,
+              color: Color.fromARGB(0, 33, 149, 243),
+              size: 35,
             ),
-            Text(
-              googleSheet.date,
-              textAlign: TextAlign.center,
-              style: const TextStyle(color: Colors.white),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  AppLocalizations.of(context)!.lastUpdatedTime,
+                  style: const TextStyle(color: Colors.white),
+                ),
+                Text(
+                  googleSheet.date,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ],
+            ),
+            IconButton(
+              onPressed: () async {
+                final res = await googleSheet.callGoogleSheetAPI();
+                if (res) {
+                  setState(() {
+                    currencyPairList.clear();
+                    googleSheetAPIModelList.clear();
+                    var index = 0;
+                    for (var i in currencyPairList) {
+                      for (var j in googleSheet.list) {
+                        if (i.pair == j.currencyPair) {
+                          if (i.selected) {
+                            _index = index;
+                          }
+                          googleSheetAPIModelList.add(j);
+                        }
+                      }
+                      index++;
+                    }
+                  });
+                }
+
+                await initialize();
+
+                setState(() {});
+              },
+              icon: const Icon(
+                Icons.refresh,
+                color: Colors.blue,
+                size: 35,
+              ),
             ),
           ],
         ),
@@ -135,6 +177,8 @@ class FavoriteCurrencyPairListState
             _index = index;
           }
           googleSheetAPIModelList.add(j);
+          print(googleSheetAPIModelList[index].currencyPair);
+          print(googleSheetAPIModelList[index].rate);
         }
       }
       index++;

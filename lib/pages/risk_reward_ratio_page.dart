@@ -1,10 +1,15 @@
+import 'package:bottom_picker/bottom_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:lot_size_calculator_app/pages/widgets/line_chart.dart';
+import 'package:lot_size_calculator_app/pages/widgets/probability_table.dart';
 import 'package:lot_size_calculator_app/pages/widgets/risk_reward_colum.dart';
+import 'package:lot_size_calculator_app/pages/widgets/toggle_button.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:lot_size_calculator_app/pages/widgets/chart_bar.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
+import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'two_num_keyboard_page.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,6 +43,7 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
   @override
   Widget build(BuildContext context) {
     final modelProvider = ref.watch(riskRewardModelNotifierProvider);
+    final screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,6 +93,7 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
                   spreadRadius: 1,
                 ),
               ],
+              borderRadius: BorderRadius.circular(10),
             ),
             child: Padding(
               padding: const EdgeInsetsDirectional.all(10),
@@ -109,68 +116,105 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
               ),
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          Padding(
+            padding: const EdgeInsets.only(top: 10, bottom: 10),
+            child: Container(
+              width: screenWidth,
+              height: 10,
+              color: Colors.black,
+            ),
+          ),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const SizedBox(
-                child: Text(
-                  "資金率",
-                  textAlign: TextAlign.center,
+              Text(
+                "破産確率表",
+                style: TextStyle(
+                  fontWeight: FontWeight.w800,
                 ),
               ),
-              const SizedBox(
-                child: Text(
-                  "損益率",
-                  textAlign: TextAlign.center,
-                ),
+              ToggleButton(),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              const Text(
+                "資金率",
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(
-                child: Text(
-                  "勝率",
-                  textAlign: TextAlign.center,
-                ),
+                width: 5,
               ),
-              Container(
-                child: const Text(
-                  "破産確率",
-                  textAlign: TextAlign.center,
+              Padding(
+                padding: const EdgeInsets.only(right: 10, bottom: 5),
+                child: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20), //角の丸み
+                    ),
+                    backgroundColor: const Color.fromARGB(96, 199, 198, 198),
+                  ),
+                  child: Row(
+                    children: [
+                      Text(
+                        "${modelProvider.moneyRatio} %",
+                        style: const TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontWeight: FontWeight.w900),
+                      ),
+                      const Icon(
+                        Icons.expand_more,
+                        size: 20,
+                      ),
+                    ],
+                  ),
+                  onPressed: () {
+                    BottomPicker(
+                      items: List<Text>.generate(
+                        SettingConst.percentList.length,
+                        (index) => Text(
+                          SettingConst.percentList[index],
+                          style: const TextStyle(fontSize: 30),
+                        ),
+                      ),
+                      selectedItemIndex: SettingConst.percentList
+                          .indexOf(modelProvider.moneyRatio),
+                      title: "資金率(%)",
+                      titleStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
+                      displaySubmitButton: false,
+                      onChange: (index) {
+                        final modelNotifier =
+                            ref.read(riskRewardModelNotifierProvider.notifier);
+                        modelNotifier.onUpdateMoneyRatio(
+                            SettingConst.percentList[index]);
+                      },
+                      onClose: () {
+                        final modelNotifier =
+                            ref.read(riskRewardModelNotifierProvider.notifier);
+                        modelNotifier
+                            .onCalculateContinuedLossProbabilityFromButton();
+                      },
+                    ).show(context);
+                  },
                 ),
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              const Text("AAA"),
-              Text(modelProvider.rewardRatio),
-              Column(
-                children: [
-                  for (var i = 0;
-                      i < modelProvider.continuedLossProbability.length;
-                      i++)
-                    Container(
-                      child: Text(
-                        '${AppConst.winPercentList[i]} %',
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                ],
-              ),
-              Column(
-                children: [
-                  for (var i = 0;
-                      i < modelProvider.continuedLossProbability.length;
-                      i++)
-                    Container(
-                      child: Text(
-                        modelProvider.continuedLossProbability[i],
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                ],
-              )
-            ],
-          ),
+          modelProvider.showType == -1
+              ? const LineChartPage()
+              : const SizedBox(),
+          modelProvider.showType == 1
+              ? const ProbabilityTable()
+              : const SizedBox(),
         ],
       ),
     );

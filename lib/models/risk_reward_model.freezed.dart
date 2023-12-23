@@ -24,6 +24,8 @@ mixin _$RiskRewardModel {
   String get moneyRatio => throw _privateConstructorUsedError;
   List<String> get continuedLossProbability =>
       throw _privateConstructorUsedError;
+  bool get isExist => throw _privateConstructorUsedError;
+  int get showType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RiskRewardModelCopyWith<RiskRewardModel> get copyWith =>
@@ -43,7 +45,9 @@ abstract class $RiskRewardModelCopyWith<$Res> {
       String rewardRatio,
       int requiredWinRate,
       String moneyRatio,
-      List<String> continuedLossProbability});
+      List<String> continuedLossProbability,
+      bool isExist,
+      int showType});
 }
 
 /// @nodoc
@@ -66,6 +70,8 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
     Object? requiredWinRate = null,
     Object? moneyRatio = null,
     Object? continuedLossProbability = null,
+    Object? isExist = null,
+    Object? showType = null,
   }) {
     return _then(_value.copyWith(
       riskPips: null == riskPips
@@ -96,6 +102,14 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
           ? _value.continuedLossProbability
           : continuedLossProbability // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      isExist: null == isExist
+          ? _value.isExist
+          : isExist // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showType: null == showType
+          ? _value.showType
+          : showType // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -115,7 +129,9 @@ abstract class _$$_RiskRewardModelCopyWith<$Res>
       String rewardRatio,
       int requiredWinRate,
       String moneyRatio,
-      List<String> continuedLossProbability});
+      List<String> continuedLossProbability,
+      bool isExist,
+      int showType});
 }
 
 /// @nodoc
@@ -136,6 +152,8 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
     Object? requiredWinRate = null,
     Object? moneyRatio = null,
     Object? continuedLossProbability = null,
+    Object? isExist = null,
+    Object? showType = null,
   }) {
     return _then(_$_RiskRewardModel(
       riskPips: null == riskPips
@@ -166,6 +184,14 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
           ? _value._continuedLossProbability
           : continuedLossProbability // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      isExist: null == isExist
+          ? _value.isExist
+          : isExist // ignore: cast_nullable_to_non_nullable
+              as bool,
+      showType: null == showType
+          ? _value.showType
+          : showType // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -180,7 +206,9 @@ class _$_RiskRewardModel implements _RiskRewardModel {
       this.rewardRatio = AppConst.strEmpty,
       this.requiredWinRate = AppConst.zero,
       this.moneyRatio = "2",
-      final List<String> continuedLossProbability = const []})
+      final List<String> continuedLossProbability = const [],
+      this.isExist = false,
+      this.showType = -1})
       : _continuedLossProbability = continuedLossProbability;
 
   @override
@@ -212,8 +240,15 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   }
 
   @override
+  @JsonKey()
+  final bool isExist;
+  @override
+  @JsonKey()
+  final int showType;
+
+  @override
   String toString() {
-    return 'RiskRewardModel(riskPips: $riskPips, rewardPips: $rewardPips, riskRatio: $riskRatio, rewardRatio: $rewardRatio, requiredWinRate: $requiredWinRate, moneyRatio: $moneyRatio, continuedLossProbability: $continuedLossProbability)';
+    return 'RiskRewardModel(riskPips: $riskPips, rewardPips: $rewardPips, riskRatio: $riskRatio, rewardRatio: $rewardRatio, requiredWinRate: $requiredWinRate, moneyRatio: $moneyRatio, continuedLossProbability: $continuedLossProbability, isExist: $isExist, showType: $showType)';
   }
 
   @override
@@ -234,7 +269,10 @@ class _$_RiskRewardModel implements _RiskRewardModel {
             (identical(other.moneyRatio, moneyRatio) ||
                 other.moneyRatio == moneyRatio) &&
             const DeepCollectionEquality().equals(
-                other._continuedLossProbability, _continuedLossProbability));
+                other._continuedLossProbability, _continuedLossProbability) &&
+            (identical(other.isExist, isExist) || other.isExist == isExist) &&
+            (identical(other.showType, showType) ||
+                other.showType == showType));
   }
 
   @override
@@ -246,7 +284,9 @@ class _$_RiskRewardModel implements _RiskRewardModel {
       rewardRatio,
       requiredWinRate,
       moneyRatio,
-      const DeepCollectionEquality().hash(_continuedLossProbability));
+      const DeepCollectionEquality().hash(_continuedLossProbability),
+      isExist,
+      showType);
 
   @JsonKey(ignore: true)
   @override
@@ -263,7 +303,9 @@ abstract class _RiskRewardModel implements RiskRewardModel {
       final String rewardRatio,
       final int requiredWinRate,
       final String moneyRatio,
-      final List<String> continuedLossProbability}) = _$_RiskRewardModel;
+      final List<String> continuedLossProbability,
+      final bool isExist,
+      final int showType}) = _$_RiskRewardModel;
 
   @override
   int get riskPips;
@@ -279,6 +321,10 @@ abstract class _RiskRewardModel implements RiskRewardModel {
   String get moneyRatio;
   @override
   List<String> get continuedLossProbability;
+  @override
+  bool get isExist;
+  @override
+  int get showType;
   @override
   @JsonKey(ignore: true)
   _$$_RiskRewardModelCopyWith<_$_RiskRewardModel> get copyWith =>
