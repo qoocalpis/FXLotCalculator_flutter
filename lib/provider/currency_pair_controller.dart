@@ -72,4 +72,14 @@ class CurrencyPairModelNotifier extends _$CurrencyPairModelNotifier {
     // データを上書き
     state = AsyncValue.data(await fecthList());
   }
+
+  Future<void> onChangeRateProperty() async {
+    state = const AsyncValue.loading();
+    final res = await googleSheetService.callGoogleSheetAPI();
+    if (!res) {
+      return;
+    }
+    // データを上書き
+    state = AsyncValue.data(await fecthList());
+  }
 }

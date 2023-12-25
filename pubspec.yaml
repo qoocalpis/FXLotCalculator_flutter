@@ -56,6 +56,8 @@ dependencies:
   bottom_picker: ^2.1.1
   shared_preferences: ^2.2.2
   fl_chart: ^0.60.0
+  flutter_local_notifications: ^16.2.0
+  timezone: ^0.9.2
 
 dev_dependencies:
   flutter_test:

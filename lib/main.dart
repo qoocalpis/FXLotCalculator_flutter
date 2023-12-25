@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
-import 'package:lot_size_calculator_app/pages/test.dart';
-import 'package:lot_size_calculator_app/pages/widgets/line_chart.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'pages/main_screen.dart';

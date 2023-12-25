@@ -12,13 +12,14 @@ class GoogleSheetService {
 
   List<GoogleSheetAPIModel> list = [];
   String date = AppConst.strEmpty;
+  DateTime? now;
 
   Future<bool> callGoogleSheetAPI() async {
     print("callGoogleSheetAPI");
 
-    DateTime now = DateTime.now();
+    now = DateTime.now();
     DateFormat outputFormat = DateFormat('yyyy/MM/dd H:m');
-    date = outputFormat.format(now);
+    date = outputFormat.format(now!);
 
     String apiKey = 'AIzaSyA0w_ZecwgQJ9XHcrfsxLpW92i_FacfzRU';
     String spreadsheetId = '1osAu_AWYqWaMMxd2JGo7yJfTTSKVOyqodAV9dCDRILs';
@@ -75,9 +76,9 @@ class GoogleSheetService {
 }
 
 class GoogleSheetAPIModel {
-  final String currencyPair;
-  final String rate;
-  final String currencyCode;
+  String currencyPair;
+  String rate;
+  String currencyCode;
 
   GoogleSheetAPIModel(
     this.currencyPair,
