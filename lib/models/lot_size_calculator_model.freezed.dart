@@ -18,11 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LotSizeCalculatorModel {
   int get accountBalance => throw _privateConstructorUsedError;
   String get lotSize => throw _privateConstructorUsedError;
-  int get pips =>
-      throw _privateConstructorUsedError; // @Default(AppConst.strEmpty) String accountCurrency,
-  int get percent =>
-      throw _privateConstructorUsedError; // @Default(AppConst.zero) int lot,
+  int get pips => throw _privateConstructorUsedError;
+  int get percent => throw _privateConstructorUsedError;
   bool get isEnable => throw _privateConstructorUsedError;
+  bool get isKeyboardOpen => throw _privateConstructorUsedError;
   int get lossAllowableAmount => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,6 +41,7 @@ abstract class $LotSizeCalculatorModelCopyWith<$Res> {
       int pips,
       int percent,
       bool isEnable,
+      bool isKeyboardOpen,
       int lossAllowableAmount});
 }
 
@@ -64,6 +64,7 @@ class _$LotSizeCalculatorModelCopyWithImpl<$Res,
     Object? pips = null,
     Object? percent = null,
     Object? isEnable = null,
+    Object? isKeyboardOpen = null,
     Object? lossAllowableAmount = null,
   }) {
     return _then(_value.copyWith(
@@ -87,6 +88,10 @@ class _$LotSizeCalculatorModelCopyWithImpl<$Res,
           ? _value.isEnable
           : isEnable // ignore: cast_nullable_to_non_nullable
               as bool,
+      isKeyboardOpen: null == isKeyboardOpen
+          ? _value.isKeyboardOpen
+          : isKeyboardOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       lossAllowableAmount: null == lossAllowableAmount
           ? _value.lossAllowableAmount
           : lossAllowableAmount // ignore: cast_nullable_to_non_nullable
@@ -109,6 +114,7 @@ abstract class _$$_LotSizeCalculatorModelCopyWith<$Res>
       int pips,
       int percent,
       bool isEnable,
+      bool isKeyboardOpen,
       int lossAllowableAmount});
 }
 
@@ -129,6 +135,7 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
     Object? pips = null,
     Object? percent = null,
     Object? isEnable = null,
+    Object? isKeyboardOpen = null,
     Object? lossAllowableAmount = null,
   }) {
     return _then(_$_LotSizeCalculatorModel(
@@ -152,6 +159,10 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
           ? _value.isEnable
           : isEnable // ignore: cast_nullable_to_non_nullable
               as bool,
+      isKeyboardOpen: null == isKeyboardOpen
+          ? _value.isKeyboardOpen
+          : isKeyboardOpen // ignore: cast_nullable_to_non_nullable
+              as bool,
       lossAllowableAmount: null == lossAllowableAmount
           ? _value.lossAllowableAmount
           : lossAllowableAmount // ignore: cast_nullable_to_non_nullable
@@ -169,6 +180,7 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
       this.pips = AppConst.zero,
       this.percent = AppConst.zero,
       this.isEnable = false,
+      this.isKeyboardOpen = false,
       this.lossAllowableAmount = AppConst.zero});
 
   @override
@@ -180,21 +192,22 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
   @override
   @JsonKey()
   final int pips;
-// @Default(AppConst.strEmpty) String accountCurrency,
   @override
   @JsonKey()
   final int percent;
-// @Default(AppConst.zero) int lot,
   @override
   @JsonKey()
   final bool isEnable;
+  @override
+  @JsonKey()
+  final bool isKeyboardOpen;
   @override
   @JsonKey()
   final int lossAllowableAmount;
 
   @override
   String toString() {
-    return 'LotSizeCalculatorModel(accountBalance: $accountBalance, lotSize: $lotSize, pips: $pips, percent: $percent, isEnable: $isEnable, lossAllowableAmount: $lossAllowableAmount)';
+    return 'LotSizeCalculatorModel(accountBalance: $accountBalance, lotSize: $lotSize, pips: $pips, percent: $percent, isEnable: $isEnable, isKeyboardOpen: $isKeyboardOpen, lossAllowableAmount: $lossAllowableAmount)';
   }
 
   @override
@@ -209,13 +222,15 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
             (identical(other.percent, percent) || other.percent == percent) &&
             (identical(other.isEnable, isEnable) ||
                 other.isEnable == isEnable) &&
+            (identical(other.isKeyboardOpen, isKeyboardOpen) ||
+                other.isKeyboardOpen == isKeyboardOpen) &&
             (identical(other.lossAllowableAmount, lossAllowableAmount) ||
                 other.lossAllowableAmount == lossAllowableAmount));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, accountBalance, lotSize, pips,
-      percent, isEnable, lossAllowableAmount);
+      percent, isEnable, isKeyboardOpen, lossAllowableAmount);
 
   @JsonKey(ignore: true)
   @override
@@ -232,6 +247,7 @@ abstract class _LotSizeCalculatorModel implements LotSizeCalculatorModel {
       final int pips,
       final int percent,
       final bool isEnable,
+      final bool isKeyboardOpen,
       final int lossAllowableAmount}) = _$_LotSizeCalculatorModel;
 
   @override
@@ -240,10 +256,12 @@ abstract class _LotSizeCalculatorModel implements LotSizeCalculatorModel {
   String get lotSize;
   @override
   int get pips;
-  @override // @Default(AppConst.strEmpty) String accountCurrency,
+  @override
   int get percent;
-  @override // @Default(AppConst.zero) int lot,
+  @override
   bool get isEnable;
+  @override
+  bool get isKeyboardOpen;
   @override
   int get lossAllowableAmount;
   @override

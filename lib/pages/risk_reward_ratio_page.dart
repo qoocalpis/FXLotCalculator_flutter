@@ -28,6 +28,7 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
   void initState() {
     super.initState();
     print('RiskRewardRatioPage');
+
     Future(() async {
       ref
           .watch(mainScreenModelNotifierProvider.notifier)
@@ -42,6 +43,7 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
 
   @override
   Widget build(BuildContext context) {
+    FocusScope.of(context).unfocus();
     final modelProvider = ref.watch(riskRewardModelNotifierProvider);
     final screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(

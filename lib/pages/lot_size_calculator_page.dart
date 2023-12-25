@@ -141,6 +141,7 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                                 ],
                               ),
                               onPressed: () {
+                                FocusScope.of(context).unfocus();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -187,6 +188,7 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                     ),
                     child: Text(AppLocalizations.of(context)!.calculate),
                     onPressed: () {
+                      FocusScope.of(context).unfocus();
                       final calculatorModelNotifier = ref.read(
                           lotSizeCalculatorModelNotifierProvider.notifier);
                       calculatorModelNotifier.calculate(

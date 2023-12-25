@@ -42,6 +42,7 @@ class MainScreen extends ConsumerWidget {
                 color: const Color.fromARGB(255, 74, 48, 220),
               ),
               onPressed: () {
+                FocusScope.of(context).unfocus();
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {

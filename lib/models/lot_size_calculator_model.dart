@@ -8,10 +8,9 @@ class LotSizeCalculatorModel with _$LotSizeCalculatorModel {
     @Default(AppConst.zero) int accountBalance,
     @Default(AppConst.strEmpty) String lotSize,
     @Default(AppConst.zero) int pips,
-    // @Default(AppConst.strEmpty) String accountCurrency,
     @Default(AppConst.zero) int percent,
-    // @Default(AppConst.zero) int lot,
     @Default(false) bool isEnable,
+    @Default(false) bool isKeyboardOpen,
     @Default(AppConst.zero) int lossAllowableAmount,
   }) = _LotSizeCalculatorModel;
 }
