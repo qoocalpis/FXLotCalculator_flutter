@@ -18,8 +18,6 @@ class IsarService {
 
   static final instance = IsarService._();
 
-  get recipes => null;
-
   Future<Isar> openIsar() async {
     WidgetsFlutterBinding.ensureInitialized();
     final dir = await getApplicationDocumentsDirectory();

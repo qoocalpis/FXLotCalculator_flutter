@@ -57,8 +57,8 @@ class GoogleSheetService {
           } else {
             formattedPrice = AppConst.strEmpty;
           }
-          print(currencyPair);
-          print(formattedPrice);
+          // print(currencyPair);
+          // print(formattedPrice);
 
           list.add(
               GoogleSheetAPIModel(currencyPair, formattedPrice, currencyCode));

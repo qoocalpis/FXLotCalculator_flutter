@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
+import 'package:lot_size_calculator_app/pages/test.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
+import 'package:lot_size_calculator_app/services/in_app_purchase.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
+import 'package:onepref/onepref.dart';
 import 'pages/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:lot_size_calculator_app/l10n/l10n.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await OnePref.init();
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -64,7 +69,7 @@ class MyAppState extends State<MyApp> {
       darkTheme: ThemeData(brightness: Brightness.dark), // ダーク用テーマ
       //themeMode: ThemeMode.system, // モードをシステム設定にする
       home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
-      // home: LineChartPage(),
+      // home: const First(),
     );
   }
 }
