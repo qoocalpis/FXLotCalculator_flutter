@@ -68,8 +68,8 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark), // ダーク用テーマ
       //themeMode: ThemeMode.system, // モードをシステム設定にする
-      home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
-      // home: const First(),
+      // home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
+      home: const First(),
     );
   }
 }
