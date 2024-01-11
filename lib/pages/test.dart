@@ -9,7 +9,7 @@ import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
 
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/services/in_app_purchase.dart';
+import 'package:lot_size_calculator_app/services/purchase_api.dart';
 
 class First extends StatelessWidget {
   const First({super.key});

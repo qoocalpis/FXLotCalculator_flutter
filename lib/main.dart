@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
 import 'package:lot_size_calculator_app/pages/test.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
-import 'package:lot_size_calculator_app/services/in_app_purchase.dart';
+import 'package:lot_size_calculator_app/services/purchase_api.dart';
 import 'package:lot_size_calculator_app/services/isar_services.dart';
 import 'package:onepref/onepref.dart';
 import 'pages/main_screen.dart';

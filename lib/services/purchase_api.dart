@@ -50,11 +50,34 @@ Future<void> buyPackage(Package package) async {
     }
   } on PlatformException catch (e) {
     var errorCode = PurchasesErrorHelper.getErrorCode(e);
-    if (errorCode != PurchasesErrorCode.purchaseCancelledError) {
-      if (kDebugMode) {
-        print(e);
-        print("あああああああああああああああああああああああああああああ");
-      }
+    if (errorCode != PurchasesErrorCode.purchaseCancelledError) {}
+  }
+}
+
+class PurchaseApi {
+  static const _apiKey = "";
+  static Future init() async {
+    // await Purchases.setDebugLogsEnabled(true);
+    // await Purchases.setup(_apiKey);
+  }
+
+  static Future<List<Offering>> fetchOffers() async {
+    try {
+      final offerings = await Purchases.getOfferings();
+      final current = offerings.current;
+      return current == null ? [] : [current];
+    } on PlatformException catch (e) {
+      // optional error handling
+      return [];
+    }
+  }
+
+  static Future<bool> purchasePackage(Package package) async {
+    try {
+      await Purchases.purchasePackage(package);
+      return true;
+    } catch (e) {
+      return false;
     }
   }
 }
