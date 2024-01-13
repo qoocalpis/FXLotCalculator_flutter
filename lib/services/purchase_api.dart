@@ -4,25 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-Future<void> initPlatformState() async {
-  const iosKey = "appl_LCjrwQcWUMmKqjqvtvFPUzEbhpf";
-  const androidKey = "goog_oKQsEOIJdGnMwLrtAOMQqkghyXF";
-
-  await Purchases.setLogLevel(LogLevel.debug);
-
-  PurchasesConfiguration? configuration;
-  if (Platform.isAndroid) {
-    configuration = PurchasesConfiguration(androidKey);
-  }
-  if (Platform.isIOS) {
-    configuration = PurchasesConfiguration(iosKey);
-  }
-  if (configuration != null) {
-    await Purchases.configure(configuration);
-  }
-  await buttonAction();
-}
-
 Future<void> buttonAction() async {
   const offeringIdentifier = "com.all_currency_pair.app";
   try {
@@ -55,10 +36,28 @@ Future<void> buyPackage(Package package) async {
 }
 
 class PurchaseApi {
-  static const _apiKey = "";
-  static Future init() async {
-    // await Purchases.setDebugLogsEnabled(true);
-    // await Purchases.setup(_apiKey);
+  /// private constructor
+  PurchaseApi._();
+
+  /// the one and only instance of this singleton
+  static final instance = PurchaseApi._();
+
+  Future<void> initPlatformState() async {
+    const iosKey = "appl_LCjrwQcWUMmKqjqvtvFPUzEbhpf";
+    const androidKey = "goog_oKQsEOIJdGnMwLrtAOMQqkghyXF";
+
+    await Purchases.setLogLevel(LogLevel.debug);
+
+    PurchasesConfiguration? configuration;
+    if (Platform.isAndroid) {
+      configuration = PurchasesConfiguration(androidKey);
+    }
+    if (Platform.isIOS) {
+      configuration = PurchasesConfiguration(iosKey);
+    }
+    if (configuration != null) {
+      await Purchases.configure(configuration);
+    }
   }
 
   static Future<List<Offering>> fetchOffers() async {
