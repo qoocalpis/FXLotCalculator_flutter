@@ -19,14 +19,8 @@ class First extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: TextButton(
-          onPressed: () {
-            initPlatformState();
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => const TestWidget(),
-            //   ),
-            // ).then((result) {});
+          onPressed: () async {
+            await PurchaseApi.instance.buttonAction();
           },
           child: const Text("Next"),
         ),

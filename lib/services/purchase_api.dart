@@ -32,6 +32,7 @@ class PurchaseApi {
       //offeringsを取ってくる
       offerings = await Purchases.getOfferings();
 
+      // final result = await Purchases.logIn(auth.currentUser!.uid);
       //今アクティブになっているアイテムは以下のように取得可能
       // print("アクティブなアイテム ${result.customerInfo.entitlements.active.keys}");
     } catch (e) {
@@ -40,14 +41,42 @@ class PurchaseApi {
   }
 
   Future<void> buttonAction() async {
+    try {
+      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+      print("アクティブなアイテム ${customerInfo.entitlements.active.keys}");
+      // access latest customerInfo
+    } on PlatformException catch (e) {
+      // Error fetching customer info
+    }
+    await makePurchase();
+
+    // const offeringIdentifier = "com.all_currency_pair.app";
+    // try {
+    //   final package = offerings.getOffering(offeringIdentifier)!.lifetime;
+    //   if (package != null) {
+    //     // Display packages for sale
+    //   }
+    // } on PlatformException catch (e) {
+    //   // optional error handling
+    // }
+  }
+
+  Future<void> makePurchase() async {
     const offeringIdentifier = "com.all_currency_pair.app";
     try {
-      final package = offerings.getOffering(offeringIdentifier)!.lifetime;
+      Package? package;
+      package = offerings.all[offeringIdentifier]
+          ?.lifetime; //offeringsは適宜ご自身の設定したofferingsの名前に変えてください
       if (package != null) {
-        // Display packages for sale
+        print("成功!!!!");
+
+        // await Purchases.logIn(auth.currentUser!.uid);
+        CustomerInfo customerInfo = await Purchases.purchasePackage(package);
+
+        // await getPurchaserInfo(customerInfo);
       }
     } on PlatformException catch (e) {
-      // optional error handling
+      print(" makePurchase error ${e.toString()}");
     }
   }
 }

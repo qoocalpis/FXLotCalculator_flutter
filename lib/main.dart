@@ -34,10 +34,11 @@ class MyAppState extends State<MyApp> {
   Future<void> fetchData() async {
     final googleSheetService = GoogleSheetService.instance;
     final isarService = IsarService.instance;
-    PurchaseApi.instance.initInAppPurchase();
+    final purchaseApi = PurchaseApi.instance;
     // 非同期処理を実行
     final res1 = await googleSheetService.callGoogleSheetAPI();
     if (res1) {
+      await purchaseApi.initInAppPurchase();
       await isarService.createUser(googleSheetService.list);
       // データを取得した後、画面を更新
       setState(() {
