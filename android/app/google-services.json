@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "804608840997",
+    "project_id": "semiotic-mender-371103",
+    "storage_bucket": "semiotic-mender-371103.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804608840997:android:8050d7cdf575e5e4ae36cc",
+        "android_client_info": {
+          "package_name": "com.yuuki2_lot_size_calculator_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804608840997-a01u75a7g0aukojt9it1lrqn8s4vnd12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkuAM1f1uzkDcovsx6GNBVzktkHllAuRs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804608840997-a01u75a7g0aukojt9it1lrqn8s4vnd12.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "804608840997-0pmf2i7tdvgflr1683dfke5t1439leum.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yuuki.LotCalculatorApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

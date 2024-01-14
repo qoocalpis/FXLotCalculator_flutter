@@ -14,6 +14,7 @@ import 'package:lot_size_calculator_app/l10n/l10n.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await OnePref.init();
+
   runApp(
     const ProviderScope(
       child: MyApp(),

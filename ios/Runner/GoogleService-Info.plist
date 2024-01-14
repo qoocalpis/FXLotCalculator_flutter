@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>804608840997-0pmf2i7tdvgflr1683dfke5t1439leum.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.804608840997-0pmf2i7tdvgflr1683dfke5t1439leum</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAz5dyuc34IEmA2zOkuZXWUdFcSdOVnKRE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>804608840997</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.yuuki.LotCalculatorApp</string>
+	<key>PROJECT_ID</key>
+	<string>semiotic-mender-371103</string>
+	<key>STORAGE_BUCKET</key>
+	<string>semiotic-mender-371103.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:804608840997:ios:579ff5287b4fe979ae36cc</string>
+</dict>
+</plist>
