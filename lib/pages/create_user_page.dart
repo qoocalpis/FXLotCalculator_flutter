@@ -45,79 +45,97 @@ class _CreateUserPageState extends State<CreateUserPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('ユーザー登録'),
-      ),
-      // キーボードで隠れて、黄色エラーが出るので
-      // SingleChildScrollViewで、Centerウイジットをラップする
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                // かっこよくしたいので、画像を配置した!
-                const CircleAvatar(
-                  radius: 75,
-                  // images.unsplash.comの画像のパスを貼り付ける
-                  backgroundImage: NetworkImage(
-                      'https://images.unsplash.com/photo-1658033014478-cc3b36e31a5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60'),
-                ),
-                const SizedBox(height: 40),
-                TextFormField(
-                  // テキスト入力のラベルを設定
-                  decoration: const InputDecoration(labelText: "ユーザー名"),
-                  onChanged: (String value) {
+    return
+        // キーボードで隠れて、黄色エラーが出るので
+        // SingleChildScrollViewで、Centerウイジットをラップする
+        SingleChildScrollView(
+      child: Center(
+        child: Container(
+          padding: const EdgeInsets.all(32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              // かっこよくしたいので、画像を配置した!
+              const CircleAvatar(
+                radius: 75,
+                // images.unsplash.comの画像のパスを貼り付ける
+                backgroundImage: NetworkImage(
+                    'https://images.unsplash.com/photo-1658033014478-cc3b36e31a5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60'),
+              ),
+              const SizedBox(height: 40),
+              TextFormField(
+                // テキスト入力のラベルを設定
+                decoration: const InputDecoration(labelText: "ユーザー名"),
+                onChanged: (String value) {
+                  setState(() {
+                    newUser = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                // テキスト入力のラベルを設定
+                decoration: const InputDecoration(labelText: "メールアドレス"),
+                onChanged: (String value) {
+                  setState(() {
+                    newUserEmail = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 8),
+              TextFormField(
+                decoration: const InputDecoration(labelText: "パスワード（６文字以上）"),
+                // パスワードが見えないようにする
+                obscureText: true,
+                onChanged: (String value) {
+                  setState(() {
+                    newUserPassword = value;
+                  });
+                },
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () async {
+                  try {
+                    // FireStoreにユーザー情報を登録する関数
+                    register();
+                    // メール/パスワードでユーザー登録
+                    createAuth();
+                    // 登録したユーザー情報
+                  } catch (e) {
+                    // 登録に失敗した場合
                     setState(() {
-                      newUser = value;
+                      infoText = "登録NG:${e.toString()}";
                     });
-                  },
-                ),
-                const SizedBox(height: 8),
-                TextFormField(
-                  // テキスト入力のラベルを設定
-                  decoration: const InputDecoration(labelText: "メールアドレス"),
-                  onChanged: (String value) {
-                    setState(() {
-                      newUserEmail = value;
-                    });
-                  },
-                ),
-                const SizedBox(height: 8),
-                TextFormField(
-                  decoration: const InputDecoration(labelText: "パスワード（６文字以上）"),
-                  // パスワードが見えないようにする
-                  obscureText: true,
-                  onChanged: (String value) {
-                    setState(() {
-                      newUserPassword = value;
-                    });
-                  },
-                ),
-                const SizedBox(height: 8),
-                ElevatedButton(
+                  }
+                },
+                child: const Text("ユーザー登録"),
+              ),
+              const SizedBox(height: 8),
+              Text(infoText),
+              const SizedBox(height: 8),
+              Container(
+                width: double.infinity,
+                // ログイン登録ボタン
+                child: OutlinedButton(
+                  child: Text('ログイン'),
                   onPressed: () async {
                     try {
-                      // FireStoreにユーザー情報を登録する関数
-                      register();
-                      // メール/パスワードでユーザー登録
-                      createAuth();
-                      // 登録したユーザー情報
+                      // メール/パスワードでログイン
+                      final FirebaseAuth auth = FirebaseAuth.instance;
+                      final result = await auth.signInWithEmailAndPassword(
+                        email: newUserEmail,
+                        password: newUserPassword,
+                      );
+                      // ログインに成功した場合
+                      print("ログイン成功");
                     } catch (e) {
-                      // 登録に失敗した場合
-                      setState(() {
-                        infoText = "登録NG:${e.toString()}";
-                      });
+                      /* --- 省略 --- */
                     }
                   },
-                  child: const Text("ユーザー登録"),
                 ),
-                const SizedBox(height: 8),
-                Text(infoText)
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

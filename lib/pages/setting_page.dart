@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
+import 'package:lot_size_calculator_app/pages/create_user_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
@@ -62,6 +63,62 @@ class SettingPage extends ConsumerWidget {
             text: '通貨ペア一覧',
             icon: Icon(Icons.list_outlined),
             onClickedType: OnClickedType.navigator,
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "", //dummy
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    fixedSize: Size.fromHeight(
+                        MediaQuery.of(context).size.height * 0.09),
+                    //Sizeクラスで高さを指定
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20), //角の丸み
+                    ),
+                    backgroundColor: Colors.black38,
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "現在の製品版",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      Text(
+                        "Free",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      )
+                    ],
+                  ),
+                  onPressed: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(20),
+                        ),
+                      ),
+                      context: context,
+                      // showModalBottomSheetで表示される中身
+                      builder: (context) => const CreateUserPage(),
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         ],
       ),
