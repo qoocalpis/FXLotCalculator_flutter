@@ -65,6 +65,8 @@ dependencies:
   in_app_purchase_android: ^0.3.0+15
   in_app_purchase_storekit: ^0.3.7
   firebase_core: ^2.24.2
+  firebase_auth: ^4.16.0
+  cloud_firestore: ^4.14.0
 
 dev_dependencies:
   flutter_test:
