@@ -10,8 +10,6 @@ class CreateUserPage extends StatefulWidget {
 }
 
 class _CreateUserPageState extends State<CreateUserPage> {
-  // 入力されたユーザーの名前
-  String newUser = "";
   // 入力されたメールアドレス
   String newUserEmail = "";
   // 入力されたパスワード
@@ -24,11 +22,7 @@ class _CreateUserPageState extends State<CreateUserPage> {
     // 上で定義したメンバ変数を格納すると、usersコレクションに、
     // メールアドレスとパスワードも保存できる。
     return users
-        .add({
-          'name': newUser,
-          'email': newUserEmail,
-          'password': newUserPassword
-        })
+        .add({'email': newUserEmail, 'password': newUserPassword})
         .then((value) => print("新規登録に成功"))
         .catchError((error) => print("新規登録に失敗しました!: $error"));
   }
@@ -63,15 +57,6 @@ class _CreateUserPageState extends State<CreateUserPage> {
                     'https://images.unsplash.com/photo-1658033014478-cc3b36e31a5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwxMDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60'),
               ),
               const SizedBox(height: 40),
-              TextFormField(
-                // テキスト入力のラベルを設定
-                decoration: const InputDecoration(labelText: "ユーザー名"),
-                onChanged: (String value) {
-                  setState(() {
-                    newUser = value;
-                  });
-                },
-              ),
               const SizedBox(height: 8),
               TextFormField(
                 // テキスト入力のラベルを設定

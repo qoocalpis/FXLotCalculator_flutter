@@ -104,16 +104,12 @@ class SettingPage extends ConsumerWidget {
                     ],
                   ),
                   onPressed: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(20),
-                        ),
+                    Navigator.of(context).push(
+                      MaterialPageRoute<void>(
+                        builder: (BuildContext context) {
+                          return const CreateUserPage();
+                        },
                       ),
-                      context: context,
-                      // showModalBottomSheetで表示される中身
-                      builder: (context) => const CreateUserPage(),
                     );
                   },
                 ),
