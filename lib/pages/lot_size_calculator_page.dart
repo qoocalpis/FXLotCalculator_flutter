@@ -125,19 +125,29 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                             ),
                           ),
                           SizedBox(
-                            width: screenWidth * 0.3,
+                            width: screenWidth * 0.32,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 elevation: 5,
                                 shadowColor: Colors.black,
+                                backgroundColor:
+                                    Color.fromARGB(255, 152, 205, 255),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Icon(Icons.fact_check,
-                                      size: screenWidth * 0.07),
+                                  Icon(
+                                    Icons.fact_check,
+                                    size: screenWidth * 0.07,
+                                    color: Colors.black,
+                                  ),
                                   const SizedBox(width: 5),
-                                  const Text('MyList'),
+                                  const Text(
+                                    'MyList',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
                                 ],
                               ),
                               onPressed: () {

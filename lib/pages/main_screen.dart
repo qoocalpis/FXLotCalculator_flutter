@@ -32,7 +32,12 @@ class MainScreen extends ConsumerWidget {
               labelColor: Color.fromARGB(255, 255, 255, 99),
               tabs: appTabs,
             ),
-            title: Text(modelProvider.screenTitle),
+            title: Text(
+              modelProvider.screenTitle,
+              style: const TextStyle(
+                color: Colors.white,
+              ),
+            ),
             backgroundColor: AppColor.mainBgColor,
             centerTitle: true,
             leading: IconButton(
@@ -57,7 +62,7 @@ class MainScreen extends ConsumerWidget {
         ),
         body: TabBarView(children: [
           LotSizeCalculatorPage(
-            title: AppLocalizations.of(context)!.riskRewardRatioTitle,
+            title: AppLocalizations.of(context)!.lotSizeCalculatorTitle,
           ),
           RiskRewardRatioPage(
             title: AppLocalizations.of(context)!.riskRewardRatioTitle,

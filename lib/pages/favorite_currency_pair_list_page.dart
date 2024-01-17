@@ -104,7 +104,7 @@ class FavoriteCurrencyPairListState
               ),
             ),
             bottomNavigationBar: BottomAppBar(
-              height: screenHeight * 0.075,
+              height: screenHeight * 0.087,
               color: Colors.black,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,

@@ -7,6 +7,10 @@ import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
+
+import 'dart:async';
+import 'dart:developer';
 
 class SettingPage extends ConsumerWidget {
   const SettingPage({super.key});
