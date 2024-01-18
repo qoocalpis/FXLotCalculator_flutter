@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/create_user_page.dart';
 import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
+import 'package:lot_size_calculator_app/pages/product_details_page.dart';
 import 'package:lot_size_calculator_app/pages/setting_page.dart';
 import 'package:lot_size_calculator_app/pages/test.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
@@ -78,7 +79,6 @@ class MyAppState extends State<MyApp> {
       darkTheme: ThemeData(brightness: Brightness.dark), // ダーク用テーマ
       //themeMode: ThemeMode.system, // モードをシステム設定にする
       home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
-      // home: const SettingPage(),
     );
   }
 }

@@ -3,14 +3,23 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/pages/create_user_page.dart';
+import 'package:lot_size_calculator_app/pages/product_details_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
-
-import 'dart:async';
 import 'dart:developer';
+
+void presentPaywall() async {
+  final paywallResult = await RevenueCatUI.presentPaywall();
+  log('Paywall result: $paywallResult');
+}
+
+void presentPaywallIfNeeded() async {
+  final paywallResult = await RevenueCatUI.presentPaywallIfNeeded("pro");
+  log('Paywall result: $paywallResult');
+}
 
 class SettingPage extends ConsumerWidget {
   const SettingPage({super.key});
@@ -107,11 +116,12 @@ class SettingPage extends ConsumerWidget {
                       )
                     ],
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) {
-                          return const CreateUserPage();
+                          // return const Paywall(offering: null,);
+                          return CreateUserPage();
                         },
                       ),
                     );
