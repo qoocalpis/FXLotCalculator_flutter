@@ -3,7 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/db_model/user.dart';
-import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
+import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:path_provider/path_provider.dart';
 

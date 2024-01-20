@@ -9,7 +9,7 @@ import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
 import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
 
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/services/purchase_api.dart';
+import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 
 class First extends StatelessWidget {
   const First({super.key});
@@ -20,7 +20,7 @@ class First extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () async {
-            await PurchaseApi.instance.buttonAction();
+            await RevenueCatService.instance.buttonAction();
           },
           child: const Text("Next"),
         ),

@@ -115,11 +115,11 @@ class _$RiskRewardModelCopyWithImpl<$Res, $Val extends RiskRewardModel>
 }
 
 /// @nodoc
-abstract class _$$_RiskRewardModelCopyWith<$Res>
+abstract class _$$RiskRewardModelImplCopyWith<$Res>
     implements $RiskRewardModelCopyWith<$Res> {
-  factory _$$_RiskRewardModelCopyWith(
-          _$_RiskRewardModel value, $Res Function(_$_RiskRewardModel) then) =
-      __$$_RiskRewardModelCopyWithImpl<$Res>;
+  factory _$$RiskRewardModelImplCopyWith(_$RiskRewardModelImpl value,
+          $Res Function(_$RiskRewardModelImpl) then) =
+      __$$RiskRewardModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -135,11 +135,11 @@ abstract class _$$_RiskRewardModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RiskRewardModelCopyWithImpl<$Res>
-    extends _$RiskRewardModelCopyWithImpl<$Res, _$_RiskRewardModel>
-    implements _$$_RiskRewardModelCopyWith<$Res> {
-  __$$_RiskRewardModelCopyWithImpl(
-      _$_RiskRewardModel _value, $Res Function(_$_RiskRewardModel) _then)
+class __$$RiskRewardModelImplCopyWithImpl<$Res>
+    extends _$RiskRewardModelCopyWithImpl<$Res, _$RiskRewardModelImpl>
+    implements _$$RiskRewardModelImplCopyWith<$Res> {
+  __$$RiskRewardModelImplCopyWithImpl(
+      _$RiskRewardModelImpl _value, $Res Function(_$RiskRewardModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -155,7 +155,7 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
     Object? isExist = null,
     Object? showType = null,
   }) {
-    return _then(_$_RiskRewardModel(
+    return _then(_$RiskRewardModelImpl(
       riskPips: null == riskPips
           ? _value.riskPips
           : riskPips // ignore: cast_nullable_to_non_nullable
@@ -198,8 +198,8 @@ class __$$_RiskRewardModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_RiskRewardModel implements _RiskRewardModel {
-  const _$_RiskRewardModel(
+class _$RiskRewardModelImpl implements _RiskRewardModel {
+  const _$RiskRewardModelImpl(
       {this.riskPips = AppConst.zero,
       this.rewardPips = AppConst.zero,
       this.riskRatio = AppConst.strEmpty,
@@ -252,10 +252,10 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RiskRewardModel &&
+            other is _$RiskRewardModelImpl &&
             (identical(other.riskPips, riskPips) ||
                 other.riskPips == riskPips) &&
             (identical(other.rewardPips, rewardPips) ||
@@ -291,8 +291,9 @@ class _$_RiskRewardModel implements _RiskRewardModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RiskRewardModelCopyWith<_$_RiskRewardModel> get copyWith =>
-      __$$_RiskRewardModelCopyWithImpl<_$_RiskRewardModel>(this, _$identity);
+  _$$RiskRewardModelImplCopyWith<_$RiskRewardModelImpl> get copyWith =>
+      __$$RiskRewardModelImplCopyWithImpl<_$RiskRewardModelImpl>(
+          this, _$identity);
 }
 
 abstract class _RiskRewardModel implements RiskRewardModel {
@@ -305,7 +306,7 @@ abstract class _RiskRewardModel implements RiskRewardModel {
       final String moneyRatio,
       final List<String> continuedLossProbability,
       final bool isExist,
-      final int showType}) = _$_RiskRewardModel;
+      final int showType}) = _$RiskRewardModelImpl;
 
   @override
   int get riskPips;
@@ -327,6 +328,6 @@ abstract class _RiskRewardModel implements RiskRewardModel {
   int get showType;
   @override
   @JsonKey(ignore: true)
-  _$$_RiskRewardModelCopyWith<_$_RiskRewardModel> get copyWith =>
+  _$$RiskRewardModelImplCopyWith<_$RiskRewardModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

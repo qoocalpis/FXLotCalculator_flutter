@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
-import 'package:lot_size_calculator_app/services/isar_services.dart';
+import 'package:lot_size_calculator_app/services/isar_service.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
 class CalculationSetCell extends ConsumerStatefulWidget {

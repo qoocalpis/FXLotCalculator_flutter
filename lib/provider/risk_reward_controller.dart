@@ -124,7 +124,7 @@ class RiskRewardModelNotifier extends _$RiskRewardModelNotifier {
     List<String> list = [];
 
     if (k == null) {
-      for (var p in SettingConst.percentList) {
+      for (var _ in SettingConst.percentList) {
         list.add(equal);
       }
 

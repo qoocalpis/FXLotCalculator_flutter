@@ -8,8 +8,8 @@ import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/favorite_currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
-import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
-import 'package:lot_size_calculator_app/services/isar_services.dart';
+import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
+import 'package:lot_size_calculator_app/services/isar_service.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 
@@ -76,7 +76,11 @@ class FavoriteCurrencyPairListState
                 },
               ),
               title: Text(
-                  AppLocalizations.of(context)!.favoriteCurrencyPairListTitle),
+                AppLocalizations.of(context)!.favoriteCurrencyPairListTitle,
+                style: const TextStyle(
+                  color: Colors.white,
+                ),
+              ),
             ),
             body: SingleChildScrollView(
               child: Column(

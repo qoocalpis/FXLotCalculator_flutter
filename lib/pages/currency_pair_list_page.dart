@@ -4,8 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/widgets/currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
-import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
-import 'package:lot_size_calculator_app/services/isar_services.dart';
+import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
+import 'package:lot_size_calculator_app/services/isar_service.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -49,7 +49,12 @@ class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
             color: Colors.blue,
           ),
         ),
-        title: Text(AppLocalizations.of(context)!.currencyPairListTitle),
+        title: Text(
+          AppLocalizations.of(context)!.currencyPairListTitle,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(

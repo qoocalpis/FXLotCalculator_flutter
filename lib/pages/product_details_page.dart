@@ -1,97 +1,80 @@
 import 'package:flutter/material.dart';
+import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class Paywall extends StatefulWidget {
-  final Offering offering;
-
-  const Paywall({Key? key, required this.offering}) : super(key: key);
+  const Paywall({super.key});
 
   @override
-  _PaywallState createState() => _PaywallState();
+  State<Paywall> createState() => _PaywallState();
 }
 
 class _PaywallState extends State<Paywall> {
+  late Offering offering;
+  @override
+  void initState() {
+    super.initState();
+    final revenueCatService = RevenueCatService.instance;
+    offering = revenueCatService.offering;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: SafeArea(
-        child: Wrap(
-          children: <Widget>[
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final package = offering.availablePackages.first;
+
+    return Scaffold(
+      body: SizedBox(
+        width: screenWidth,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
             Container(
-              height: 70.0,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  // color: kColorBar,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(25.0))),
-              child: const Center(
-                  child: Text(
-                '✨ Magic Weather Premium',
-              )),
+              height: screenHeight * 0.3,
+              color: Colors.amberAccent,
             ),
-            const Padding(
-              padding:
-                  EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
-              child: SizedBox(
-                child: Text(
-                  'MAGIC WEATHER PREMIUM',
-                  // style: kDescriptionTextStyle,
+            SizedBox(
+              width: screenWidth * 0.8,
+              child: const Text(
+                "全通貨ペア & 破産確率機能追加!",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
                 ),
-                width: double.infinity,
               ),
             ),
-            ListView.builder(
-              itemCount: widget.offering.availablePackages.length,
-              itemBuilder: (BuildContext context, int index) {
-                var myProductList = widget.offering.availablePackages;
-                return Card(
-                  color: Colors.black,
-                  child: ListTile(
-                      onTap: () async {
-                        // try {
-                        //   CustomerInfo customerInfo =
-                        //       await Purchases.purchasePackage(
-                        //           myProductList[index]);
-                        //   EntitlementInfo? entitlement =
-                        //       customerInfo.entitlements.all[entitlementID];
-                        //   appData.entitlementIsActive =
-                        //       entitlement?.isActive ?? false;
-                        // } catch (e) {
-                        //   print(e);
-                        // }
-
-                        setState(() {});
-                        Navigator.pop(context);
-                      },
-                      title: Text(
-                        myProductList[index].storeProduct.title,
-                        // style: kTitleTextStyle,
-                      ),
-                      subtitle: Text(
-                        myProductList[index].storeProduct.description,
-                        // style: kDescriptionTextStyle.copyWith(
-                        //     fontSize: kFontSizeSuperSmall),
-                      ),
-                      trailing: Text(
-                        myProductList[index].storeProduct.priceString,
-                        // style: kTitleTextStyle,
-                      )),
-                );
-              },
-              shrinkWrap: true,
-              physics: const ClampingScrollPhysics(),
+            SizedBox(
+              width: screenWidth * 0.8,
+              child: const Text(
+                "28通貨ペアの使用制限の開放,格リスクリワードと詳細な資金率による破産確率計算の機能追加",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
-            // const Padding(
-            //   padding:
-            //       EdgeInsets.only(top: 32, bottom: 16, left: 16.0, right: 16.0),
-            //   child: SizedBox(
-            //     child: Text(
-            //       footerText,
-            //       style: kDescriptionTextStyle,
-            //     ),
-            //     width: double.infinity,
-            //   ),
-            // ),
+            SizedBox(
+              width: screenWidth * 0.8,
+              height: screenHeight * 0.06,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 71, 197, 90),
+                ),
+                child: const Text(
+                  'AAAA',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {},
+              ),
+            ),
           ],
         ),
       ),

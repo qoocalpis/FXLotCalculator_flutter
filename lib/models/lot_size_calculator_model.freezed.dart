@@ -101,11 +101,12 @@ class _$LotSizeCalculatorModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LotSizeCalculatorModelCopyWith<$Res>
+abstract class _$$LotSizeCalculatorModelImplCopyWith<$Res>
     implements $LotSizeCalculatorModelCopyWith<$Res> {
-  factory _$$_LotSizeCalculatorModelCopyWith(_$_LotSizeCalculatorModel value,
-          $Res Function(_$_LotSizeCalculatorModel) then) =
-      __$$_LotSizeCalculatorModelCopyWithImpl<$Res>;
+  factory _$$LotSizeCalculatorModelImplCopyWith(
+          _$LotSizeCalculatorModelImpl value,
+          $Res Function(_$LotSizeCalculatorModelImpl) then) =
+      __$$LotSizeCalculatorModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -119,12 +120,13 @@ abstract class _$$_LotSizeCalculatorModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
+class __$$LotSizeCalculatorModelImplCopyWithImpl<$Res>
     extends _$LotSizeCalculatorModelCopyWithImpl<$Res,
-        _$_LotSizeCalculatorModel>
-    implements _$$_LotSizeCalculatorModelCopyWith<$Res> {
-  __$$_LotSizeCalculatorModelCopyWithImpl(_$_LotSizeCalculatorModel _value,
-      $Res Function(_$_LotSizeCalculatorModel) _then)
+        _$LotSizeCalculatorModelImpl>
+    implements _$$LotSizeCalculatorModelImplCopyWith<$Res> {
+  __$$LotSizeCalculatorModelImplCopyWithImpl(
+      _$LotSizeCalculatorModelImpl _value,
+      $Res Function(_$LotSizeCalculatorModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,7 +140,7 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
     Object? isKeyboardOpen = null,
     Object? lossAllowableAmount = null,
   }) {
-    return _then(_$_LotSizeCalculatorModel(
+    return _then(_$LotSizeCalculatorModelImpl(
       accountBalance: null == accountBalance
           ? _value.accountBalance
           : accountBalance // ignore: cast_nullable_to_non_nullable
@@ -173,8 +175,8 @@ class __$$_LotSizeCalculatorModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
-  const _$_LotSizeCalculatorModel(
+class _$LotSizeCalculatorModelImpl implements _LotSizeCalculatorModel {
+  const _$LotSizeCalculatorModelImpl(
       {this.accountBalance = AppConst.zero,
       this.lotSize = AppConst.strEmpty,
       this.pips = AppConst.zero,
@@ -211,10 +213,10 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LotSizeCalculatorModel &&
+            other is _$LotSizeCalculatorModelImpl &&
             (identical(other.accountBalance, accountBalance) ||
                 other.accountBalance == accountBalance) &&
             (identical(other.lotSize, lotSize) || other.lotSize == lotSize) &&
@@ -235,9 +237,9 @@ class _$_LotSizeCalculatorModel implements _LotSizeCalculatorModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LotSizeCalculatorModelCopyWith<_$_LotSizeCalculatorModel> get copyWith =>
-      __$$_LotSizeCalculatorModelCopyWithImpl<_$_LotSizeCalculatorModel>(
-          this, _$identity);
+  _$$LotSizeCalculatorModelImplCopyWith<_$LotSizeCalculatorModelImpl>
+      get copyWith => __$$LotSizeCalculatorModelImplCopyWithImpl<
+          _$LotSizeCalculatorModelImpl>(this, _$identity);
 }
 
 abstract class _LotSizeCalculatorModel implements LotSizeCalculatorModel {
@@ -248,7 +250,7 @@ abstract class _LotSizeCalculatorModel implements LotSizeCalculatorModel {
       final int percent,
       final bool isEnable,
       final bool isKeyboardOpen,
-      final int lossAllowableAmount}) = _$_LotSizeCalculatorModel;
+      final int lossAllowableAmount}) = _$LotSizeCalculatorModelImpl;
 
   @override
   int get accountBalance;
@@ -266,6 +268,6 @@ abstract class _LotSizeCalculatorModel implements LotSizeCalculatorModel {
   int get lossAllowableAmount;
   @override
   @JsonKey(ignore: true)
-  _$$_LotSizeCalculatorModelCopyWith<_$_LotSizeCalculatorModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LotSizeCalculatorModelImplCopyWith<_$LotSizeCalculatorModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

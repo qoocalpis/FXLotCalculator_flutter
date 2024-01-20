@@ -63,22 +63,22 @@ class _$MainScreenModelCopyWithImpl<$Res, $Val extends MainScreenModel>
 }
 
 /// @nodoc
-abstract class _$$_MainScreenModelCopyWith<$Res>
+abstract class _$$MainScreenModelImplCopyWith<$Res>
     implements $MainScreenModelCopyWith<$Res> {
-  factory _$$_MainScreenModelCopyWith(
-          _$_MainScreenModel value, $Res Function(_$_MainScreenModel) then) =
-      __$$_MainScreenModelCopyWithImpl<$Res>;
+  factory _$$MainScreenModelImplCopyWith(_$MainScreenModelImpl value,
+          $Res Function(_$MainScreenModelImpl) then) =
+      __$$MainScreenModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String screenTitle, int selectedScreenIndex});
 }
 
 /// @nodoc
-class __$$_MainScreenModelCopyWithImpl<$Res>
-    extends _$MainScreenModelCopyWithImpl<$Res, _$_MainScreenModel>
-    implements _$$_MainScreenModelCopyWith<$Res> {
-  __$$_MainScreenModelCopyWithImpl(
-      _$_MainScreenModel _value, $Res Function(_$_MainScreenModel) _then)
+class __$$MainScreenModelImplCopyWithImpl<$Res>
+    extends _$MainScreenModelCopyWithImpl<$Res, _$MainScreenModelImpl>
+    implements _$$MainScreenModelImplCopyWith<$Res> {
+  __$$MainScreenModelImplCopyWithImpl(
+      _$MainScreenModelImpl _value, $Res Function(_$MainScreenModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -87,7 +87,7 @@ class __$$_MainScreenModelCopyWithImpl<$Res>
     Object? screenTitle = null,
     Object? selectedScreenIndex = null,
   }) {
-    return _then(_$_MainScreenModel(
+    return _then(_$MainScreenModelImpl(
       screenTitle: null == screenTitle
           ? _value.screenTitle
           : screenTitle // ignore: cast_nullable_to_non_nullable
@@ -102,8 +102,8 @@ class __$$_MainScreenModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MainScreenModel implements _MainScreenModel {
-  const _$_MainScreenModel(
+class _$MainScreenModelImpl implements _MainScreenModel {
+  const _$MainScreenModelImpl(
       {required this.screenTitle, required this.selectedScreenIndex});
 
   @override
@@ -117,10 +117,10 @@ class _$_MainScreenModel implements _MainScreenModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MainScreenModel &&
+            other is _$MainScreenModelImpl &&
             (identical(other.screenTitle, screenTitle) ||
                 other.screenTitle == screenTitle) &&
             (identical(other.selectedScreenIndex, selectedScreenIndex) ||
@@ -134,14 +134,15 @@ class _$_MainScreenModel implements _MainScreenModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MainScreenModelCopyWith<_$_MainScreenModel> get copyWith =>
-      __$$_MainScreenModelCopyWithImpl<_$_MainScreenModel>(this, _$identity);
+  _$$MainScreenModelImplCopyWith<_$MainScreenModelImpl> get copyWith =>
+      __$$MainScreenModelImplCopyWithImpl<_$MainScreenModelImpl>(
+          this, _$identity);
 }
 
 abstract class _MainScreenModel implements MainScreenModel {
   const factory _MainScreenModel(
       {required final String screenTitle,
-      required final int selectedScreenIndex}) = _$_MainScreenModel;
+      required final int selectedScreenIndex}) = _$MainScreenModelImpl;
 
   @override
   String get screenTitle;
@@ -149,6 +150,6 @@ abstract class _MainScreenModel implements MainScreenModel {
   int get selectedScreenIndex;
   @override
   @JsonKey(ignore: true)
-  _$$_MainScreenModelCopyWith<_$_MainScreenModel> get copyWith =>
+  _$$MainScreenModelImplCopyWith<_$MainScreenModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

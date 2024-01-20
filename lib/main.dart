@@ -5,9 +5,9 @@ import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
 import 'package:lot_size_calculator_app/pages/product_details_page.dart';
 import 'package:lot_size_calculator_app/pages/setting_page.dart';
 import 'package:lot_size_calculator_app/pages/test.dart';
-import 'package:lot_size_calculator_app/services/google_sheet_services.dart';
-import 'package:lot_size_calculator_app/services/purchase_api.dart';
-import 'package:lot_size_calculator_app/services/isar_services.dart';
+import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
+import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
+import 'package:lot_size_calculator_app/services/isar_service.dart';
 import 'package:onepref/onepref.dart';
 import 'pages/main_screen.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -43,7 +43,7 @@ class MyAppState extends State<MyApp> {
   Future<void> fetchData() async {
     final googleSheetService = GoogleSheetService.instance;
     final isarService = IsarService.instance;
-    final purchaseApi = PurchaseApi.instance;
+    final purchaseApi = RevenueCatService.instance;
     // 非同期処理を実行
     final res1 = await googleSheetService.callGoogleSheetAPI();
     if (res1) {
@@ -78,7 +78,8 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark), // ダーク用テーマ
       //themeMode: ThemeMode.system, // モードをシステム設定にする
-      home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
+      // home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
+      home: const SettingPage(),
     );
   }
 }

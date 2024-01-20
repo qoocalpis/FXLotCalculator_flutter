@@ -4,22 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/pages/create_user_page.dart';
 import 'package:lot_size_calculator_app/pages/product_details_page.dart';
+import 'package:lot_size_calculator_app/pages/widgets/alert_dialog_input_text.dart';
 import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
+import 'package:lot_size_calculator_app/provider/in_app_purchase_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
-import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
-import 'dart:developer';
-
-void presentPaywall() async {
-  final paywallResult = await RevenueCatUI.presentPaywall();
-  log('Paywall result: $paywallResult');
-}
-
-void presentPaywallIfNeeded() async {
-  final paywallResult = await RevenueCatUI.presentPaywallIfNeeded("pro");
-  log('Paywall result: $paywallResult');
-}
 
 class SettingPage extends ConsumerWidget {
   const SettingPage({super.key});
@@ -32,7 +22,9 @@ class SettingPage extends ConsumerWidget {
               error: (e, s) => null,
               data: (d) => d,
             );
+    final isPurchased = ref.watch(inAppPurchaseNotifierProvider);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(255, 56, 74, 82),
       appBar: AppBar(
         elevation: 0,
@@ -48,7 +40,12 @@ class SettingPage extends ConsumerWidget {
             color: Colors.blue,
           ),
         ),
-        title: Text(AppLocalizations.of(context)!.settingPageTitle),
+        title: Text(
+          AppLocalizations.of(context)!.settingPageTitle,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: false,
       ),
       body: Column(
@@ -81,15 +78,15 @@ class SettingPage extends ConsumerWidget {
             padding:
                 const EdgeInsets.only(right: 20, left: 20, top: 20, bottom: 20),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text(
-                  "", //dummy
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                // const Text(
+                //   "", //dummy
+                //   style: TextStyle(
+                //     fontWeight: FontWeight.bold,
+                //     color: Colors.white,
+                //   ),
+                // ),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     fixedSize: Size.fromHeight(
@@ -100,32 +97,52 @@ class SettingPage extends ConsumerWidget {
                     ),
                     backgroundColor: Colors.black38,
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
+                      const Text(
                         "現在の製品版",
                         style: TextStyle(color: Colors.white),
                       ),
-                      Text(
-                        "Free",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      )
+                      !isPurchased
+                          ? const Text(
+                              "Free",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )
+                          : const Text(
+                              "Pro+",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            )
                     ],
                   ),
                   onPressed: () async {
+                    // if (!isPurchased) {
                     Navigator.of(context).push(
                       MaterialPageRoute<void>(
                         builder: (BuildContext context) {
-                          // return const Paywall(offering: null,);
-                          return CreateUserPage();
+                          //  return const Paywall(offering: null,);
+                          return const Paywall();
                         },
                       ),
                     );
+                    // }
                   },
+                ),
+                TextButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const AlertDialogInputText();
+                      },
+                    );
+                  },
+                  child: const Text(
+                    "復元",
+                    style: TextStyle(color: Color.fromARGB(255, 29, 246, 177)),
+                  ),
                 ),
               ],
             ),

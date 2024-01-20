@@ -1,22 +1,21 @@
 import 'dart:io' show Platform;
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
-class PurchaseApi {
+class RevenueCatService {
   /// private constructor
-  PurchaseApi._();
+  RevenueCatService._();
 
   /// the one and only instance of this singleton
-  static final instance = PurchaseApi._();
-  bool isSubscribed = false;
+  static final instance = RevenueCatService._();
+  bool isPurchased = false;
   late Offerings offerings;
+  late Offering offering;
 
   Future<void> initInAppPurchase() async {
     const iosKey = "appl_LCjrwQcWUMmKqjqvtvFPUzEbhpf";
     const androidKey = "goog_oKQsEOIJdGnMwLrtAOMQqkghyXF";
+    const offeringIdentifier = "com.all_currency_pair.app";
 
     await Purchases.setLogLevel(LogLevel.debug);
 
@@ -31,17 +30,16 @@ class PurchaseApi {
       await Purchases.configure(configuration);
       //offeringsを取ってくる
       offerings = await Purchases.getOfferings();
+      offering = await offerings.getOffering(offeringIdentifier)!;
 
-      final result = await Purchases.logIn("ni5vuGimHfOHwsCOQC0NyVdmpWq2");
+      final result = await Purchases.logIn("7kBX623g6Pf3XxP2WfjKUnuBqVz1");
 
       await getPurchaserInfo(result.customerInfo);
 
       // 今アクティブになっているアイテムは以下のように取得可能
       print("アクティブなアイテム ${result.customerInfo.entitlements.active.keys}");
 
-      print(isSubscribed);
       // await makePurchase();
-      // print(isSubscribed);
     } catch (e) {
       print("initInAppPurchase error caught! ${e.toString()}");
     }
@@ -50,11 +48,11 @@ class PurchaseApi {
   Future<void> getPurchaserInfo(CustomerInfo customerInfo) async {
     const entitlement = "all_courses";
     try {
-      isSubscribed = await updatePurchases(
+      isPurchased = await updatePurchases(
         customerInfo,
         entitlement,
       );
-      print(isSubscribed); //monthly_subscriptionは、適宜ご自身のentitlement名に変えてください
+      print(isPurchased); //monthly_subscriptionは、適宜ご自身のentitlement名に変えてください
     } on PlatformException catch (e) {
       print(" getPurchaserInfo error ${e.toString()}");
     }
@@ -86,17 +84,18 @@ class PurchaseApi {
       // access latest customerInfo
     } on PlatformException catch (e) {
       // Error fetching customer info
+      print(e);
     }
 
-    // const offeringIdentifier = "com.all_currency_pair.app";
-    // try {
-    //   final package = offerings.getOffering(offeringIdentifier)!.lifetime;
-    //   if (package != null) {
-    //     // Display packages for sale
-    //   }
-    // } on PlatformException catch (e) {
-    //   // optional error handling
-    // }
+    const offeringIdentifier = "com.all_currency_pair.app";
+    try {
+      final package = offerings.getOffering(offeringIdentifier)!;
+      if (package != null) {
+        // Display packages for sale
+      }
+    } on PlatformException catch (e) {
+      // optional error handling
+    }
   }
 
   Future<void> makePurchase() async {

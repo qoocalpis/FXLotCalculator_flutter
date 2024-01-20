@@ -86,11 +86,11 @@ class _$CurrencyPairModelCopyWithImpl<$Res, $Val extends CurrencyPairModel>
 }
 
 /// @nodoc
-abstract class _$$_CurrencyPairModelCopyWith<$Res>
+abstract class _$$CurrencyPairModelImplCopyWith<$Res>
     implements $CurrencyPairModelCopyWith<$Res> {
-  factory _$$_CurrencyPairModelCopyWith(_$_CurrencyPairModel value,
-          $Res Function(_$_CurrencyPairModel) then) =
-      __$$_CurrencyPairModelCopyWithImpl<$Res>;
+  factory _$$CurrencyPairModelImplCopyWith(_$CurrencyPairModelImpl value,
+          $Res Function(_$CurrencyPairModelImpl) then) =
+      __$$CurrencyPairModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,11 +102,11 @@ abstract class _$$_CurrencyPairModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CurrencyPairModelCopyWithImpl<$Res>
-    extends _$CurrencyPairModelCopyWithImpl<$Res, _$_CurrencyPairModel>
-    implements _$$_CurrencyPairModelCopyWith<$Res> {
-  __$$_CurrencyPairModelCopyWithImpl(
-      _$_CurrencyPairModel _value, $Res Function(_$_CurrencyPairModel) _then)
+class __$$CurrencyPairModelImplCopyWithImpl<$Res>
+    extends _$CurrencyPairModelCopyWithImpl<$Res, _$CurrencyPairModelImpl>
+    implements _$$CurrencyPairModelImplCopyWith<$Res> {
+  __$$CurrencyPairModelImplCopyWithImpl(_$CurrencyPairModelImpl _value,
+      $Res Function(_$CurrencyPairModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +118,7 @@ class __$$_CurrencyPairModelCopyWithImpl<$Res>
     Object? selected = null,
     Object? addedToFavorite = null,
   }) {
-    return _then(_$_CurrencyPairModel(
+    return _then(_$CurrencyPairModelImpl(
       currencyPair: null == currencyPair
           ? _value.currencyPair
           : currencyPair // ignore: cast_nullable_to_non_nullable
@@ -145,8 +145,8 @@ class __$$_CurrencyPairModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CurrencyPairModel implements _CurrencyPairModel {
-  const _$_CurrencyPairModel(
+class _$CurrencyPairModelImpl implements _CurrencyPairModel {
+  const _$CurrencyPairModelImpl(
       {required this.currencyPair,
       required this.rate,
       required this.currencyCode,
@@ -170,10 +170,10 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CurrencyPairModel &&
+            other is _$CurrencyPairModelImpl &&
             (identical(other.currencyPair, currencyPair) ||
                 other.currencyPair == currencyPair) &&
             (identical(other.rate, rate) || other.rate == rate) &&
@@ -192,8 +192,8 @@ class _$_CurrencyPairModel implements _CurrencyPairModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CurrencyPairModelCopyWith<_$_CurrencyPairModel> get copyWith =>
-      __$$_CurrencyPairModelCopyWithImpl<_$_CurrencyPairModel>(
+  _$$CurrencyPairModelImplCopyWith<_$CurrencyPairModelImpl> get copyWith =>
+      __$$CurrencyPairModelImplCopyWithImpl<_$CurrencyPairModelImpl>(
           this, _$identity);
 }
 
@@ -203,7 +203,7 @@ abstract class _CurrencyPairModel implements CurrencyPairModel {
       required final String rate,
       required final String currencyCode,
       required final bool selected,
-      required final bool addedToFavorite}) = _$_CurrencyPairModel;
+      required final bool addedToFavorite}) = _$CurrencyPairModelImpl;
 
   @override
   String get currencyPair;
@@ -217,6 +217,6 @@ abstract class _CurrencyPairModel implements CurrencyPairModel {
   bool get addedToFavorite;
   @override
   @JsonKey(ignore: true)
-  _$$_CurrencyPairModelCopyWith<_$_CurrencyPairModel> get copyWith =>
+  _$$CurrencyPairModelImplCopyWith<_$CurrencyPairModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/setting_page.dart';
+import 'package:lot_size_calculator_app/provider/in_app_purchase_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/utils/colors.dart';
 import 'package:lot_size_calculator_app/pages/lot_size_calculator_page.dart';
@@ -19,6 +20,8 @@ class MainScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final modelProvider = ref.watch(mainScreenModelNotifierProvider);
     final appBarHeigh = MediaQuery.of(context).size.height * 0.12;
+    final isPurchased = ref.watch(inAppPurchaseNotifierProvider);
+
     return DefaultTabController(
       length: appTabs.length,
       child: Scaffold(
@@ -48,6 +51,7 @@ class MainScreen extends ConsumerWidget {
               ),
               onPressed: () {
                 FocusScope.of(context).unfocus();
+                print(isPurchased);
                 Navigator.of(context).push(
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
