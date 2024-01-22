@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
+import 'package:lot_size_calculator_app/pages/widgets/alert_dialog_input_text.dart';
 import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -27,10 +28,12 @@ class _PaywallState extends State<Paywall> {
     final package = offering.availablePackages.first;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(),
       body: SizedBox(
         width: screenWidth,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
@@ -66,13 +69,38 @@ class _PaywallState extends State<Paywall> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 71, 197, 90),
                 ),
-                child: const Text(
-                  'AAAA',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      '購入',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialogInputText(isCreateUser: true);
+                    },
+                  );
+                },
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialogInputText(isCreateUser: false);
+                  },
+                );
+              },
+              child: const Text(
+                "Restore Purchase items and conditions",
               ),
             ),
           ],

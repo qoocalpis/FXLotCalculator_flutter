@@ -4,6 +4,7 @@ import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/db_model/user.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
+import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:path_provider/path_provider.dart';
 
@@ -46,6 +47,7 @@ class IsarService {
       ];
 
       final user = User()
+        ..uid = AppConst.strEmpty
         ..pair = 'USD/JPY'
         ..lot = 100000
         ..percent = 5
@@ -110,6 +112,25 @@ class IsarService {
         }
       },
     );
+  }
+
+  Future<void> saveUid(String uid) async {
+    final isar = await db;
+    await isar.writeTxn(
+      () async {
+        final user = await isar.users.get(0);
+        if (user != null) {
+          user.uid = uid;
+          await isar.users.put(user); // 更新操作の実行
+        }
+      },
+    );
+  }
+
+  Future<String> fetchUid() async {
+    final isar = await db;
+    final user = await isar.users.get(0);
+    return user!.uid;
   }
 
   Future<bool> changedAddedFavorite(String targetCurrencyPair) async {

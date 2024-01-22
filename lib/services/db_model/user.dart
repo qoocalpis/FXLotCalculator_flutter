@@ -9,5 +9,6 @@ class User {
   late int lot;
   late String pair;
   late int percent;
+  late String uid;
   late String accountCurrency;
 }

@@ -47,8 +47,9 @@ class MyAppState extends State<MyApp> {
     // 非同期処理を実行
     final res1 = await googleSheetService.callGoogleSheetAPI();
     if (res1) {
-      await purchaseApi.initInAppPurchase();
       await isarService.createUser(googleSheetService.list);
+      await purchaseApi.initInAppPurchase();
+
       // データを取得した後、画面を更新
       setState(() {
         dataLoaded = true;
@@ -78,8 +79,8 @@ class MyAppState extends State<MyApp> {
       theme: ThemeData(brightness: Brightness.light),
       darkTheme: ThemeData(brightness: Brightness.dark), // ダーク用テーマ
       //themeMode: ThemeMode.system, // モードをシステム設定にする
-      // home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
-      home: const SettingPage(),
+      home: dataLoaded ? const MainScreen() : const FirstLoadingRatePage(),
+      // home: const SettingPage(),
     );
   }
 }

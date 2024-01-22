@@ -1,5 +1,7 @@
 import 'dart:io' show Platform;
 import 'package:flutter/services.dart';
+import 'package:lot_size_calculator_app/services/isar_service.dart';
+import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 class RevenueCatService {
@@ -17,6 +19,9 @@ class RevenueCatService {
     const androidKey = "goog_oKQsEOIJdGnMwLrtAOMQqkghyXF";
     const offeringIdentifier = "com.all_currency_pair.app";
 
+    final isar = IsarService.instance;
+    final uid = await isar.fetchUid();
+
     await Purchases.setLogLevel(LogLevel.debug);
 
     try {
@@ -30,9 +35,10 @@ class RevenueCatService {
       await Purchases.configure(configuration);
       //offeringsを取ってくる
       offerings = await Purchases.getOfferings();
-      offering = await offerings.getOffering(offeringIdentifier)!;
+      offering = offerings.getOffering(offeringIdentifier)!;
 
-      final result = await Purchases.logIn("7kBX623g6Pf3XxP2WfjKUnuBqVz1");
+      if (uid == AppConst.strEmpty) return;
+      final result = await Purchases.logIn(uid);
 
       await getPurchaserInfo(result.customerInfo);
 
@@ -115,70 +121,5 @@ class RevenueCatService {
     } on PlatformException catch (e) {
       print(" makePurchase error ${e.toString()}");
     }
-  }
-}
-
-class InAppPurchaseManager {
-  bool isSubscribed = false;
-  late Offerings offerings;
-
-  Future<void> initInAppPurchase() async {
-    const iosKey = "appl_LCjrwQcWUMmKqjqvtvFPUzEbhpf";
-    const androidKey = "goog_oKQsEOIJdGnMwLrtAOMQqkghyXF";
-
-    try {
-      //consoleにdebug情報を出力する
-      await Purchases.setDebugLogsEnabled(true);
-      late PurchasesConfiguration configuration;
-
-      if (Platform.isAndroid) {
-        configuration = PurchasesConfiguration(androidKey);
-      } else if (Platform.isIOS) {
-        configuration = PurchasesConfiguration(iosKey);
-      }
-      await Purchases.configure(configuration);
-      //offeringsを取ってくる
-      offerings = await Purchases.getOfferings();
-      //firebaseのidと、revenuecatのuserIdを一緒にしている場合、firebaseAuthのuidでログイン
-      LogInResult result =
-          await Purchases.logIn("ni5vuGimHfOHwsCOQC0NyVdmpWq2");
-
-      await getPurchaserInfo(result.customerInfo);
-
-      //今アクティブになっているアイテムは以下のように取得可能
-      print("アクティブなアイテム ${result.customerInfo.entitlements.active.keys}");
-    } catch (e) {
-      print("initInAppPurchase error caught! ${e.toString()}");
-    }
-  }
-
-  Future<void> getPurchaserInfo(CustomerInfo customerInfo) async {
-    const entitlement = "com.all_currency_pair.app";
-
-    try {
-      isSubscribed = await updatePurchases(
-          customerInfo, entitlement); //適宜ご自身のentitlement名に変えてください
-    } on PlatformException catch (e) {
-      print(" getPurchaserInfo error ${e.toString()}");
-    }
-  }
-
-  Future<bool> updatePurchases(
-      CustomerInfo purchaserInfo, String entitlement) async {
-    var isPurchased = false;
-    final entitlements = purchaserInfo.entitlements.all;
-    if (entitlements.isEmpty) {
-      isPurchased = false;
-    }
-    if (!entitlements.containsKey(entitlement)) {
-      ///そもそもentitlementが設定されて無い場合
-      isPurchased = false;
-    } else if (entitlements[entitlement]!.isActive) {
-      ///設定されていて、activeになっている場合
-      isPurchased = true;
-    } else {
-      isPurchased = false;
-    }
-    return isPurchased;
   }
 }

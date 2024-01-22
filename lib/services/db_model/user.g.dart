@@ -36,6 +36,11 @@ const UserSchema = CollectionSchema(
       id: 3,
       name: r'percent',
       type: IsarType.long,
+    ),
+    r'uid': PropertySchema(
+      id: 4,
+      name: r'uid',
+      type: IsarType.string,
     )
   },
   estimateSize: _userEstimateSize,
@@ -60,6 +65,7 @@ int _userEstimateSize(
   var bytesCount = offsets.last;
   bytesCount += 3 + object.accountCurrency.length * 3;
   bytesCount += 3 + object.pair.length * 3;
+  bytesCount += 3 + object.uid.length * 3;
   return bytesCount;
 }
 
@@ -73,6 +79,7 @@ void _userSerialize(
   writer.writeLong(offsets[1], object.lot);
   writer.writeString(offsets[2], object.pair);
   writer.writeLong(offsets[3], object.percent);
+  writer.writeString(offsets[4], object.uid);
 }
 
 User _userDeserialize(
@@ -86,6 +93,7 @@ User _userDeserialize(
   object.lot = reader.readLong(offsets[1]);
   object.pair = reader.readString(offsets[2]);
   object.percent = reader.readLong(offsets[3]);
+  object.uid = reader.readString(offsets[4]);
   return object;
 }
 
@@ -104,6 +112,8 @@ P _userDeserializeProp<P>(
       return (reader.readString(offset)) as P;
     case 3:
       return (reader.readLong(offset)) as P;
+    case 4:
+      return (reader.readString(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
@@ -608,6 +618,134 @@ extension UserQueryFilter on QueryBuilder<User, User, QFilterCondition> {
       ));
     });
   }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'uid',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'uid',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'uid',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'uid',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'uid',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'uid',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'uid',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidMatches(String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'uid',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'uid',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<User, User, QAfterFilterCondition> uidIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'uid',
+        value: '',
+      ));
+    });
+  }
 }
 
 extension UserQueryObject on QueryBuilder<User, User, QFilterCondition> {}
@@ -660,6 +798,18 @@ extension UserQuerySortBy on QueryBuilder<User, User, QSortBy> {
   QueryBuilder<User, User, QAfterSortBy> sortByPercentDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'percent', Sort.desc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByUid() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'uid', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> sortByUidDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'uid', Sort.desc);
     });
   }
 }
@@ -724,6 +874,18 @@ extension UserQuerySortThenBy on QueryBuilder<User, User, QSortThenBy> {
       return query.addSortBy(r'percent', Sort.desc);
     });
   }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByUid() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'uid', Sort.asc);
+    });
+  }
+
+  QueryBuilder<User, User, QAfterSortBy> thenByUidDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'uid', Sort.desc);
+    });
+  }
 }
 
 extension UserQueryWhereDistinct on QueryBuilder<User, User, QDistinct> {
@@ -751,6 +913,13 @@ extension UserQueryWhereDistinct on QueryBuilder<User, User, QDistinct> {
   QueryBuilder<User, User, QDistinct> distinctByPercent() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'percent');
+    });
+  }
+
+  QueryBuilder<User, User, QDistinct> distinctByUid(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'uid', caseSensitive: caseSensitive);
     });
   }
 }
@@ -783,6 +952,12 @@ extension UserQueryProperty on QueryBuilder<User, User, QQueryProperty> {
   QueryBuilder<User, int, QQueryOperations> percentProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'percent');
+    });
+  }
+
+  QueryBuilder<User, String, QQueryOperations> uidProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'uid');
     });
   }
 }

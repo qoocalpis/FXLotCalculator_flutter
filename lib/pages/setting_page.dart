@@ -130,20 +130,6 @@ class SettingPage extends ConsumerWidget {
                     // }
                   },
                 ),
-                TextButton(
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) {
-                        return const AlertDialogInputText();
-                      },
-                    );
-                  },
-                  child: const Text(
-                    "復元",
-                    style: TextStyle(color: Color.fromARGB(255, 29, 246, 177)),
-                  ),
-                ),
               ],
             ),
           ),

@@ -7,7 +7,7 @@ part of 'in_app_purchase_controller.dart';
 // **************************************************************************
 
 String _$inAppPurchaseNotifierHash() =>
-    r'441b32c9471f2ba5e8b8bfa49f877545deb96727';
+    r'5fa6811a86723277852bf999984571392f6a99f6';
 
 /// See also [InAppPurchaseNotifier].
 @ProviderFor(InAppPurchaseNotifier)
