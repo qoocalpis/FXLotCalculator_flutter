@@ -83,27 +83,6 @@ class RevenueCatService {
     return isPurchased;
   }
 
-  Future<void> buttonAction() async {
-    try {
-      CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-      print("アクティブなアイテム ${customerInfo.entitlements.active.keys}");
-      // access latest customerInfo
-    } on PlatformException catch (e) {
-      // Error fetching customer info
-      print(e);
-    }
-
-    const offeringIdentifier = "com.all_currency_pair.app";
-    try {
-      final package = offerings.getOffering(offeringIdentifier)!;
-      if (package != null) {
-        // Display packages for sale
-      }
-    } on PlatformException catch (e) {
-      // optional error handling
-    }
-  }
-
   Future<void> makePurchase() async {
     const offeringIdentifier = "com.all_currency_pair.app";
     try {

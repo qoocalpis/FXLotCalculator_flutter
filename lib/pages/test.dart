@@ -3,13 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:in_app_purchase_android/in_app_purchase_android.dart';
 import 'package:onepref/onepref.dart';
-import 'package:in_app_purchase_storekit/in_app_purchase_storekit.dart';
-import 'package:in_app_purchase_storekit/store_kit_wrappers.dart';
-
-import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 
 class First extends StatelessWidget {
   const First({super.key});
@@ -19,9 +13,7 @@ class First extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: TextButton(
-          onPressed: () async {
-            await RevenueCatService.instance.buttonAction();
-          },
+          onPressed: () async {},
           child: const Text("Next"),
         ),
       ),
@@ -140,9 +132,6 @@ class _TestWidgetState extends State<TestWidget> {
             iApEngine
                 .getProductIdsOnly(storeProductIds)
                 .contains(purchase.productID)) {
-          final InAppPurchaseAndroidPlatformAddition androidPlatformAddition =
-              iApEngine.inAppPurchase
-                  .getPlatformAddition<InAppPurchaseAndroidPlatformAddition>();
           print("おおおおおおおおおお");
         }
         if (purchase.pendingCompletePurchase) {
@@ -155,15 +144,4 @@ class _TestWidgetState extends State<TestWidget> {
       }
     }
   }
-
-  // Future<void> checkPurchases() async {
-  //   QueryPurchaseDetailsResponse response =
-  //       await InAppPurchase.instance.queryPastPurchases();
-  //   for (PurchaseDetails purchase in response.pastPurchases) {
-  //     if (purchase.productID == 'your_product_id_here') {
-  //       // 購入済みの製品
-  //       print('Product is purchased!');
-  //     }
-  //   }
-  // }
 }
