@@ -628,6 +628,12 @@ PODS:
     - abseil/base/base_internal
     - abseil/base/config
     - abseil/meta/type_traits
+  - AppAuth (1.6.2):
+    - AppAuth/Core (= 1.6.2)
+    - AppAuth/ExternalUserAgent (= 1.6.2)
+  - AppAuth/Core (1.6.2)
+  - AppAuth/ExternalUserAgent (1.6.2):
+    - AppAuth/Core
   - BoringSSL-GRPC (0.0.24):
     - BoringSSL-GRPC/Implementation (= 0.0.24)
     - BoringSSL-GRPC/Interface (= 0.0.24)
@@ -695,6 +701,13 @@ PODS:
     - Flutter
   - flutter_local_notifications (0.0.1):
     - Flutter
+  - google_sign_in_ios (0.0.1):
+    - Flutter
+    - GoogleSignIn (~> 7.0)
+  - GoogleSignIn (7.0.0):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (< 3.0, >= 1.3)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.1)
   - GoogleUtilities/AppDelegateSwizzler (7.12.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
@@ -771,6 +784,9 @@ PODS:
     - BoringSSL-GRPC (= 0.0.24)
     - gRPC-Core/Interface (= 1.49.1)
   - gRPC-Core/Interface (1.49.1)
+  - GTMAppAuth (2.0.0):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.2.0)
   - in_app_purchase_storekit (0.0.1):
     - Flutter
@@ -787,13 +803,19 @@ PODS:
     - Flutter
     - FlutterMacOS
   - PromisesObjC (2.3.1)
-  - purchases_flutter (6.5.1):
+  - purchases_flutter (6.15.0):
     - Flutter
-    - PurchasesHybridCommon (= 8.1.1)
-  - PurchasesHybridCommon (8.1.1):
-    - RevenueCat (= 4.31.2)
+    - PurchasesHybridCommon (= 8.10.1)
+  - purchases_ui_flutter (6.15.0):
+    - Flutter
+    - PurchasesHybridCommon (= 8.10.1)
+  - PurchasesHybridCommon (8.10.1):
+    - RevenueCat (= 4.31.9)
+    - RevenueCatUI (= 4.31.9)
   - RecaptchaInterop (100.0.0)
-  - RevenueCat (4.31.2)
+  - RevenueCat (4.31.9)
+  - RevenueCatUI (4.31.9):
+    - RevenueCat (= 4.31.9)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -805,15 +827,18 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - flutter_local_notifications (from `.symlinks/plugins/flutter_local_notifications/ios`)
+  - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - in_app_purchase_storekit (from `.symlinks/plugins/in_app_purchase_storekit/darwin`)
   - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - purchases_flutter (from `.symlinks/plugins/purchases_flutter/ios`)
+  - purchases_ui_flutter (from `.symlinks/plugins/purchases_ui_flutter/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 SPEC REPOS:
   trunk:
     - abseil
+    - AppAuth
     - BoringSSL-GRPC
     - Firebase
     - FirebaseAppCheckInterop
@@ -824,9 +849,11 @@ SPEC REPOS:
     - FirebaseFirestore
     - FirebaseFirestoreInternal
     - FirebaseSharedSwift
+    - GoogleSignIn
     - GoogleUtilities
     - "gRPC-C++"
     - gRPC-Core
+    - GTMAppAuth
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
@@ -834,6 +861,7 @@ SPEC REPOS:
     - PurchasesHybridCommon
     - RecaptchaInterop
     - RevenueCat
+    - RevenueCatUI
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -848,6 +876,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   flutter_local_notifications:
     :path: ".symlinks/plugins/flutter_local_notifications/ios"
+  google_sign_in_ios:
+    :path: ".symlinks/plugins/google_sign_in_ios/ios"
   in_app_purchase_storekit:
     :path: ".symlinks/plugins/in_app_purchase_storekit/darwin"
   isar_flutter_libs:
@@ -856,11 +886,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   purchases_flutter:
     :path: ".symlinks/plugins/purchases_flutter/ios"
+  purchases_ui_flutter:
+    :path: ".symlinks/plugins/purchases_ui_flutter/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
+  AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   BoringSSL-GRPC: 3175b25143e648463a56daeaaa499c6cb86dad33
   cloud_firestore: 73eece22ce25a0565238c283ee9990f1618d8063
   Firebase: 414ad272f8d02dfbf12662a9d43f4bba9bec2a06
@@ -874,12 +907,15 @@ SPEC CHECKSUMS:
   FirebaseFirestore: 171bcbb57a1a348dd171a0d5e382c03ef85a77bb
   FirebaseFirestoreInternal: 0dc0762afd68192e9d45c31d3dd3017accc84333
   FirebaseSharedSwift: 2fbf73618288b7a36b2014b957745dcdd781389e
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
   flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
+  google_sign_in_ios: 8115e3fbe097e6509beb819ed602d47369d9011f
+  GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GoogleUtilities: 0759d1a57ebb953965c2dfe0ba4c82e95ccc2e34
   "gRPC-C++": 2df8cba576898bdacd29f0266d5236fa0e26ba6a
   gRPC-Core: a21a60aefc08c68c247b439a9ef97174b0c54f96
+  GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: 41b9ef0b4c08a6db4b7eb51a21ae5183ec99a2c8
   in_app_purchase_storekit: 4fb7ee9e824b1f09107fbfbbce8c4b276366dc43
   isar_flutter_libs: b69f437aeab9c521821c3f376198c4371fa21073
@@ -887,10 +923,12 @@ SPEC CHECKSUMS:
   nanopb: d4d75c12cd1316f4a64e3c6963f879ecd4b5e0d5
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   PromisesObjC: c50d2056b5253dadbd6c2bea79b0674bd5a52fa4
-  purchases_flutter: 87bed34c0cf821834812f9e02b245f6b325c8e58
-  PurchasesHybridCommon: 2439f6e671fb4d60878a652e4377fa7e588368e6
+  purchases_flutter: ce847b4848ccec17cadfb1a2e2a3ad1d3f681849
+  purchases_ui_flutter: 8bbc43d3595a64624336f48f958ee6d33a402467
+  PurchasesHybridCommon: 170de77f83fd9cb570457157e92ea04c7aef8196
   RecaptchaInterop: 7d1a4a01a6b2cb1610a47ef3f85f0c411434cb21
-  RevenueCat: 63f6f4ae6916095561b90b2e1de86a492af67493
+  RevenueCat: aa3e439fb6282e7768609774a73c06ab87c3d9c3
+  RevenueCatUI: ef3f12dddf49d333a66a13f1d32c73ef1075ae95
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
 
 PODFILE CHECKSUM: d5ba019355c3cb362eac067d6c65fdebedc2cd31
