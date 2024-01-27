@@ -83,7 +83,7 @@ class RevenueCatService {
     return isPurchased;
   }
 
-  Future<void> makePurchase() async {
+  Future<void> makePurchase(String uid) async {
     const offeringIdentifier = "com.all_currency_pair.app";
     try {
       Package? package;
@@ -92,7 +92,7 @@ class RevenueCatService {
       if (package != null) {
         print("成功!!!!");
 
-        // await Purchases.logIn(auth.currentUser!.uid);
+        await Purchases.logIn(uid);
         CustomerInfo customerInfo = await Purchases.purchasePackage(package);
 
         await getPurchaserInfo(customerInfo);

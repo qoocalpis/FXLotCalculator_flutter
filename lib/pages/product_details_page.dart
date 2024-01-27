@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
-import 'package:lot_size_calculator_app/pages/widgets/alert_dialog_input_text.dart';
+import 'package:lot_size_calculator_app/pages/widgets/authorization_user.dart';
 import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
@@ -84,7 +84,7 @@ class _PaywallState extends State<Paywall> {
                   showDialog(
                     context: context,
                     builder: (context) {
-                      return AlertDialogInputText(isCreateUser: true);
+                      return const AuthorizationUser(isCreateUser: true);
                     },
                   );
                 },
@@ -95,7 +95,7 @@ class _PaywallState extends State<Paywall> {
                 showDialog(
                   context: context,
                   builder: (context) {
-                    return AlertDialogInputText(isCreateUser: false);
+                    return const AuthorizationUser(isCreateUser: false);
                   },
                 );
               },

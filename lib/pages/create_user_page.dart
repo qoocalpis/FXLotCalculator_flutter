@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:lot_size_calculator_app/pages/widgets/alert_dialog_input_text.dart';
+import 'package:lot_size_calculator_app/pages/widgets/authorization_user.dart';
 
 class CreateUserPage extends StatefulWidget {
   const CreateUserPage({super.key});

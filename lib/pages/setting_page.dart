@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
 import 'package:lot_size_calculator_app/pages/create_user_page.dart';
 import 'package:lot_size_calculator_app/pages/product_details_page.dart';
-import 'package:lot_size_calculator_app/pages/widgets/alert_dialog_input_text.dart';
+import 'package:lot_size_calculator_app/pages/widgets/authorization_user.dart';
 import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
 import 'package:lot_size_calculator_app/provider/in_app_purchase_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
@@ -129,6 +129,20 @@ class SettingPage extends ConsumerWidget {
                     );
                     // }
                   },
+                ),
+                TextButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return const AuthorizationUser(isCreateUser: false);
+                      },
+                    );
+                  },
+                  child: const Text(
+                    "Restore Purchase item and condition >",
+                    style: TextStyle(color: Colors.blue),
+                  ),
                 ),
               ],
             ),
