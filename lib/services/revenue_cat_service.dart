@@ -58,7 +58,6 @@ class RevenueCatService {
         customerInfo,
         entitlement,
       );
-      print(isPurchased); //monthly_subscriptionは、適宜ご自身のentitlement名に変えてください
     } on PlatformException catch (e) {
       print(" getPurchaserInfo error ${e.toString()}");
     }
@@ -90,11 +89,8 @@ class RevenueCatService {
       package = offerings.all[offeringIdentifier]
           ?.lifetime; //offeringsは適宜ご自身の設定したofferingsの名前に変えてください
       if (package != null) {
-        print("成功!!!!");
-
         await Purchases.logIn(uid);
         CustomerInfo customerInfo = await Purchases.purchasePackage(package);
-
         await getPurchaserInfo(customerInfo);
       }
     } on PlatformException catch (e) {

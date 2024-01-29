@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/create_user_page.dart';
 import 'package:lot_size_calculator_app/pages/first_loading_rate_page.dart';
-import 'package:lot_size_calculator_app/pages/product_details_page.dart';
+import 'package:lot_size_calculator_app/pages/paywall_page.dart';
 import 'package:lot_size_calculator_app/pages/setting_page.dart';
 import 'package:lot_size_calculator_app/pages/test.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_service.dart';

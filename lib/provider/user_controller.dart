@@ -27,4 +27,10 @@ class UserModelNotifier extends _$UserModelNotifier {
     tmp.user.percent = int.parse(text);
     state = AsyncData(tmp);
   }
+
+  void updateUserAuthTypeProperty() async {
+    state = const AsyncValue.loading();
+    final tmp = await isarService.fecthDatabase();
+    state = AsyncData(tmp);
+  }
 }

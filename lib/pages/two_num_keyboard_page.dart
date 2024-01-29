@@ -43,7 +43,10 @@ class TwoNumKeyboardPage extends StatelessWidget {
                 shadowColor: const Color.fromARGB(255, 27, 26, 25),
                 fixedSize: const Size(100, 50),
               ),
-              child: Text(AppLocalizations.of(context)!.close),
+              child: Text(
+                AppLocalizations.of(context)!.close,
+                style: const TextStyle(color: Colors.white),
+              ),
             ),
           ],
         ),

@@ -10,5 +10,6 @@ class User {
   late String pair;
   late int percent;
   late String uid;
+  late String userAuthType;
   late String accountCurrency;
 }
