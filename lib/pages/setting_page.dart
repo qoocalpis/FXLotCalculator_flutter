@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
-import 'package:lot_size_calculator_app/pages/create_user_page.dart';
 import 'package:lot_size_calculator_app/pages/paywall_page.dart';
 import 'package:lot_size_calculator_app/pages/widgets/authorization_user.dart';
 import 'package:lot_size_calculator_app/pages/widgets/setting_cell.dart';
@@ -133,7 +132,7 @@ class SettingPage extends ConsumerWidget {
                                     color: Colors.white, fontSize: 20),
                               )
                             : const Text(
-                                "Pro+",
+                                "Pro +",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 20),
                               )

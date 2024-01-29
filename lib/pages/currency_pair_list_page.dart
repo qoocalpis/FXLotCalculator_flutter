@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/pages/widgets/currency_pair_list_cell.dart';
 import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
+import 'package:lot_size_calculator_app/provider/in_app_purchase_controller.dart';
 import 'package:lot_size_calculator_app/services/db_model/currency_pair.dart';
 import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
 import 'package:lot_size_calculator_app/services/isar_service.dart';
@@ -36,6 +37,8 @@ class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isPurchased = ref.watch(inAppPurchaseNotifierProvider);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColor.mainBgColor,
@@ -60,13 +63,63 @@ class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            isPurchased
+                ? const SizedBox()
+                : const Padding(
+                    padding: EdgeInsets.only(top: 10, left: 10),
+                    child: Text(
+                      "Free",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+            for (int i = 0; i < googleSheetAPIModelList.length; i++)
+              isPurchased
+                  ? const SizedBox()
+                  : googleSheetAPIModelList[i].currencyCode == "USDJPY" ||
+                          googleSheetAPIModelList[i].currencyCode == "EURJPY" ||
+                          googleSheetAPIModelList[i].currencyCode == "EURUSD"
+                      ? CurrencyPairListCell(
+                          title: googleSheetAPIModelList[i].currencyPair,
+                          selected: currencyPairList[i].addedToFavorite,
+                          onTap: (context) async {
+                            await _tapTile(
+                              googleSheetAPIModelList[i].currencyPair,
+                              i,
+                            );
+                          },
+                        )
+                      : const SizedBox(),
+            Padding(
+                padding: const EdgeInsets.only(top: 10, left: 10),
+                child: Row(
+                  children: [
+                    const Text(
+                      "Pro+ ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    isPurchased
+                        ? const SizedBox()
+                        : const Icon(
+                            Icons.lock,
+                            color: Colors.orange,
+                          ),
+                  ],
+                )),
             for (int i = 0; i < googleSheetAPIModelList.length; i++)
               CurrencyPairListCell(
                 title: googleSheetAPIModelList[i].currencyPair,
                 selected: currencyPairList[i].addedToFavorite,
+                tileColor:
+                    isPurchased ? null : const Color.fromARGB(255, 82, 82, 82),
                 onTap: (context) async {
-                  await _tapTile(googleSheetAPIModelList[i].currencyPair, i);
+                  if (isPurchased) {
+                    await _tapTile(
+                      googleSheetAPIModelList[i].currencyPair,
+                      i,
+                    );
+                  }
                 },
               )
           ],
@@ -79,7 +132,6 @@ class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
     if (kDebugMode) {
       print('CurrencyPairListPage initialize');
     }
-
     currencyPairList = await isar.fechCurrencyPairList();
     googleSheetAPIModelList = googleSheet.list;
     setState(() {});

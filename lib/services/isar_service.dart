@@ -7,7 +7,6 @@ import 'package:lot_size_calculator_app/services/google_sheet_service.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:sign_in_button/sign_in_button.dart';
 
 class IsarService {
   late Future<Isar> db;

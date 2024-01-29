@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lot_size_calculator_app/models/user_model.dart';
-import 'package:lot_size_calculator_app/pages/widgets/comon_alert_dailog.dart';
 import 'package:lot_size_calculator_app/provider/in_app_purchase_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/services/isar_service.dart';
@@ -26,7 +25,7 @@ class _AuthorizationUserState extends ConsumerState<AuthorizationUser> {
   final RevenueCatService revenueCatService = RevenueCatService.instance;
   final isar = IsarService.instance;
   static const googleText = "Google";
-  static const appleText = "Apple";
+  // static const appleText = "Apple";
 
   @override
   Widget build(

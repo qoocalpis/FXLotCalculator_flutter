@@ -8,12 +8,15 @@ class CurrencyPairListCell extends StatelessWidget {
     required this.title,
     required this.selected,
     required this.onTap,
+    this.tileColor,
     this.subTitle = AppConst.strEmpty,
   });
 
   final String title;
   final bool selected;
   final String subTitle;
+  final Color? tileColor;
+
   final void Function(BuildContext) onTap; //your function expects a context
 
   @override
@@ -25,6 +28,7 @@ class CurrencyPairListCell extends StatelessWidget {
           border: Border.all(
             color: const Color.fromARGB(255, 140, 140, 138),
           ),
+          color: tileColor,
           borderRadius: BorderRadius.circular(5),
         ),
         padding: const EdgeInsets.only(left: 10, right: 10),
