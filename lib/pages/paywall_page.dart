@@ -35,6 +35,8 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
               error: (e, s) => null,
               data: (d) => d,
             );
+    final isPurchased = ref.watch(inAppPurchaseNotifierProvider);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
@@ -77,33 +79,44 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                 height: screenHeight * 0.06,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 71, 197, 90),
+                    backgroundColor: isPurchased
+                        ? Colors.orange
+                        : const Color.fromARGB(255, 71, 197, 90),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        '購入',
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
+                      !isPurchased
+                          ? const Text(
+                              '購入',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Text(
+                              '購入済み',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                     ],
                   ),
                   onPressed: () async {
                     final c1 = userModelProvider!.user.uid != AppConst.strEmpty;
                     final c2 = userModelProvider.user.userAuthType !=
                         AppConst.strEmpty;
+                    if (revenueCatService.isPurchased) return;
                     if (c1 && c2) {
                       //購入処理
                       await revenueCatService
-                          .makePurchase(userModelProvider.user.uid)
-                          .then((_) {
-                        ref
-                            .read(inAppPurchaseNotifierProvider.notifier)
-                            .setProperty(revenueCatService.isPurchased);
+                          .makePurchase(userModelProvider.user.uid);
+                      ref
+                          .read(inAppPurchaseNotifierProvider.notifier)
+                          .setProperty(revenueCatService.isPurchased);
+                      if (revenueCatService.isPurchased) {
+                        if (!mounted) return;
                         Navigator.pop(context);
-                      });
+                      }
                     } else {
                       showDialog(
                         context: context,
@@ -122,25 +135,25 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                                   child: const Text('OK'),
                                   onPressed: () async {
                                     Navigator.pop(context);
-                                    final createdUser = await showDialog<bool>(
+                                    final _ = await showDialog<bool>(
                                       context: context,
                                       builder: (context) {
                                         return const AuthorizationUser();
                                       },
                                     );
-                                    if (createdUser != null && createdUser) {
-                                      await revenueCatService
-                                          .makePurchase(
-                                              userModelProvider.user.uid)
-                                          .then((_) {
-                                        ref
-                                            .read(inAppPurchaseNotifierProvider
-                                                .notifier)
-                                            .setProperty(
-                                                revenueCatService.isPurchased);
-                                        Navigator.pop(context);
-                                      });
-                                    }
+                                    // if (createdUser != null &&
+                                    //     createdUser &&
+                                    //     !revenueCatService.isPurchased) {
+                                    //   await revenueCatService.makePurchase(
+                                    //       userModelProvider.user.uid);
+                                    //   ref
+                                    //       .read(inAppPurchaseNotifierProvider
+                                    //           .notifier)
+                                    //       .setProperty(
+                                    //           revenueCatService.isPurchased);
+                                    // }
+                                    // if (!mounted) return;
+                                    // Navigator.of(context).pop();
                                   }),
                             ],
                           );

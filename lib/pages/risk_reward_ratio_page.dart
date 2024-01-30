@@ -5,6 +5,7 @@ import 'package:lot_size_calculator_app/pages/widgets/line_chart.dart';
 import 'package:lot_size_calculator_app/pages/widgets/probability_table.dart';
 import 'package:lot_size_calculator_app/pages/widgets/risk_reward_colum.dart';
 import 'package:lot_size_calculator_app/pages/widgets/toggle_button.dart';
+import 'package:lot_size_calculator_app/provider/in_app_purchase_controller.dart';
 import 'package:lot_size_calculator_app/provider/main_screen_controller.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:lot_size_calculator_app/pages/widgets/chart_bar.dart';
@@ -46,6 +47,7 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
     FocusScope.of(context).unfocus();
     final modelProvider = ref.watch(riskRewardModelNotifierProvider);
     final screenWidth = MediaQuery.of(context).size.width;
+    final isPurchased = ref.watch(inAppPurchaseNotifierProvider);
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,63 +154,85 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
                 width: 5,
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 10, bottom: 5),
-                child: OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20), //角の丸み
-                    ),
-                    backgroundColor: const Color.fromARGB(96, 199, 198, 198),
-                  ),
-                  child: Row(
+                  padding: const EdgeInsets.only(right: 20, bottom: 5),
+                  child: Stack(
                     children: [
-                      Text(
-                        "${modelProvider.moneyRatio} %",
-                        style: const TextStyle(
-                            decoration: TextDecoration.underline,
-                            fontWeight: FontWeight.w900),
-                      ),
-                      const Icon(
-                        Icons.expand_more,
-                        size: 20,
-                      ),
-                    ],
-                  ),
-                  onPressed: () {
-                    BottomPicker(
-                      items: List<Text>.generate(
-                        SettingConst.percentList.length,
-                        (index) => Text(
-                          SettingConst.percentList[index],
-                          style: const TextStyle(fontSize: 30),
+                      OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size(80, 40),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20), //角の丸み
+                          ),
+                          backgroundColor: !isPurchased
+                              ? const Color.fromARGB(255, 69, 70, 70)
+                              : const Color.fromARGB(96, 199, 198, 198),
                         ),
+                        child: Row(
+                          children: [
+                            Text(
+                              "${modelProvider.moneyRatio} %",
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontWeight: FontWeight.w900,
+                                color: isPurchased
+                                    ? const Color.fromARGB(255, 84, 209, 171)
+                                    : Colors.grey,
+                              ),
+                            ),
+                            Icon(
+                              Icons.expand_more,
+                              size: 20,
+                              color: isPurchased
+                                  ? const Color.fromARGB(255, 84, 209, 171)
+                                  : Colors.grey,
+                            ),
+                          ],
+                        ),
+                        onPressed: () {
+                          !isPurchased
+                              ? null
+                              : BottomPicker(
+                                  items: List<Text>.generate(
+                                    SettingConst.percentList.length,
+                                    (index) => Text(
+                                      SettingConst.percentList[index],
+                                      style: const TextStyle(fontSize: 30),
+                                    ),
+                                  ),
+                                  selectedItemIndex: SettingConst.percentList
+                                      .indexOf(modelProvider.moneyRatio),
+                                  title: "資金率(%)",
+                                  titleStyle: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color: Colors.black,
+                                  ),
+                                  displaySubmitButton: false,
+                                  onChange: (index) {
+                                    final modelNotifier = ref.read(
+                                        riskRewardModelNotifierProvider
+                                            .notifier);
+                                    modelNotifier.onUpdateMoneyRatio(
+                                        SettingConst.percentList[index]);
+                                  },
+                                  onClose: () {
+                                    final modelNotifier = ref.read(
+                                        riskRewardModelNotifierProvider
+                                            .notifier);
+                                    modelNotifier
+                                        .onCalculateContinuedLossProbabilityFromButton();
+                                  },
+                                ).show(context);
+                        },
                       ),
-                      selectedItemIndex: SettingConst.percentList
-                          .indexOf(modelProvider.moneyRatio),
-                      title: "資金率(%)",
-                      titleStyle: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.black,
-                      ),
-                      displaySubmitButton: false,
-                      onChange: (index) {
-                        final modelNotifier =
-                            ref.read(riskRewardModelNotifierProvider.notifier);
-                        modelNotifier.onUpdateMoneyRatio(
-                            SettingConst.percentList[index]);
-                      },
-                      onClose: () {
-                        final modelNotifier =
-                            ref.read(riskRewardModelNotifierProvider.notifier);
-                        modelNotifier
-                            .onCalculateContinuedLossProbabilityFromButton();
-                      },
-                    ).show(context);
-                  },
-                ),
-              ),
+                      isPurchased
+                          ? const SizedBox()
+                          : const Icon(
+                              Icons.lock,
+                              color: Colors.orange,
+                            ),
+                    ],
+                  )),
             ],
           ),
           modelProvider.showType == -1

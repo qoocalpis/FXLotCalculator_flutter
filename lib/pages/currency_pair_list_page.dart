@@ -68,7 +68,7 @@ class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
             isPurchased
                 ? const SizedBox()
                 : const Padding(
-                    padding: EdgeInsets.only(top: 10, left: 10),
+                    padding: EdgeInsets.only(top: 10, left: 10, bottom: 10),
                     child: Text(
                       "Free",
                       style: TextStyle(fontWeight: FontWeight.bold),
@@ -91,8 +91,11 @@ class CurrencyPairListState extends ConsumerState<CurrencyPairListPage> {
                           },
                         )
                       : const SizedBox(),
+            const SizedBox(
+              height: 10,
+            ),
             Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10),
+                padding: const EdgeInsets.only(top: 10, left: 10, bottom: 10),
                 child: Row(
                   children: [
                     const Text(
