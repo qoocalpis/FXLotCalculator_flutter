@@ -43,12 +43,13 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
       body: SizedBox(
         width: screenWidth,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               height: screenHeight * 0.3,
               color: Colors.amberAccent,
+              child: Image.asset('images/ProductImage.png'),
             ),
             SizedBox(
               width: screenWidth * 0.8,
