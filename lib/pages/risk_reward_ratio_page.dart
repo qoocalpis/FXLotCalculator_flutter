@@ -128,16 +128,16 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
               color: Colors.black,
             ),
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "破産確率表",
-                style: TextStyle(
+                AppLocalizations.of(context)!.bankruptcProbabilityTable,
+                style: const TextStyle(
                   fontWeight: FontWeight.w800,
                 ),
               ),
-              ToggleButton(),
+              const ToggleButton(),
             ],
           ),
           const SizedBox(
@@ -146,9 +146,9 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              const Text(
-                "資金率",
-                style: TextStyle(fontWeight: FontWeight.bold),
+              Text(
+                AppLocalizations.of(context)!.fundRatio,
+                style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(
                 width: 5,
@@ -201,7 +201,8 @@ class RiskRewardRatioState extends ConsumerState<RiskRewardRatioPage> {
                                   ),
                                   selectedItemIndex: SettingConst.percentList
                                       .indexOf(modelProvider.moneyRatio),
-                                  title: "資金率(%)",
+                                  title:
+                                      "${AppLocalizations.of(context)!.fundRatio}(%)",
                                   titleStyle: const TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,

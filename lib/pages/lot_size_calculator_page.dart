@@ -131,7 +131,7 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                                 elevation: 5,
                                 shadowColor: Colors.black,
                                 backgroundColor:
-                                    Color.fromARGB(255, 152, 205, 255),
+                                    const Color.fromARGB(255, 152, 205, 255),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -172,7 +172,7 @@ class LotSizeCalculatorState extends ConsumerState<LotSizeCalculatorPage> {
                   subTitle: "(${userModelProvider?.user.accountCurrency})",
                 ),
                 CalculationSetCell(
-                  title: AppLocalizations.of(context)!.lossAllowance,
+                  title: "${AppLocalizations.of(context)!.lossAllowance} (%)",
                   type: UpdatePropertyType.percent,
                   needsDefaultText: true,
                 ),

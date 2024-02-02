@@ -11,6 +11,7 @@ import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:sign_in_button/sign_in_button.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class AuthorizationUser extends ConsumerStatefulWidget {
   const AuthorizationUser({super.key});
@@ -45,13 +46,15 @@ class _AuthorizationUserState extends ConsumerState<AuthorizationUser> {
               data: (d) => d,
             );
     return AlertDialog(
-      title: const Column(
+      title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('ユーザー認証'),
           Text(
-            '※購入情報の復元の際に必要になります',
-            style: TextStyle(fontSize: 10),
+            AppLocalizations.of(context)!.userAuthentication,
+          ),
+          Text(
+            AppLocalizations.of(context)!.requiredWhenRestoring,
+            style: const TextStyle(fontSize: 10),
           ),
         ],
       ),
@@ -83,8 +86,10 @@ class _AuthorizationUserState extends ConsumerState<AuthorizationUser> {
                   },
                 ),
                 Text(
-                  userAuthType == googleText ? "認証済み" : AppConst.strEmpty,
-                  style: const TextStyle(fontSize: 10),
+                  userAuthType == googleText
+                      ? AppLocalizations.of(context)!.authenticated
+                      : AppConst.strEmpty,
+                  style: const TextStyle(fontSize: 9.5),
                 ),
               ],
             ),

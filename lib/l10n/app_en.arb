@@ -1,7 +1,7 @@
 {
   "loadingRateApi": "Getting the latest rates",
   "accountBalance": "Account balance",
-  "lossAllowance": "Loss allowance (%)",
+  "lossAllowance": "Loss allowance",
   "lossTolerancePips": "Loss tolerance (pips)",
   "lotSizeCalculatorTitle": "Lot Size Calculator",
   "riskRewardRatioTitle": "Risk Reward Ratio",
@@ -21,5 +21,23 @@
   "productDetailText": "Unlimited use of 28 currency pairs, addition of bankruptcy probability calculation function based on risk-reward and detailed fund ratios",
   "fixedProfitAndLossAllowance": "Fixed profit and loss allowance",
   "currentProductVersion": "Current product version",
-  "userAuthentication": "User authentication"
+  "userAuthentication": "User authentication",
+  "bankruptcProbabilityTable": "Bankruptc Probability Table",
+  "fundRatio": "Fund Ratio",
+  "lineGraph": "Line Graph",
+  "table": "table",
+  "profitAndLossRatio": "Reward",
+  "winningPercentage": "WinningPercentage",
+  "bankruptcyProbability": "BankruptcyProbability",
+  "appropriateLot": "Appropriate Lot",
+  "stopLoss": "stopLoss",
+  "currencyPair": "Currency Pair",
+  "needUserAuthentication": "User authentication required",
+  "askUserAuthentication": "Do you want to authenticate the user?",
+  "askPurchaseStatus": "Do you want to restore your purchase status?",
+  "requiredWhenRestoring": "※Required when restoring purchase status",
+  "purchase": "Purchase",
+  "purchased": "Purchased",
+  "updatedPurchaseStatus": "Purchase status has been updated",
+  "authenticated": "Authenticated"
 }

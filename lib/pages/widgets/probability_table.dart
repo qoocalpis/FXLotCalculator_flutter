@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ProbabilityTable extends ConsumerWidget {
   const ProbabilityTable({
@@ -24,13 +25,13 @@ class ProbabilityTable extends ConsumerWidget {
               columnSpacing: 0,
               headingRowColor: MaterialStateProperty.all(
                   const Color.fromARGB(238, 255, 218, 72)),
-              columns: const [
+              columns: [
                 DataColumn(
                   label: Expanded(
                     child: Center(
                       child: Text(
-                        '損益比率',
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.profitAndLossRatio,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -43,8 +44,8 @@ class ProbabilityTable extends ConsumerWidget {
                   label: Expanded(
                     child: Center(
                       child: Text(
-                        '勝率',
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.winningPercentage,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -57,8 +58,8 @@ class ProbabilityTable extends ConsumerWidget {
                   label: Expanded(
                     child: Center(
                       child: Text(
-                        '破産確率',
-                        style: TextStyle(
+                        AppLocalizations.of(context)!.bankruptcyProbability,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),

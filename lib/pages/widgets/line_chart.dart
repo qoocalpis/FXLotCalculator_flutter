@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
 import 'package:lot_size_calculator_app/utils/setting_constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LineChartPage extends ConsumerWidget {
   const LineChartPage({
@@ -32,7 +33,7 @@ class LineChartPage extends ConsumerWidget {
                     ),
                     axisNameSize: 32,
                     axisNameWidget: Text(
-                      "損益率 (${modelProvider.rewardRatio})",
+                      "${AppLocalizations.of(context)!.profitAndLossRatio} (${modelProvider.rewardRatio})",
                       style: labelStyle,
                     ),
                   ),
@@ -52,8 +53,8 @@ class LineChartPage extends ConsumerWidget {
                     ),
                     axisNameWidget: Container(
                       alignment: Alignment.topCenter,
-                      child: const Text(
-                        "勝率",
+                      child: Text(
+                        AppLocalizations.of(context)!.winningPercentage,
                         style: labelStyle,
                       ),
                     ),
@@ -69,8 +70,8 @@ class LineChartPage extends ConsumerWidget {
                         ),
                       ),
                     ),
-                    axisNameWidget: const Text(
-                      "破産確率",
+                    axisNameWidget: Text(
+                      AppLocalizations.of(context)!.bankruptcyProbability,
                       style: labelStyle,
                     ),
                     axisNameSize: 32,

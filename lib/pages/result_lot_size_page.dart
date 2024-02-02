@@ -6,6 +6,7 @@ import 'package:lot_size_calculator_app/provider/currency_pair_controller.dart';
 import 'package:lot_size_calculator_app/provider/lot_size_calculator_controller.dart';
 import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ResultLotSizePage extends ConsumerWidget {
   const ResultLotSizePage({
@@ -62,28 +63,39 @@ class ResultLotSizePage extends ConsumerWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "適正ロット",
-                  style: TextStyle(
+                Text(
+                  AppLocalizations.of(context)!.appropriateLot,
+                  style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 5),
-                Text(
-                  "${lotSizeModel.lotSize} Lots",
-                  style: const TextStyle(
-                    fontSize: 32.0,
-                    fontWeight: FontWeight.bold,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: Text(
+                    "${lotSizeModel.lotSize} Lots",
+                    style: const TextStyle(
+                      fontSize: 32.0,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-                buildRow("証拠金", '${lotSizeModel.accountBalance}'),
-                buildRow("損失許容額(円)", "${lotSizeModel.lossAllowableAmount}円"),
-                buildRow("損失許容額(%)", "${lotSizeModel.percent}%"),
-                buildRow("ストップロス", "${lotSizeModel.pips}pips"),
-                buildRow("通貨ペア", selectedCurrencyPair),
-                buildRow("レート", selectedCurrencyPairRate),
-                buildRow("1 ロット", "${userModelProvider!.user.lot}"),
+                buildRow(
+                    "${AppLocalizations.of(context)!.accountBalance}  (${userModelProvider?.user.accountCurrency})",
+                    '${lotSizeModel.accountBalance} ${userModelProvider?.user.accountCurrency}'),
+                buildRow(
+                    "${AppLocalizations.of(context)!.lossAllowance} (${userModelProvider?.user.accountCurrency})",
+                    "${lotSizeModel.lossAllowableAmount} ${userModelProvider?.user.accountCurrency}"),
+                buildRow("${AppLocalizations.of(context)!.lossAllowance} (%)",
+                    "${lotSizeModel.percent}%"),
+                buildRow(AppLocalizations.of(context)!.stopLoss,
+                    "${lotSizeModel.pips}pips"),
+                buildRow(AppLocalizations.of(context)!.currencyPair,
+                    selectedCurrencyPair),
+                buildRow(AppLocalizations.of(context)!.rate,
+                    selectedCurrencyPairRate),
+                buildRow("1 Lot", "${userModelProvider!.user.lot}"),
               ],
             ),
           ),

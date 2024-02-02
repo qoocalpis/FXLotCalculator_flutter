@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lot_size_calculator_app/provider/risk_reward_controller.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ToggleButton extends ConsumerStatefulWidget {
   const ToggleButton({super.key});
@@ -75,7 +76,7 @@ class ToggleButtonState extends ConsumerState<ToggleButton> {
                   color: Colors.transparent,
                   alignment: Alignment.center,
                   child: Text(
-                    '線グラフ',
+                    AppLocalizations.of(context)!.lineGraph,
                     style: TextStyle(
                       color: loginColor,
                       fontWeight: FontWeight.bold,
@@ -102,7 +103,7 @@ class ToggleButtonState extends ConsumerState<ToggleButton> {
                   color: Colors.transparent,
                   alignment: Alignment.center,
                   child: Text(
-                    '表',
+                    AppLocalizations.of(context)!.table,
                     style: TextStyle(
                       color: signInColor,
                       fontWeight: FontWeight.bold,

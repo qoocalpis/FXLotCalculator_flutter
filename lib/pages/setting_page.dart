@@ -169,7 +169,8 @@ class SettingPage extends ConsumerWidget {
                                 AppLocalizations.of(context)!
                                     .userAuthentication,
                               ),
-                              content: const Text("購入情報を復元しますか？"),
+                              content: Text(AppLocalizations.of(context)!
+                                  .askPurchaseStatus),
                               actions: [
                                 TextButton(
                                   child: const Text('Cancel'),
@@ -191,7 +192,9 @@ class SettingPage extends ConsumerWidget {
                                         context: context,
                                         builder: (context) {
                                           return AlertDialog(
-                                            content: const Text("購入情報を更新しました。"),
+                                            content: Text(
+                                                AppLocalizations.of(context)!
+                                                    .updatedPurchaseStatus),
                                             actions: [
                                               TextButton(
                                                   child: const Text('OK'),
@@ -215,8 +218,10 @@ class SettingPage extends ConsumerWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('ユーザー認証が必要です'),
-                              content: const Text("ユーザー認証を行いますか？"),
+                              title: Text(AppLocalizations.of(context)!
+                                  .needUserAuthentication),
+                              content: Text(AppLocalizations.of(context)!
+                                  .askUserAuthentication),
                               actions: [
                                 TextButton(
                                   child: const Text('Cancel'),

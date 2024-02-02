@@ -112,11 +112,14 @@ class LotSizeCalculatorModelNotifier extends _$LotSizeCalculatorModelNotifier {
     }
     late double result;
     result = lossAllowableAmount / pips / baseRate;
-    if (oneLot == 500) {
+    if (oneLot == 5000) {
       result *= 0.05;
     }
-    if (oneLot == 5000) {
+    if (oneLot == 50000) {
       result *= 0.5;
+    }
+    if (accountCurrency == 'USD' && pair != "XAU/USD") {
+      result *= 100;
     }
     // 数値を四捨五入して小数点第2位までにフォーマット
     String formattedValue = result.toStringAsFixed(2);

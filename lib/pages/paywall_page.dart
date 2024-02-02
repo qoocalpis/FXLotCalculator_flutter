@@ -89,15 +89,15 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       !isPurchased
-                          ? const Text(
-                              '購入',
-                              style: TextStyle(
+                          ? Text(
+                              AppLocalizations.of(context)!.purchase,
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             )
-                          : const Text(
-                              '購入済み',
-                              style: TextStyle(
+                          : Text(
+                              AppLocalizations.of(context)!.purchased,
+                              style: const TextStyle(
                                 color: Colors.white,
                               ),
                             ),
@@ -124,8 +124,14 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: const Text('ユーザー認証が必要です'),
-                            content: const Text("ユーザー認証を行いますか？"),
+                            title: Text(
+                              AppLocalizations.of(context)!
+                                  .needUserAuthentication,
+                            ),
+                            content: Text(
+                              AppLocalizations.of(context)!
+                                  .askUserAuthentication,
+                            ),
                             actions: [
                               TextButton(
                                 child: const Text('Cancel'),
@@ -143,19 +149,6 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
                                         return const AuthorizationUser();
                                       },
                                     );
-                                    // if (createdUser != null &&
-                                    //     createdUser &&
-                                    //     !revenueCatService.isPurchased) {
-                                    //   await revenueCatService.makePurchase(
-                                    //       userModelProvider.user.uid);
-                                    //   ref
-                                    //       .read(inAppPurchaseNotifierProvider
-                                    //           .notifier)
-                                    //       .setProperty(
-                                    //           revenueCatService.isPurchased);
-                                    // }
-                                    // if (!mounted) return;
-                                    // Navigator.of(context).pop();
                                   }),
                             ],
                           );

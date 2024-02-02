@@ -1,7 +1,7 @@
 {
     "loadingRateApi": "最新のレートを取得しています",
     "accountBalance": "口座残高",
-    "lossAllowance": "損失許容額 (%)",
+    "lossAllowance": "損失許容額",
     "lossTolerancePips": "損失許容量(pips)",
     "lotSizeCalculatorTitle": "FXロット計算",
     "riskRewardRatioTitle": "リスクリワード比率",
@@ -21,5 +21,23 @@
     "productDetailText": "28通貨ペアの使用制限の開放,格リスクリワードと詳細な資金率による破産確率計算の機能追加",
     "fixedProfitAndLossAllowance": "固定損益許容額(%)",
     "currentProductVersion": "現在の製品版",
-    "userAuthentication": "ユーザー認証"
+    "userAuthentication": "ユーザー認証",
+    "bankruptcProbabilityTable": "破産確率表",
+    "fundRatio": "資金率",
+    "lineGraph": "線グラフ",
+    "table": "表",
+    "profitAndLossRatio": "損益率",
+    "winningPercentage": "勝率",
+    "bankruptcyProbability": "破産確率",
+    "appropriateLot": "適正ロット",
+    "stopLoss": "ストップロス",
+    "currencyPair": "通貨ペア",
+    "needUserAuthentication": "ユーザー認証が必要です",
+    "askUserAuthentication": "ユーザー認証を行いますか？",
+    "askPurchaseStatus": "購入情報を復元しますか？",
+    "requiredWhenRestoring": "※購入情報の復元の際に必要になります",
+    "purchase": "購入",
+    "purchased": "購入済み",
+    "updatedPurchaseStatus": "購入情報を更新しました",
+    "authenticated": "認証済み"
 }
