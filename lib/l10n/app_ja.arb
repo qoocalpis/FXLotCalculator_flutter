@@ -14,5 +14,12 @@
     "currencyPairListTitle": "通貨ペアリスト",
     "favoriteCurrencyPairListTitle": "お気に入り通貨ペアリスト",
     "rate": "レート",
-    "lastUpdatedTime": "最終更新日時"
+    "lastUpdatedTime": "最終更新日時",
+    "accountCurrency": "アカウントの通貨",
+    "contractSize": "1Lotの通貨単位",
+    "productTitle": "全通貨ペア & 破産確率機能追加!",
+    "productDetailText": "28通貨ペアの使用制限の開放,格リスクリワードと詳細な資金率による破産確率計算の機能追加",
+    "fixedProfitAndLossAllowance": "固定損益許容額(%)",
+    "currentProductVersion": "現在の製品版",
+    "userAuthentication": "ユーザー認証"
 }

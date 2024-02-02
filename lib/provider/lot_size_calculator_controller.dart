@@ -106,11 +106,18 @@ class LotSizeCalculatorModelNotifier extends _$LotSizeCalculatorModelNotifier {
       case 10000:
         baseRate *= 100;
         break;
-      case 100000:
+      default:
         baseRate *= 1000;
         break;
     }
-    final result = lossAllowableAmount / pips / baseRate;
+    late double result;
+    result = lossAllowableAmount / pips / baseRate;
+    if (oneLot == 500) {
+      result *= 0.05;
+    }
+    if (oneLot == 5000) {
+      result *= 0.5;
+    }
     // 数値を四捨五入して小数点第2位までにフォーマット
     String formattedValue = result.toStringAsFixed(2);
     state = state.copyWith(

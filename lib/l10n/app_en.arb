@@ -14,5 +14,12 @@
   "currencyPairListTitle": "Currency Pair List",
   "favoriteCurrencyPairListTitle": "Favorite Currency Pair List",
   "rate": "rate",
-  "lastUpdatedTime": "Last Modified"
+  "lastUpdatedTime": "Last Modified",
+  "accountCurrency": "Account Currency",
+  "contractSize": "Contract size (Units per Lot)",
+  "productTitle": "All currency pairs & bankruptcy probability function added!",
+  "productDetailText": "Unlimited use of 28 currency pairs, addition of bankruptcy probability calculation function based on risk-reward and detailed fund ratios",
+  "fixedProfitAndLossAllowance": "Fixed profit and loss allowance",
+  "currentProductVersion": "Current product version",
+  "userAuthentication": "User authentication"
 }

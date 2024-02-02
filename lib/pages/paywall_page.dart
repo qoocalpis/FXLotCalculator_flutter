@@ -7,6 +7,7 @@ import 'package:lot_size_calculator_app/provider/user_controller.dart';
 import 'package:lot_size_calculator_app/services/revenue_cat_service.dart';
 import 'package:lot_size_calculator_app/utils/constants.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class PaywallPage extends ConsumerStatefulWidget {
   const PaywallPage({super.key});
@@ -53,10 +54,10 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
             ),
             SizedBox(
               width: screenWidth * 0.8,
-              child: const Text(
-                "全通貨ペア & 破産確率機能追加!",
+              child: Text(
+                AppLocalizations.of(context)!.productTitle,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
                 ),
@@ -64,10 +65,10 @@ class _PaywallPageState extends ConsumerState<PaywallPage> {
             ),
             SizedBox(
               width: screenWidth * 0.8,
-              child: const Text(
-                "28通貨ペアの使用制限の開放,格リスクリワードと詳細な資金率による破産確率計算の機能追加",
+              child: Text(
+                AppLocalizations.of(context)!.productDetailText,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
                 ),

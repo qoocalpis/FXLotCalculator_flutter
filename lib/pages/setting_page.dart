@@ -72,27 +72,27 @@ class SettingPage extends ConsumerWidget {
         child: Column(
           children: [
             SettingCell(
-              title: 'Account Currency',
+              title: AppLocalizations.of(context)!.accountCurrency,
               text: '${userModelProvider?.user.accountCurrency}',
               icon: const Icon(Icons.expand_more_outlined),
               items: SettingConst.accountCurrencys,
             ),
             SettingCell(
-              title: 'Contract size (Units per Lot)',
+              title: AppLocalizations.of(context)!.contractSize,
               text: '${userModelProvider?.user.lot}',
               icon: const Icon(Icons.expand_more_outlined),
               items: SettingConst.constractSizes,
             ),
             SettingCell(
-              title: '固定損益許容額(%)',
+              title: AppLocalizations.of(context)!.fixedProfitAndLossAllowance,
               text: '${userModelProvider?.user.percent} %',
               icon: const Icon(Icons.expand_more_outlined),
               items: SettingConst.percentList,
             ),
-            const SettingCell(
-              title: '通貨ペア一覧',
-              text: '通貨ペア一覧',
-              icon: Icon(Icons.list_outlined),
+            SettingCell(
+              title: AppLocalizations.of(context)!.currencyPairListTitle,
+              text: AppLocalizations.of(context)!.currencyPairListTitle,
+              icon: const Icon(Icons.list_outlined),
               onClickedType: OnClickedType.navigator,
             ),
             Padding(
@@ -121,9 +121,9 @@ class SettingPage extends ConsumerWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text(
-                          "現在の製品版",
-                          style: TextStyle(color: Colors.white),
+                        Text(
+                          AppLocalizations.of(context)!.currencyPairListTitle,
+                          style: const TextStyle(color: Colors.white),
                         ),
                         !isPurchased
                             ? const Text(
@@ -165,7 +165,10 @@ class SettingPage extends ConsumerWidget {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: const Text('ユーザー認証'),
+                              title: Text(
+                                AppLocalizations.of(context)!
+                                    .userAuthentication,
+                              ),
                               content: const Text("購入情報を復元しますか？"),
                               actions: [
                                 TextButton(
